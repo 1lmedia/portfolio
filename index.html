@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Life Media — The B2B Demand Engine</title>
+<meta name="description" content="One Life Media builds and manages the demand-generation system that turns founder expertise into qualified B2B pipeline. Content, paid acquisition, funnel, qualification, CRM — one system.">
+<meta property="og:title" content="One Life Media — The B2B Demand Engine">
+<meta property="og:description" content="We turn founder expertise into a complete B2B demand-generation system.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23050505%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 fill=%22%23F5C400%22 text-anchor=%22middle%22 font-family=%22Arial%22>1</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#050505;
+    --black-soft:#0B0B0B;
+    --black-card:#101010;
+    --white:#F5F5F5;
+    --gray:#8A8A8A;
+    --gray-dim:#5C5C5C;
+    --yellow:#F5C400;
+    --line: rgba(245,245,245,0.10);
+    --max: 1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Inter',Arial,Helvetica,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  ::selection{background:var(--yellow);color:var(--black);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--yellow); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* NAV */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(5,5,5,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:18px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-weight:800; letter-spacing:0.02em; font-size:15px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand .dot{width:7px;height:7px;background:var(--yellow);border-radius:50%;display:inline-block;}
+  .nav-links{display:flex; gap:32px; font-size:13px; color:var(--gray); letter-spacing:0.02em;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--yellow); color:var(--black);
+    font-weight:700; font-size:13px; letter-spacing:0.02em;
+    padding:10px 18px; border-radius:2px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav-cta:hover{background:#fff;}
+  @media (max-width:820px){ .nav-links{display:none;} }
+
+  /* SECTION SPACING */
+  section{padding:120px 0;}
+  section.tight{padding:96px 0;}
+  @media (max-width:720px){
+    section{padding:80px 0;}
+    section.tight{padding:64px 0;}
+  }
+
+  .eyebrow{
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--yellow); font-weight:700; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:20px; height:1px; background:var(--yellow); display:inline-block;}
+
+  h1,h2,h3{font-weight:800; letter-spacing:-0.02em; line-height:1.05;}
+  h2{font-size:clamp(28px,4vw,44px); margin-bottom:16px;}
+  .sub{color:var(--gray); font-size:18px; max-width:640px; line-height:1.6;}
+  .section-head{margin-bottom:64px;}
+
+  /* HERO */
+  .hero{
+    padding:200px 0 120px;
+    position:relative;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; top:-200px; right:-200px;
+    width:600px; height:600px;
+    background:radial-gradient(circle, rgba(245,196,0,0.08) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:56px;} }
+  .hero h1{
+    font-size:clamp(34px,5.2vw,64px);
+    margin-bottom:24px;
+  }
+  .hero h1 .accent{color:var(--yellow);}
+  .hero .sub{font-size:19px; margin-bottom:36px;}
+  .hero-cta-row{display:flex; flex-direction:column; align-items:flex-start; gap:14px;}
+  .btn-primary{
+    background:var(--yellow); color:var(--black);
+    font-weight:800; font-size:15px; letter-spacing:0.02em;
+    padding:18px 34px; border-radius:2px; border:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(245,196,0,0.18);}
+  .btn-primary svg{width:16px; height:16px;}
+  .cta-note{font-size:13px; color:var(--gray);}
+
+  /* system flow visual, hero side */
+  .flow-card{
+    border:1px solid var(--line); background:var(--black-soft);
+    padding:32px; border-radius:2px;
+  }
+  .flow-label{font-size:11px; letter-spacing:0.14em; color:var(--gray); text-transform:uppercase; margin-bottom:24px;}
+  .flow-step{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0; border-bottom:1px solid var(--line);
+    font-size:14px; font-weight:600; letter-spacing:0.01em;
+  }
+  .flow-step:last-child{border-bottom:none;}
+  .flow-step .n{color:var(--yellow); font-weight:800; font-size:13px; width:20px;}
+  .flow-step.final{color:var(--yellow);}
+
+  /* PROBLEM */
+  .fragmented{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  @media (max-width:820px){ .fragmented{grid-template-columns:repeat(2,1fr);} }
+  .frag-cell{
+    background:var(--black-soft); padding:28px 20px;
+  }
+  .frag-cell .who{font-size:12px; color:var(--gray); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;}
+  .frag-cell .what{font-weight:700; font-size:16px;}
+  .frag-verdict{
+    text-align:center; padding:32px 0; color:var(--gray-dim);
+    font-size:13px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700;
+  }
+  .connect-line{
+    text-align:center; font-size:clamp(20px,3vw,28px); font-weight:800; margin-top:12px;
+  }
+  .connect-line .accent{color:var(--yellow);}
+
+  /* FRAMEWORK */
+  .framework-list{border-top:1px solid var(--line);}
+  .fw-row{
+    display:grid; grid-template-columns:80px 1fr; gap:32px;
+    padding:32px 0; border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .fw-row .num{font-size:32px; font-weight:900; color:var(--yellow); font-variant-numeric:tabular-nums;}
+  .fw-row h3{font-size:20px; margin-bottom:8px;}
+  .fw-row p{color:var(--gray); font-size:15px; max-width:520px;}
+  .funnel-strip{
+    margin-top:56px; display:flex; align-items:center; justify-content:space-between;
+    border:1px solid var(--line); padding:22px 28px; flex-wrap:wrap; gap:12px;
+  }
+  .funnel-strip span{font-size:12px; letter-spacing:0.1em; color:var(--gray); text-transform:uppercase; font-weight:700;}
+  .funnel-strip span.on{color:var(--yellow);}
+  .funnel-arrow{color:var(--gray-dim); font-size:12px;}
+
+  /* CASE STUDY */
+  .case{
+    background:var(--black-soft); border:1px solid var(--line); border-radius:2px;
+    padding:64px 40px;
+  }
+  @media (max-width:640px){ .case{padding:40px 20px;} }
+  .case-headline{font-size:clamp(26px,4.4vw,42px); font-weight:900; margin-bottom:12px; letter-spacing:-0.02em;}
+  .case-headline .accent{color:var(--yellow);}
+  .case-sub{color:var(--gray); font-size:14px; margin-bottom:48px;}
+  .metrics-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); margin-bottom:32px;
+  }
+  @media (max-width:900px){ .metrics-grid{grid-template-columns:repeat(2,1fr);} }
+  .metric{background:var(--black-soft); padding:28px 18px; text-align:center;}
+  .metric .val{font-size:clamp(22px,2.6vw,30px); font-weight:900; color:var(--yellow); font-variant-numeric:tabular-nums; margin-bottom:6px;}
+  .metric .label{font-size:11.5px; color:var(--gray); text-transform:uppercase; letter-spacing:0.06em;}
+  .efficiency-row{display:flex; gap:40px; flex-wrap:wrap; margin-bottom:28px;}
+  .efficiency-row .pair{font-size:14px; color:var(--gray);}
+  .efficiency-row .pair b{color:var(--white); font-weight:700;}
+  .mql-def{
+    font-size:13.5px; color:var(--gray); border-left:2px solid var(--yellow);
+    padding-left:16px; margin-bottom:28px; max-width:640px;
+  }
+  .disclaimer{
+    font-size:12px; color:var(--gray-dim); border-top:1px solid var(--line); padding-top:20px; max-width:760px;
+  }
+
+  /* CASE STORY TIMELINE */
+  .timeline{border-top:1px solid var(--line); margin-top:24px;}
+  .tl-row{
+    display:grid; grid-template-columns:200px 1fr; gap:24px;
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  @media (max-width:640px){ .tl-row{grid-template-columns:1fr;} }
+  .tl-row .stage{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow); font-weight:800;}
+  .tl-row .desc{color:var(--gray); font-size:14.5px;}
+
+  /* SERVICES CARDS */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line);
+  }
+  @media (max-width:900px){ .services-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .services-grid{grid-template-columns:1fr;} }
+  .service-card{background:var(--black-soft); padding:32px 24px;}
+  .service-card h3{font-size:16px; margin-bottom:10px;}
+  .service-card p{color:var(--gray); font-size:13.5px; line-height:1.55;}
+
+  /* WHO FOR / NOT FOR */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:820px){ .split{grid-template-columns:1fr;} }
+  .split-col{background:var(--black-soft); padding:44px 36px;}
+  .split-col h3{font-size:20px; margin-bottom:24px;}
+  .tag-grid{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
+  .tag{
+    border:1px solid var(--line); padding:8px 14px; font-size:12.5px; color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .tag.y{border-color:rgba(245,196,0,0.4); color:var(--yellow);}
+  .split-col .callout{font-size:14.5px; color:var(--gray); line-height:1.6;}
+  .not-list{list-style:none;}
+  .not-list li{
+    font-size:14.5px; color:var(--gray); padding:10px 0; border-bottom:1px solid var(--line);
+    display:flex; gap:12px;
+  }
+  .not-list li:last-child{border-bottom:none;}
+  .not-list li::before{content:'—'; color:var(--gray-dim); flex-shrink:0;}
+
+  /* HOW IT WORKS */
+  .steps-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:56px;}
+  @media (max-width:820px){ .steps-grid{grid-template-columns:repeat(2,1fr);} }
+  .step-card{background:var(--black-soft); padding:32px 24px;}
+  .step-card .num{color:var(--yellow); font-weight:900; font-size:26px; margin-bottom:14px;}
+  .step-card h3{font-size:16px; margin-bottom:10px;}
+  .step-card p{color:var(--gray); font-size:13.5px;}
+
+  /* AUDIT ANGLE */
+  .audit-block{
+    border:1px solid var(--line); padding:56px 40px; text-align:center; max-width:720px; margin:0 auto;
+  }
+  @media (max-width:640px){ .audit-block{padding:36px 22px;} }
+  .audit-block h2{max-width:520px; margin:0 auto 20px;}
+  .audit-block .sub{margin:0 auto 32px; text-align:center;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    padding:26px 0; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-weight:700; font-size:15.5px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+'; color:var(--yellow); font-size:20px; font-weight:400; flex-shrink:0; margin-left:20px;}
+  .faq-item[open] summary::after{content:'–';}
+  .faq-item p{color:var(--gray); font-size:14.5px; padding-bottom:26px; max-width:680px;}
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center; padding:140px 0; border-top:1px solid var(--line);
+  }
+  @media (max-width:640px){ .final-cta{padding:88px 0;} }
+  .final-cta h2{font-size:clamp(30px,5vw,52px); max-width:760px; margin:0 auto 20px;}
+  .final-cta .sub{margin:0 auto 40px; text-align:center; max-width:520px;}
+  .final-cta .cta-note{margin-top:16px;}
+
+  footer{border-top:1px solid var(--line); padding:40px 0; text-align:center;}
+  footer p{color:var(--gray-dim); font-size:12.5px; letter-spacing:0.04em;}
+
+  /* sticky mobile cta */
+  .sticky-cta{
+    position:fixed; bottom:0; left:0; right:0; z-index:90;
+    background:var(--black); border-top:1px solid var(--line);
+    padding:14px 20px; display:none;
+  }
+  .sticky-cta a{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--yellow); color:var(--black); font-weight:800; font-size:14px;
+    padding:14px; border-radius:2px;
+  }
+  @media (max-width:820px){
+    .sticky-cta{display:block;}
+    body{padding-bottom:70px;}
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>ONE LIFE MEDIA</div>
+    <nav class="nav-links">
+      <a href="#framework">System</a>
+      <a href="#case">Case</a>
+      <a href="#who">Fit</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">BOOK A CALL</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">One Life Media</div>
+        <h1>Your Founder Is Sitting On Your Best <span class="accent">Marketing Asset.</span></h1>
+        <p class="sub">We turn your expertise into a complete B2B demand-generation system, from content and paid acquisition to funnels, qualification, and CRM.</p>
+        <div class="hero-cta-row">
+          <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">
+            BOOK A CALL
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <span class="cta-note">Strategy call · No obligation</span>
+        </div>
+      </div>
+      <div class="flow-card">
+        <div class="flow-label">The system, end to end</div>
+        <div class="flow-step"><span class="n">01</span>Content</div>
+        <div class="flow-step"><span class="n">02</span>Distribution</div>
+        <div class="flow-step"><span class="n">03</span>Paid acquisition</div>
+        <div class="flow-step"><span class="n">04</span>Funnel</div>
+        <div class="flow-step"><span class="n">05</span>Qualification</div>
+        <div class="flow-step"><span class="n">06</span>CRM</div>
+        <div class="flow-step final"><span class="n">07</span>Pipeline</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="tight">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">The problem</div>
+        <h2>Most Agencies Own One Piece Of The Acquisition System.</h2>
+        <p class="sub">You can hire a content agency, a media buyer, a funnel builder, and a CRM specialist, and still end up with no coherent system connecting any of it.</p>
+      </div>
+
+      <div class="fragmented">
+        <div class="frag-cell"><div class="who">Content agency</div><div class="what">Content</div></div>
+        <div class="frag-cell"><div class="who">Media buyer</div><div class="what">Ads</div></div>
+        <div class="frag-cell"><div class="who">Funnel agency</div><div class="what">Landing page</div></div>
+        <div class="frag-cell"><div class="who">CRM specialist</div><div class="what">Automation</div></div>
+      </div>
+      <div class="frag-verdict">Disconnected</div>
+      <div class="connect-line">One Life Media connects <span class="accent">the entire system.</span></div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK -->
+  <section id="framework">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">The framework</div>
+        <h2>The B2B Demand Engine</h2>
+        <p class="sub">One system. Every critical layer of acquisition, working together instead of in isolation.</p>
+      </div>
+
+      <div class="framework-list">
+        <div class="fw-row">
+          <div class="num">01</div>
+          <div><h3>Content</h3><p>Turn founder expertise and long-form content into short-form video, carousels, and creative assets.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">02</div>
+          <div><h3>Distribution</h3><p>Get the right content in front of the right audience, organically and systematically.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">03</div>
+          <div><h3>Paid Acquisition</h3><p>Turn proven messaging and creative into scalable paid campaigns.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">04</div>
+          <div><h3>Funnel</h3><p>Build the landing pages, lead magnets, and conversion infrastructure that capture demand.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">05</div>
+          <div><h3>Qualification</h3><p>Define what a qualified lead actually means, before campaigns ever begin.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">06</div>
+          <div><h3>CRM</h3><p>Deliver and organize qualified leads inside the client's existing CRM.</p></div>
+        </div>
+        <div class="fw-row">
+          <div class="num">07</div>
+          <div><h3>Pipeline</h3><p>Give the sales team qualified opportunities they can actually act on.</p></div>
+        </div>
+      </div>
+
+      <div class="funnel-strip">
+        <span class="on">Attention</span><span class="funnel-arrow">→</span>
+        <span class="on">Interest</span><span class="funnel-arrow">→</span>
+        <span class="on">Lead</span><span class="funnel-arrow">→</span>
+        <span class="on">MQL</span><span class="funnel-arrow">→</span>
+        <span class="on">Pipeline</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section id="case">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">The case</div>
+        <h2>The Numbers Behind One Client Engagement.</h2>
+      </div>
+
+      <div class="case">
+        <div class="case-headline">$800 In Ad Spend. <span class="accent">$217K+</span> In Client Revenue.</div>
+        <p class="case-sub">Sales Leaders Group · commercial implementation consultancy · 4-month engagement</p>
+
+        <div class="metrics-grid">
+          <div class="metric"><div class="val">$217K+</div><div class="label">Client revenue</div></div>
+          <div class="metric"><div class="val">3,000</div><div class="label">Leads generated</div></div>
+          <div class="metric"><div class="val">400</div><div class="label">MQLs</div></div>
+          <div class="metric"><div class="val">$800</div><div class="label">Paid media spend</div></div>
+          <div class="metric"><div class="val">4 mo.</div><div class="label">Campaign period</div></div>
+        </div>
+
+        <div class="efficiency-row">
+          <div class="pair"><b>$2</b> per MQL ($800 ÷ 400)</div>
+          <div class="pair"><b>$0.27</b> per lead ($800 ÷ 3,000)</div>
+        </div>
+
+        <div class="mql-def"><b style="color:var(--white)">MQL definition:</b> owners, directors, CEOs, and decision-makers matching the agreed qualification criteria.</div>
+
+        <div class="disclaimer">Historical case study. Results vary based on offer, market, audience, budget, sales execution, and other factors. Past performance is not a guarantee of future results.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STORY -->
+  <section class="tight">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">How it happened</div>
+        <h2>Not Just Numbers. The Mechanism.</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-row"><div class="stage">Problem</div><div class="desc">The client had acquisition inefficiencies and poor paid-media execution, with no coherent system connecting content, ads, and follow-up.</div></div>
+        <div class="tl-row"><div class="stage">Diagnosis</div><div class="desc">One Life Media identified the actual constraint: content existed, but nothing turned attention into qualified conversations.</div></div>
+        <div class="tl-row"><div class="stage">Intervention</div><div class="desc">Full ownership of strategy, content, distribution, paid media strategy, lead generation, qualification, and funnel.</div></div>
+        <div class="tl-row"><div class="stage">Result</div><div class="desc">3,000 leads, 400 MQLs, and $217K+ in client revenue from $800 in paid media spend, over 4 months.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section>
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">What we actually do</div>
+        <h2>We Don't Just Make Content. We Build The System Behind It.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><h3>Content Engine</h3><p>Short-form video, carousels, creative assets, and founder-led content strategy.</p></div>
+        <div class="service-card"><h3>Paid Acquisition</h3><p>Campaign strategy, media buying, testing, and optimization.</p></div>
+        <div class="service-card"><h3>Funnel</h3><p>Landing pages, lead magnets, conversion paths, and tracking.</p></div>
+        <div class="service-card"><h3>CRM</h3><p>Integration, automation, routing, and lead organization.</p></div>
+        <div class="service-card"><h3>Qualification</h3><p>Defining and identifying the leads that actually matter to the sales team.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO FOR / NOT FOR -->
+  <section id="who">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">Fit</div>
+        <h2>Built For Companies Where One Good Customer Is Worth A Lot.</h2>
+      </div>
+
+      <div class="split">
+        <div class="split-col">
+          <h3>Who this is for</h3>
+          <div class="tag-grid">
+            <span class="tag y">B2B</span>
+            <span class="tag y">High-ticket</span>
+            <span class="tag y">Defined ICP</span>
+            <span class="tag y">Sales team</span>
+            <span class="tag y">Strong offer</span>
+            <span class="tag y">Growth ambition</span>
+            <span class="tag y">Able to invest in acquisition</span>
+          </div>
+          <p class="callout">If your average customer is worth thousands or tens of thousands of dollars, a qualified lead is an asset, not a vanity metric.</p>
+        </div>
+        <div class="split-col">
+          <h3>Who this is not for</h3>
+          <ul class="not-list">
+            <li>You need guaranteed revenue.</li>
+            <li>You have an unproven offer.</li>
+            <li>You can't invest in acquisition.</li>
+            <li>You don't have the capacity to follow up with leads.</li>
+            <li>You want viral content without a business objective.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="tight">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">Process</div>
+        <h2>How It Works</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card"><div class="num">01</div><h3>Audit</h3><p>We identify the biggest constraint in your acquisition system.</p></div>
+        <div class="step-card"><div class="num">02</div><h3>Build</h3><p>We build the content, creative, funnel, tracking, and CRM infrastructure.</p></div>
+        <div class="step-card"><div class="num">03</div><h3>Launch</h3><p>We activate organic and paid distribution.</p></div>
+        <div class="step-card"><div class="num">04</div><h3>Optimize</h3><p>We continuously test, measure, and improve the system.</p></div>
+      </div>
+      <div style="text-align:center;">
+        <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">BOOK A CALL</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT ANGLE -->
+  <section>
+    <div class="wrap reveal">
+      <div class="audit-block">
+        <div class="eyebrow" style="justify-content:center;">The call</div>
+        <h2>Let's Find Your Acquisition Bottleneck.</h2>
+        <p class="sub">On the call, we'll look at your current acquisition system, identify what's limiting growth, and determine whether there's a real opportunity for us to help.</p>
+        <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">BOOK A CALL</a>
+        <div class="cta-note" style="margin-top:16px;">60-minute strategy call</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="tight">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Questions Worth Answering Upfront</h2>
+      </div>
+      <div>
+        <details class="faq-item">
+          <summary>Do you guarantee leads?</summary>
+          <p>No. We build, manage, and optimize the acquisition system, but results depend on the offer, market, budget, sales execution, and other variables outside our control.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you manage paid media?</summary>
+          <p>Yes. Paid acquisition is one component of the B2B Demand Engine.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you create the content?</summary>
+          <p>Yes. We can turn existing founder content into short-form video, carousels, and paid creative.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you build the funnel?</summary>
+          <p>Yes. We can build the relevant landing pages, lead magnets, tracking, and conversion infrastructure.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you integrate with our CRM?</summary>
+          <p>Yes. We can connect lead capture and qualification to the client's existing CRM where technically feasible.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you guarantee revenue?</summary>
+          <p>No.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to spend money on ads?</summary>
+          <p>For paid acquisition, yes. Advertising spend is separate from the agency fee.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who is this for?</summary>
+          <p>B2B companies selling high-value products or services where qualified leads have meaningful economic value.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Your Acquisition System Should Work <span style="color:var(--yellow)">As One System.</span></h2>
+      <p class="sub">Let's identify what's actually preventing your company from generating more qualified pipeline.</p>
+      <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">BOOK A CALL</a>
+      <div class="cta-note">One Life Media · B2B Demand Generation</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap"><p>&copy; 2026 One Life Media. B2B Demand Generation.</p></div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener">BOOK A CALL</a>
+</div>
+
+<script>
+  // scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
