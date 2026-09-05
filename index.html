@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Life Media — B2B Demand Generation for Founders</title>
+<title>One Life Media — Short-Form Content Repurposing & Distribution</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
@@ -46,13 +46,8 @@
     transition:background 0.3s, border-color 0.3s;
   }
   nav.scrolled { background:rgba(8,8,8,0.98); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
-  nav .logo-wrap img { height:32px; opacity:0.95; display:block; }
-  nav .nav-menu { display:flex; gap:28px; list-style:none; }
-  nav .nav-menu a {
-    font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--text-muted); text-decoration:none; transition:color 0.2s;
-  }
-  nav .nav-menu a:hover { color:var(--accent); }
+  nav .logo-wrap img { height:32px; opacity:0.95; }
+  nav .nav-tag { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--accent); opacity:0.8; }
   nav .nav-actions { display:flex; gap:10px; align-items:center; }
   .nav-cta {
     display:inline-flex; align-items:center; gap:7px;
@@ -75,29 +70,32 @@
     transition:opacity 0.3s ease;
   }
 
-  /* ─── BUTTONS ─── */
-  .btn-primary {
-    display:inline-flex; align-items:center; gap:10px;
-    padding:18px 40px; background:var(--accent); color:var(--black);
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  /* ─── BASE SECTION ─── */
+  section { position:relative; z-index:2; }
+  .section-label {
+    font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase;
+    color:var(--accent); margin-bottom:20px;
+    display:flex; align-items:center; gap:14px;
   }
-  .btn-primary:hover { background:var(--white); transform:translateY(-2px); box-shadow:0 12px 40px rgba(200,169,110,0.3); }
+  .section-label::before { content:''; width:28px; height:1px; background:var(--accent); flex-shrink:0; }
+  .divider { width:100%; height:1px; background:linear-gradient(to right, transparent, var(--accent), transparent); opacity:0.3; margin:0 auto; max-width:1100px; position:relative; z-index:2; }
 
-  /* ─── HERO (02) ─── */
+  /* ─── REVEAL ─── */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+
+  /* ─── HERO ─── */
   #hero {
     position:relative; min-height:100vh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:150px 24px 100px;
+    text-align:center; padding:140px 24px 100px;
     overflow:hidden;
   }
   .hero-bg {
     position:absolute; inset:0;
     background:
       radial-gradient(ellipse 90% 70% at 50% 100%, rgba(181,41,28,0.09) 0%, transparent 65%),
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,169,110,0.05) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 80% 30%, rgba(200,169,110,0.03) 0%, transparent 60%);
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,169,110,0.05) 0%, transparent 60%);
   }
   .hero-lines {
     position:absolute; inset:0;
@@ -108,290 +106,237 @@
     mask-image:radial-gradient(ellipse at center, black 25%, transparent 75%);
     -webkit-mask-image:radial-gradient(ellipse at center, black 25%, transparent 75%);
   }
-
   .hero-kicker {
     font-family:'Barlow Condensed',sans-serif;
     font-size:11px; letter-spacing:6px; text-transform:uppercase;
-    color:var(--accent); margin-bottom:28px;
+    color:var(--accent); margin-bottom:24px;
     opacity:0; animation:fadeUp 0.8s 0.15s forwards;
     position:relative; z-index:2;
     display:flex; align-items:center; gap:16px; justify-content:center;
   }
   .hero-kicker::before, .hero-kicker::after { content:''; width:28px; height:1px; background:var(--accent); opacity:0.6; }
 
-  /* ─── HERO CENTERPIECE LOGO ─── */
   .hero-logo {
-    width:min(580px, 85vw);
-    margin-bottom:34px;
-    opacity:0;
-    animation:fadeUp 1s 0.3s forwards;
-    filter:
-      drop-shadow(0 0 60px rgba(200,169,110,0.3))
-      drop-shadow(0 0 24px rgba(200,169,110,0.15))
-      drop-shadow(0 4px 20px rgba(0,0,0,1));
+    width:min(420px,70vw); margin-bottom:32px;
+    opacity:0; animation:fadeUp 1s 0.35s forwards;
+    filter: drop-shadow(0 0 40px rgba(200,169,110,0.2));
     position:relative; z-index:2;
   }
 
-  .hero-title {
+  .hero-headline {
     font-family:'Bebas Neue',sans-serif;
-    font-size:clamp(38px,6vw,84px);
-    line-height:0.95; letter-spacing:2px;
-    margin-bottom:24px; max-width:980px;
-    opacity:0; animation:fadeUp 0.9s 0.45s forwards;
+    font-size:clamp(40px, 6vw, 84px);
+    line-height:0.95; letter-spacing:1px;
+    text-transform:uppercase; color:var(--white);
+    max-width:900px; margin:0 auto 28px;
+    opacity:0; animation:fadeUp 0.8s 0.55s forwards;
     position:relative; z-index:2;
   }
-  .hero-title em { font-style:normal; color:var(--accent); }
+  .hero-headline em { font-style:normal; color:var(--accent); }
 
   .hero-sub {
-    max-width:700px;
-    font-size:clamp(16px,2vw,19px);
-    line-height:1.8; font-weight:300;
-    color:var(--text-body);
-    margin-bottom:40px;
-    opacity:0; animation:fadeUp 0.8s 0.6s forwards;
+    max-width:760px; font-size:clamp(16px,2vw,19px);
+    line-height:1.8; font-weight:300; color:var(--text-body);
+    margin:0 auto 40px; opacity:0; animation:fadeUp 0.8s 0.7s forwards;
     position:relative; z-index:2;
   }
-  .hero-cta-box {
-    display:flex; flex-direction:column; align-items:center; gap:12px;
-    opacity:0; animation:fadeUp 0.8s 0.75s forwards;
+  .hero-sub strong { color:var(--white); font-weight:500; }
+
+  .hero-ctas {
+    display:flex; flex-direction:column; align-items:center; gap:16px;
+    opacity:0; animation:fadeUp 0.8s 0.85s forwards;
     position:relative; z-index:2;
   }
-  .hero-micro {
-    font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted);
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:18px 40px; background:var(--accent); color:var(--black);
+    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    text-decoration:none; transition:all 0.25s; white-space:nowrap;
+    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background:var(--white); transform:translateY(-2px); box-shadow:0 12px 40px rgba(200,169,110,0.3); }
+  .hero-micro { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+
+  /* Hero Diagram Visual */
+  .hero-visual {
+    margin-top:60px; max-width:900px; width:100%;
+    padding:30px; background:rgba(200,169,110,0.02);
+    border:1px solid var(--border); position:relative; z-index:2;
+    opacity:0; animation:fadeUp 0.8s 1s forwards;
+  }
+  .branch-node-main {
+    padding:14px 24px; background:var(--mid); border:1px solid var(--accent);
+    color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px;
+    display:inline-block; margin-bottom:24px;
+  }
+  .branch-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; }
+  .branch-leaf {
+    background:var(--mid2); border:1px solid var(--border); padding:12px 8px;
+    font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1px; color:var(--text-muted);
+    text-transform:uppercase;
   }
 
   /* ─── TICKER ─── */
   .ticker-wrap { overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:14px 0; background:var(--mid2); position:relative; z-index:2; }
   .ticker-track { display:flex; animation:ticker 36s linear infinite; white-space:nowrap; will-change:transform; }
-  .ticker-item { display:inline-flex; align-items:center; gap:20px; padding:0 40px; font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--text-muted); flex-shrink:0; }
+  .ticker-item { display:inline-flex; align-items:center; gap:20px; padding:0 44px; font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--text-muted); flex-shrink:0; }
   .ticker-item span { color:var(--accent); font-size:7px; }
 
-  /* ─── SECTION BASE ─── */
-  section { position:relative; z-index:2; padding:120px 48px; }
-  .container { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
-  .section-label {
-    font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:5px; text-transform:uppercase;
-    color:var(--accent); margin-bottom:20px;
-    display:flex; align-items:center; gap:14px;
-  }
-  .section-label::before { content:''; width:28px; height:1px; background:var(--accent); flex-shrink:0; }
-  .divider { width:100%; height:1px; background:linear-gradient(to right, transparent, var(--accent), transparent); opacity:0.3; margin:0 auto; max-width:1100px; }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity:1; transform:none; }
+  /* ─── PROBLEM ─── */
+  #problem { padding:120px 48px; max-width:1100px; margin:0 auto; }
+  .problem-header { margin-bottom:60px; }
+  .problem-headline { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,6vw,84px); line-height:0.95; letter-spacing:1px; }
+  .problem-headline em { font-style:normal; color:var(--accent); }
+  .problem-intro { font-size:17px; line-height:1.9; color:var(--text-body); max-width:800px; margin-top:24px; }
+  .problem-intro p + p { margin-top:16px; }
 
-  /* ─── 03. PROBLEM ─── */
-  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; }
-  .problem-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,72px); line-height:0.95; letter-spacing:1px; }
-  .problem-title em { font-style:normal; color:var(--accent); }
-  .problem-cards { display:flex; flex-direction:column; gap:12px; margin-top:28px; }
-  .problem-badge {
-    background:var(--mid); border:1px solid var(--border); border-left:3px solid var(--red);
-    padding:16px 20px; font-family:'Barlow Condensed',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase;
-    color:var(--text-body); display:flex; align-items:center; justify-content:space-between;
-  }
-  .problem-badge span { color:var(--red); font-size:12px; font-weight:700; }
-  .problem-text { font-size:18px; line-height:1.95; color:var(--text-body); }
-  .problem-text strong { color:var(--white); font-weight:500; }
-  .problem-text p + p { margin-top:20px; }
+  .problem-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
+  .p-card { background:var(--mid); border:1px solid var(--border); padding:36px 28px; position:relative; }
+  .p-card::top { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--accent); }
+  .p-card-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; margin-bottom:12px; color:var(--white); }
+  .p-card-text { font-size:14px; line-height:1.8; color:var(--text-body); }
 
-  /* ─── 04. FLOW ENGINE ─── */
-  #engine { background:var(--mid2); }
-  .engine-header { text-align:center; margin-bottom:64px; }
-  .engine-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,6vw,84px); letter-spacing:2px; line-height:0.95; margin-bottom:16px; }
-  .engine-title em { font-style:normal; color:var(--accent); }
-  .engine-sub { font-size:17px; color:var(--text-body); max-width:620px; margin:0 auto; line-height:1.8; }
+  /* ─── SOLUTION / FLOW ─── */
+  #solution { padding:120px 48px; background:var(--mid2); position:relative; }
+  .sol-inner { max-width:1100px; margin:0 auto; }
+  .sol-headline { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,80px); line-height:0.95; margin-bottom:20px; }
+  .sol-headline em { font-style:normal; color:var(--accent); }
+  .sol-sub { font-size:17px; color:var(--text-body); margin-bottom:60px; }
 
-  .flow-track {
-    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px 14px;
-    background:var(--mid); border:1px solid var(--border); padding:30px 24px;
-    clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-    margin-bottom:70px;
+  .flow-container { display:flex; flex-direction:column; gap:16px; max-width:800px; margin:0 auto 48px; }
+  .flow-step {
+    background:var(--black); border:1px solid var(--border); padding:24px 32px;
+    display:flex; align-items:center; gap:24px; text-align:left;
   }
-  .flow-node {
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px;
-    text-transform:uppercase; color:var(--white); background:rgba(200,169,110,0.1);
-    border:1px solid rgba(200,169,110,0.4); padding:10px 18px;
-  }
-  .flow-arrow { color:var(--accent); font-weight:bold; font-size:14px; }
+  .flow-num { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--accent); min-width:48px; }
+  .flow-content h4 { font-family:'Barlow Condensed',sans-serif; font-size:18px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; color:var(--white); }
+  .flow-content p { font-size:14px; color:var(--text-body); line-height:1.6; }
+  .flow-arrow { text-align:center; color:var(--accent); font-size:20px; margin:-8px 0; }
+  .sol-goal { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:20px; letter-spacing:1px; color:var(--accent); text-transform:uppercase; margin-top:40px; }
 
-  /* ─── 05. FRAMEWORK DETAIL ─── */
-  .framework-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .framework-card {
-    background:var(--mid); border:1px solid var(--border); padding:36px 30px;
-    position:relative; transition:border-color 0.3s, transform 0.3s;
-    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-  .framework-card:hover { border-color:var(--accent); transform:translateY(-3px); }
-  .framework-num { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--accent); margin-bottom:12px; }
-  .framework-card-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; margin-bottom:14px; }
-  .framework-card-text { font-size:15px; line-height:1.8; color:var(--text-body); }
+  /* ─── WHAT WE ACTUALLY DO ─── */
+  #what-we-do { padding:120px 48px; max-width:1100px; margin:0 auto; }
+  .wwd-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:40px; }
+  .wwd-card { background:var(--mid); border:1px solid var(--border); padding:32px; }
+  .wwd-card h3 { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; color:var(--accent); margin-bottom:12px; }
+  .wwd-card p { font-size:14px; line-height:1.8; color:var(--text-body); }
 
-  /* ─── 06-08. CASE STUDY ─── */
-  #case-study {
-    background:radial-gradient(ellipse 90% 60% at 50% 50%, rgba(200,169,110,0.06) 0%, transparent 70%);
+  /* ─── DIFFERENCE ─── */
+  #difference { padding:100px 48px; background:var(--mid2); }
+  .diff-inner { max-width:900px; margin:0 auto; text-align:center; }
+  .diff-box {
+    margin-top:40px; padding:40px; background:var(--black); border:1px solid var(--accent);
+    display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center;
   }
-  .case-banner {
-    background:#111214; border:1px solid rgba(200,169,110,0.3); padding:56px 44px;
-    margin-bottom:60px; position:relative; overflow:hidden;
-  }
-  .case-banner::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--accent), var(--red), var(--accent)); }
-  .case-header-title {
-    font-family:'Bebas Neue',sans-serif; font-size:clamp(38px,6vw,76px);
-    line-height:0.95; letter-spacing:2px; margin-bottom:16px;
-  }
-  .case-header-title em { font-style:normal; color:var(--accent); }
-  .case-header-sub { font-size:17px; color:var(--text-body); max-width:800px; line-height:1.75; margin-bottom:44px; }
+  .diff-item { padding:20px; }
+  .diff-item.bad { border-right:1px solid var(--border); color:var(--text-muted); }
+  .diff-item.good { color:var(--accent); font-weight:600; }
+  .diff-label { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px; }
 
-  .case-metrics-grid {
-    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
-    border-top:1px solid var(--border); padding-top:36px;
-  }
-  .metric-box { text-align:center; }
-  .metric-val { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4.5vw,56px); color:var(--accent); line-height:1; }
-  .metric-lbl { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; }
-
-  .case-details-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
-  .case-column-box {
-    background:var(--mid); border:1px solid var(--border); padding:36px 32px;
-  }
-  .case-col-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; color:var(--white); margin-bottom:18px; }
-  .case-col-text { font-size:16px; line-height:1.85; color:var(--text-body); }
-  .case-col-text p + p { margin-top:16px; }
-  .case-col-text strong { color:var(--accent); font-weight:500; }
-  .target-pills { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }
-  .target-pill {
-    padding:6px 14px; background:rgba(200,169,110,0.1); border:1px solid rgba(200,169,110,0.35);
-    font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--white);
-  }
-  .case-disclaimer {
-    margin-top:30px; font-size:13px; color:var(--text-dim); font-style:italic; line-height:1.7;
-    border-top:1px solid var(--border); padding-top:20px;
+  /* ─── CONTENT -> BUSINESS ─── */
+  #funnel { padding:120px 48px; max-width:1100px; margin:0 auto; }
+  .funnel-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:40px 0; }
+  .f-step { background:var(--mid); border:1px solid var(--border); padding:20px 16px; text-align:center; }
+  .f-step h4 { font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--accent); margin-bottom:8px; }
+  .f-step p { font-size:12px; color:var(--text-body); line-height:1.5; }
+  .funnel-visual-bar {
+    background:var(--mid2); border:1px solid var(--accent); padding:20px;
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(14px, 2vw, 22px); letter-spacing:2px;
+    color:var(--white); text-align:center; margin-top:20px;
   }
 
-  /* ─── 09. THE DIFFERENCE ─── */
-  .diff-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
-  .diff-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(38px,5vw,72px); line-height:0.95; letter-spacing:1px; }
-  .diff-title em { font-style:normal; color:var(--accent); }
-  .diff-list { display:flex; flex-direction:column; gap:16px; }
-  .diff-item {
-    background:var(--mid); border-left:3px solid var(--accent); padding:20px 24px;
-    font-size:16px; line-height:1.75; color:var(--text-body);
-  }
-  .diff-item strong { color:var(--white); }
+  /* ─── DISTRIBUTION SECTION ─── */
+  #distribution { padding:100px 48px; background:var(--mid2); text-align:center; }
+  .dist-inner { max-width:800px; margin:0 auto; }
+  .dist-flow-text { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:2px; color:var(--accent); margin:30px 0; line-height:1.8; }
 
-  /* ─── 10. WHAT WE MANAGE ─── */
-  #manage { background:var(--mid2); }
-  .manage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:50px; }
-  .manage-card {
-    background:var(--mid); border:1px solid var(--border); padding:34px 28px;
-    transition:background 0.3s;
-  }
-  .manage-card:hover { background:#1b1b1b; }
-  .manage-card-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1.5px; color:var(--accent); margin-bottom:12px; }
-  .manage-card-text { font-size:15px; line-height:1.8; color:var(--text-body); }
+  /* ─── PROOF ─── */
+  #proof { padding:100px 48px; max-width:1100px; margin:0 auto; }
+  .proof-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:40px 0; text-align:center; }
+  .p-stat { background:var(--mid); border:1px solid var(--border); padding:24px; }
+  .p-stat .num { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--accent); }
+  .p-stat .lbl { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+  .disclaimer { font-size:12px; color:var(--text-dim); line-height:1.6; max-width:800px; margin:0 auto; text-align:center; }
 
-  /* ─── 11 & 12. WHO IT'S FOR / NOT FOR ─── */
-  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:50px; }
-  .fit-card {
-    background:var(--mid); border:1px solid var(--border); padding:44px 36px;
-    clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-  }
-  .fit-card.is-for { border-top:3px solid var(--accent); }
-  .fit-card.is-not { border-top:3px solid var(--red); }
-  .fit-title { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:1px; margin-bottom:20px; }
-  .fit-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
-  .fit-list li {
-    display:flex; align-items:flex-start; gap:12px; font-size:15px; line-height:1.7; color:var(--text-body);
-  }
-  .fit-list li svg { flex-shrink:0; margin-top:4px; }
-  .is-for svg { color:var(--accent); }
-  .is-not svg { color:var(--red); }
-  .fit-callout {
-    margin-top:24px; padding-top:20px; border-top:1px solid var(--border);
-    font-family:'Barlow Condensed',sans-serif; font-size:14px; letter-spacing:1px; color:var(--text-muted);
-  }
+  /* ─── YOUR PART / OUR PART ─── */
+  #responsibilities { padding:120px 48px; background:var(--mid2); }
+  .resp-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1100px; margin:0 auto; }
+  .resp-box { background:var(--black); border:1px solid var(--border); padding:40px; }
+  .resp-box h3 { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:1px; color:var(--accent); margin-bottom:24px; }
+  .resp-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+  .resp-list li { display:flex; gap:12px; font-size:15px; color:var(--text-body); line-height:1.6; }
+  .resp-list li strong { color:var(--white); }
 
-  /* ─── 13. PROCESS ─── */
-  .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:50px; }
-  .process-step {
-    background:var(--mid); border:1px solid var(--border); padding:32px 24px;
-    text-align:center; position:relative;
+  /* ─── PRICING ─── */
+  #pricing { padding:120px 48px; max-width:1200px; margin:0 auto; }
+  .pricing-header { text-align:center; margin-bottom:60px; }
+  .pricing-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:16px; align-items:stretch; }
+  .price-card {
+    background:var(--mid); border:1px solid var(--border); padding:28px 20px;
+    display:flex; flex-direction:column; justify-content:space-between; position:relative;
   }
-  .step-num { font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--accent); margin-bottom:8px; line-height:1; }
-  .step-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:12px; }
-  .step-text { font-size:14px; line-height:1.75; color:var(--text-body); }
+  .price-card.featured { border-color:var(--accent); background:#181612; }
+  .badge {
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    background:var(--accent); color:var(--black); font-family:'Barlow Condensed',sans-serif;
+    font-size:10px; font-weight:800; letter-spacing:2px; padding:4px 12px; text-transform:uppercase;
+  }
+  .price-name { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; }
+  .price-volume { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:2px; color:var(--accent); margin-top:4px; }
+  .price-val { font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--white); margin:16px 0; }
+  .price-desc { font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:20px; min-height:54px; }
+  .price-includes { border-top:1px solid var(--border); padding-top:16px; margin-bottom:24px; flex-grow:1; }
+  .price-includes ul { list-style:none; font-size:12px; color:var(--text-body); display:flex; flex-direction:column; gap:8px; }
+  .btn-plan {
+    display:block; width:100%; text-align:center; padding:14px 10px;
+    background:var(--accent); color:var(--black); font-family:'Barlow Condensed',sans-serif;
+    font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none;
+    transition:all 0.25s;
+  }
+  .btn-plan:hover { background:var(--white); }
 
-  /* ─── 14. AUDIT CTA BOX ─── */
-  #audit-cta {
-    background:linear-gradient(to bottom, var(--black), var(--mid2) 50%, var(--black));
-    text-align:center;
-  }
-  .audit-box {
-    max-width:850px; margin:0 auto; padding:64px 44px; background:#111214;
-    border:1px solid rgba(200,169,110,0.35); position:relative;
-    clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-  }
-  .audit-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--accent), var(--red), var(--accent)); }
-  .audit-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,5.5vw,70px); letter-spacing:2px; line-height:0.95; margin-bottom:20px; }
-  .audit-title em { font-style:normal; color:var(--accent); }
-  .audit-desc { font-size:17px; line-height:1.85; color:var(--text-body); margin-bottom:36px; max-width:700px; margin-left:auto; margin-right:auto; }
+  /* ─── HOW IT WORKS ─── */
+  #how-it-works { padding:120px 48px; background:var(--mid2); }
+  .hiw-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; max-width:1100px; margin:40px auto 0; }
+  .hiw-card { background:var(--black); border:1px solid var(--border); padding:24px 16px; text-align:center; }
+  .hiw-num { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--accent); }
+  .hiw-title { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin:8px 0; }
+  .hiw-text { font-size:12px; color:var(--text-muted); line-height:1.5; }
 
-  /* ─── 15. FAQ ─── */
-  #faq { background:var(--mid2); }
-  .faq-header { text-align:center; margin-bottom:60px; }
-  .faq-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,70px); letter-spacing:2px; }
-  .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .faq-item {
-    background:var(--mid); border:1px solid var(--border); padding:28px 24px;
-  }
-  .faq-q { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
-  .faq-a { font-size:15px; line-height:1.8; color:var(--text-body); }
+  /* ─── FAQ ─── */
+  #faq { padding:120px 48px; max-width:900px; margin:0 auto; }
+  .faq-list { display:flex; flex-direction:column; gap:16px; margin-top:40px; }
+  .faq-item { background:var(--mid); border:1px solid var(--border); padding:28px; }
+  .faq-item h4 { font-family:'Barlow Condensed',sans-serif; font-size:18px; letter-spacing:1px; color:var(--accent); margin-bottom:10px; text-transform:uppercase; }
+  .faq-item p { font-size:15px; color:var(--text-body); line-height:1.8; }
 
-  /* ─── 16. FINAL CTA & FOOTER ─── */
-  #final-cta { text-align:center; padding:120px 48px 80px; }
-  .final-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,84px); letter-spacing:2px; line-height:0.95; margin-bottom:24px; }
-  .final-flow-text {
-    font-family:'Barlow Condensed',sans-serif; font-size:clamp(13px,1.8vw,16px);
-    letter-spacing:3px; text-transform:uppercase; color:var(--accent);
-    margin-bottom:40px; word-break:break-word;
-  }
-  footer {
-    padding:56px 48px; border-top:1px solid var(--border); display:flex;
-    align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; position:relative; z-index:2;
-  }
-  footer img { height:26px; opacity:0.55; display:block; }
+  /* ─── FINAL CTA ─── */
+  #final-cta { padding:140px 48px; text-align:center; background:var(--mid2); position:relative; }
+  .final-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,7vw,96px); line-height:0.9; margin-bottom:20px; }
+  .final-sub { font-size:18px; color:var(--text-body); max-width:600px; margin:0 auto 40px; line-height:1.8; }
+
+  /* ─── FOOTER ─── */
+  footer { padding:56px 48px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; position:relative; z-index:2; }
+  footer img { height:26px; opacity:0.55; }
   .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
-  .footer-links { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
-  .footer-links a { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--accent); }
 
-  /* ─── KEYFRAMES ─── */
+  /* ─── ANIMATIONS & RESPONSIVE ─── */
   @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
   @keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-  /* ─── RESPONSIVE ─── */
   @media (max-width:1024px) {
-    nav { padding:20px 32px; }
-    nav .nav-menu { display:none; }
-    section { padding:80px 32px; }
-    .problem-grid, .diff-grid, .case-details-grid { grid-template-columns:1fr; gap:40px; }
-    .framework-grid, .manage-grid { grid-template-columns:1fr 1fr; }
-    .case-metrics-grid { grid-template-columns:1fr 1fr; gap:24px; }
-    .faq-grid { grid-template-columns:1fr; }
-    .process-steps { grid-template-columns:1fr 1fr; }
+    .pricing-grid { grid-template-columns:repeat(2,1fr); }
+    .funnel-steps, .hiw-steps, .branch-grid { grid-template-columns:repeat(2,1fr); }
+    .resp-grid, .wwd-grid, .problem-cards { grid-template-columns:1fr; }
+    .proof-stats { grid-template-columns:repeat(2,1fr); }
   }
-
   @media (max-width:768px) {
     nav { padding:18px 20px; }
-    nav .nav-cta { display:none; }
     .mobile-cta { display:block; }
-    section { padding:64px 20px; }
-    #hero { padding:120px 20px 70px; }
-    .hero-logo { width:90vw; margin-bottom:24px; }
-    .btn-primary { width:100%; justify-content:center; clip-path:none; }
-    .framework-grid, .manage-grid, .fit-grid, .process-steps { grid-template-columns:1fr; }
-    .case-banner, .audit-box, .fit-card { clip-path:none; padding:32px 20px; }
-    footer { padding:36px 20px; flex-direction:column; align-items:flex-start; }
+    #hero, #problem, #solution, #what-we-do, #difference, #funnel, #distribution, #proof, #responsibilities, #pricing, #how-it-works, #faq, #final-cta { padding-left:20px; padding-right:20px; }
+    .pricing-grid, .funnel-steps, .hiw-steps, .branch-grid, .proof-stats { grid-template-columns:1fr; }
+    .diff-box { grid-template-columns:1fr; }
+    .diff-item.bad { border-right:none; border-bottom:1px solid var(--border); }
   }
 </style>
 </head>
@@ -400,513 +345,518 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- MOBILE FLOATING CTA -->
-<a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer" class="mobile-cta" id="mobileCta">Book a Call →</a>
+<!-- MOBILE CTA -->
+<a href="#pricing" class="mobile-cta">Choose Your Plan →</a>
 
-<!-- 01. NAVIGATION -->
+<!-- NAV -->
 <nav id="mainNav">
   <div class="logo-wrap">
     <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
   </div>
-  <ul class="nav-menu">
-    <li><a href="#hero">B2B Demand Generation</a></li>
-    <li><a href="#engine">Framework</a></li>
-    <li><a href="#case-study">Case Study</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
+  <div class="nav-tag">Content Repurposing &amp; Distribution</div>
   <div class="nav-actions">
-    <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call</a>
+    <a href="#pricing" class="nav-cta">Choose Your Plan →</a>
   </div>
 </nav>
 
-<!-- 02. HERO -->
+<!-- 1. HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-lines"></div>
 
-  <div class="hero-kicker">B2B Demand Generation for Founders</div>
+  <div class="hero-kicker">Short-Form Content Repurposing &amp; Distribution</div>
 
-  <!-- CENTERPIECE LOGO RESTORED -->
-  <img class="hero-logo"
-       src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png"
-       alt="One Life Media">
+  <img class="hero-logo" src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
 
-  <h1 class="hero-title">
-    Turn Your Expertise Into<br>
-    <em>Qualified B2B Pipeline.</em>
-  </h1>
+  <h1 class="hero-headline">Turn Your Existing Content Into A <em>Distribution Machine.</em></h1>
 
   <p class="hero-sub">
-    We build and manage the system that connects your content, paid acquisition, funnel, qualification, and CRM to generate qualified demand.
+    Your expertise is already there. We turn your podcasts, interviews, webinars, YouTube videos and long-form recordings into short-form content and distribute it across your social channels.<br><strong>You record. We handle the rest.</strong>
   </p>
 
-  <div class="hero-cta-box">
-    <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer" class="btn-primary">
-      Book a Call
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-    <div class="hero-micro">60-minute strategy call · No obligation</div>
+  <div class="hero-ctas">
+    <a href="#pricing" class="btn-primary">CHOOSE YOUR PLAN →</a>
+    <span class="hero-micro">30–150 clips/month · 5-platform distribution · Starting at $997/month</span>
+  </div>
+
+  <div class="hero-visual">
+    <div class="branch-node-main">1 LONG-FORM RECORDING</div>
+    <div class="branch-grid">
+      <div class="branch-leaf">Instagram Reels</div>
+      <div class="branch-leaf">TikTok</div>
+      <div class="branch-leaf">YouTube Shorts</div>
+      <div class="branch-leaf">Facebook</div>
+      <div class="branch-leaf">LinkedIn</div>
+    </div>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track" aria-hidden="true">
-    <div class="ticker-item"><span>●</span> B2B Demand Generation</div>
-    <div class="ticker-item"><span>●</span> Founder-Led Content Engine</div>
-    <div class="ticker-item"><span>●</span> High-Ticket Pipeline Architecture</div>
-    <div class="ticker-item"><span>●</span> Paid Media & ICP Distribution</div>
-    <div class="ticker-item"><span>●</span> Automated CRM & Lead Routing</div>
-    <div class="ticker-item"><span>●</span> B2B Demand Generation</div>
-    <div class="ticker-item"><span>●</span> Founder-Led Content Engine</div>
-    <div class="ticker-item"><span>●</span> High-Ticket Pipeline Architecture</div>
-    <div class="ticker-item"><span>●</span> Paid Media & ICP Distribution</div>
-    <div class="ticker-item"><span>●</span> Automated CRM & Lead Routing</div>
+    <div class="ticker-item"><span>●</span> Instagram Reels</div>
+    <div class="ticker-item"><span>●</span> TikTok</div>
+    <div class="ticker-item"><span>●</span> YouTube Shorts</div>
+    <div class="ticker-item"><span>●</span> Facebook</div>
+    <div class="ticker-item"><span>●</span> LinkedIn</div>
+    <div class="ticker-item"><span>●</span> Fully Managed Distribution</div>
+    <div class="ticker-item"><span>●</span> Instagram Reels</div>
+    <div class="ticker-item"><span>●</span> TikTok</div>
+    <div class="ticker-item"><span>●</span> YouTube Shorts</div>
+    <div class="ticker-item"><span>●</span> Facebook</div>
+    <div class="ticker-item"><span>●</span> LinkedIn</div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- 03. PROBLEM -->
+<!-- 2. THE PROBLEM -->
 <section id="problem">
-  <div class="container">
-    <div class="problem-grid">
-      <div>
-        <div class="section-label reveal">The Bottleneck</div>
-        <h2 class="problem-title reveal">
-          YOUR MARKETING<br>
-          SHOULDN'T BE A<br>
-          <em>COLLECTION OF</em><br>
-          DISCONNECTED SERVICES.
-        </h2>
-        <div class="problem-cards reveal">
-          <div class="problem-badge">A Content Agency <span>Silo 01</span></div>
-          <div class="problem-badge">A Media Buyer <span>Silo 02</span></div>
-          <div class="problem-badge">A Funnel Builder <span>Silo 03</span></div>
-          <div class="problem-badge">A CRM Specialist <span>Silo 04</span></div>
-        </div>
-      </div>
-      <div class="problem-text reveal">
-        <p>
-          You can have all these distinct vendors working independently — and still have <strong>no predictable acquisition system</strong>.
-        </p>
-        <p>
-          The problem isn't always a lack of marketing activity or budget.
-        </p>
-        <p>
-          <strong>It's that the pieces aren't working together as one unified engine.</strong>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 04. FRAMEWORK INTRODUCTION & 05. FRAMEWORK DETAIL -->
-<section id="engine">
-  <div class="container">
-    <div class="engine-header">
-      <div class="section-label reveal" style="justify-content:center;">Framework</div>
-      <h2 class="engine-title reveal">THE B2B <em>DEMAND ENGINE</em></h2>
-      <p class="engine-sub reveal">One system connecting every critical layer of acquisition.</p>
-    </div>
-
-    <!-- 04. Flow Map -->
-    <div class="flow-track reveal">
-      <div class="flow-node">CONTENT</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">DISTRIBUTION</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">PAID ACQUISITION</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">FUNNEL</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">QUALIFICATION</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">CRM</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-node">PIPELINE</div>
-    </div>
-
-    <!-- 05. Framework Details -->
-    <div class="framework-grid">
-      <div class="framework-card reveal">
-        <div class="framework-num">01</div>
-        <div class="framework-card-title">CONTENT</div>
-        <p class="framework-card-text">Your founder already has the expertise. We turn it into short-form video, carousels, and advertising creative designed strictly around your ICP.</p>
-      </div>
-
-      <div class="framework-card reveal">
-        <div class="framework-num">02</div>
-        <div class="framework-card-title">DISTRIBUTION</div>
-        <p class="framework-card-text">Creating content isn't enough. We distribute the right ideas across the exact channels where your B2B buyers actually spend attention.</p>
-      </div>
-
-      <div class="framework-card reveal">
-        <div class="framework-num">03</div>
-        <div class="framework-card-title">PAID ACQUISITION</div>
-        <p class="framework-card-text">We use paid media to amplify what works, test new angles systematically, and create a predictable, scalable acquisition channel.</p>
-      </div>
-
-      <div class="framework-card reveal">
-        <div class="framework-num">04</div>
-        <div class="framework-card-title">FUNNEL</div>
-        <p class="framework-card-text">We build the infrastructure that turns attention into identifiable prospects — lead magnets, landing pages, forms, tracking, and conversion paths.</p>
-      </div>
-
-      <div class="framework-card reveal">
-        <div class="framework-num">05</div>
-        <div class="framework-card-title">QUALIFICATION</div>
-        <p class="framework-card-text">Not every lead is valuable. We define what an MQL means for your business and build the qualification process around your actual ICP.</p>
-      </div>
-
-      <div class="framework-card reveal">
-        <div class="framework-num">06</div>
-        <div class="framework-card-title">CRM & PIPELINE</div>
-        <p class="framework-card-text">Qualified leads shouldn't disappear into spreadsheets. We connect acquisition directly to your CRM so your sales team gets actionable opportunities to close.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 06, 07, 08. CASE STUDY -->
-<section id="case-study">
-  <div class="container">
-    <div class="case-banner reveal">
-      <div class="section-label">Case Study</div>
-      <h2 class="case-header-title">$800 IN AD SPEND.<br><em>$217K+ IN CLIENT REVENUE.</em></h2>
-      <p class="case-header-sub">
-        A four-month B2B demand-generation campaign managed across content, distribution, paid acquisition, lead generation, and qualification.
-      </p>
-
-      <div class="case-metrics-grid">
-        <div class="metric-box">
-          <div class="metric-val">3,000</div>
-          <div class="metric-lbl">Leads Generated</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-val">400</div>
-          <div class="metric-lbl">Marketing Qualified Leads</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-val">$800</div>
-          <div class="metric-lbl">Total Paid Media Spend</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-val">$217K+</div>
-          <div class="metric-lbl">Client Revenue</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-details-grid">
-      <!-- 07. Case Study Qualification -->
-      <div class="case-column-box reveal">
-        <h3 class="case-col-title">WE WEREN'T OPTIMIZING FOR CHEAP LEADS</h3>
-        <div class="case-col-text">
-          <p>The campaign targeted decision-makers who matched the client's strict qualification criteria:</p>
-          <div class="target-pills">
-            <span class="target-pill">Owners</span>
-            <span class="target-pill">Directors</span>
-            <span class="target-pill">CEOs</span>
-            <span class="target-pill">Key Decision-Makers</span>
-          </div>
-          <p>The objective wasn't to generate vanity lead counts. It was to generate high-intent buyers that the sales team could actually sell to.</p>
-        </div>
-      </div>
-
-      <!-- 08. Case Study Story -->
-      <div class="case-column-box reveal">
-        <h3 class="case-col-title">THE ENGINE BREAKDOWN</h3>
-        <div class="case-col-text">
-          <p><strong>The Problem:</strong> The client had acquisition activity, but the system wasn't being managed as one connected growth engine.</p>
-          <p><strong>The Intervention:</strong> We took full responsibility across Content → Distribution → Paid Media → Lead Gen → Qualification.</p>
-          <p><strong>The Result:</strong> 3,000 leads, 400 MQLs, $217K+ in revenue from $800 in paid media.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-disclaimer reveal">
-      Historical case study. Results vary based on offer, market, audience, budget, sales execution, and other factors. Past performance is not a guarantee of future results.
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 09. THE DIFFERENCE -->
-<section id="difference">
-  <div class="container">
-    <div class="diff-grid">
-      <div>
-        <div class="section-label reveal">The Difference</div>
-        <h2 class="diff-title reveal">
-          WE DON'T JUST<br>
-          MAKE CONTENT.<br>
-          <em>WE BUILD THE SYSTEM</em><br>
-          BEHIND IT.
-        </h2>
-      </div>
-      <div class="diff-list reveal">
-        <div class="diff-item"><strong>Content without distribution</strong> is an asset sitting idle on a hard drive.</div>
-        <div class="diff-item"><strong>Traffic without qualification</strong> creates empty pipeline noise.</div>
-        <div class="diff-item"><strong>Leads without CRM integration</strong> create severe operational chaos.</div>
-        <div class="diff-item"><strong>Paid media without strong creative</strong> becomes unsustainable and expensive.</div>
-        <div class="diff-item" style="border-left-color:var(--white);"><strong>One Life Media connects the entire system.</strong></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 10. WHAT WE MANAGE -->
-<section id="manage">
-  <div class="container">
-    <div class="section-label reveal" style="justify-content:center;">Scope of Management</div>
-    <h2 class="engine-title reveal" style="text-align:center;">WHAT WE <em>MANAGE</em></h2>
-
-    <div class="manage-grid">
-      <div class="manage-card reveal">
-        <div class="manage-card-title">CONTENT ENGINE</div>
-        <p class="manage-card-text">Short-form video, carousels, creative assets, and founder-led content strategy.</p>
-      </div>
-
-      <div class="manage-card reveal">
-        <div class="manage-card-title">PAID ACQUISITION</div>
-        <p class="manage-card-text">Campaign strategy, media buying, creative testing, targeting, and optimization.</p>
-      </div>
-
-      <div class="manage-card reveal">
-        <div class="manage-card-title">FUNNEL</div>
-        <p class="manage-card-text">Lead magnets, landing pages, forms, conversion paths, and multi-touch tracking.</p>
-      </div>
-
-      <div class="manage-card reveal">
-        <div class="manage-card-title">CRM</div>
-        <p class="manage-card-text">Lead routing, qualification protocols, automation, and pipeline infrastructure.</p>
-      </div>
-
-      <div class="manage-card reveal" style="grid-column: span 2;">
-        <div class="manage-card-title">DEMAND GENERATION</div>
-        <p class="manage-card-text">The overarching strategic architecture connecting every layer into one predictable acquisition system.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 11 & 12. WHO IT'S FOR / NOT FOR -->
-<section id="fit">
-  <div class="container">
-    <div class="section-label reveal" style="justify-content:center;">Compatibility</div>
-    <h2 class="engine-title reveal" style="text-align:center;">BUILT FOR COMPANIES WHERE<br><em>ONE GOOD CUSTOMER IS WORTH A LOT.</em></h2>
-
-    <div class="fit-grid">
-      <!-- 11. Who It's For -->
-      <div class="fit-card is-for reveal">
-        <h3 class="fit-title" style="color:var(--accent);">ONE LIFE MEDIA IS BUILT FOR:</h3>
-        <ul class="fit-list">
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            B2B companies & high-ticket offers
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            Defined Ideal Customer Profiles (ICPs)
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            Founder-led businesses with subject-matter expertise
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            Companies with active sales capacity ready to handle deals
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-            Companies prepared to invest in a scalable acquisition engine
-          </li>
-        </ul>
-        <div class="fit-callout">
-          If one new customer is worth thousands or tens of thousands of dollars, generating the right qualified opportunity creates massive enterprise value.
-        </div>
-      </div>
-
-      <!-- 12. Who It's Not For -->
-      <div class="fit-card is-not reveal">
-        <h3 class="fit-title" style="color:var(--red);">WE'RE PROBABLY NOT A FIT IF:</h3>
-        <ul class="fit-list">
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            You need guaranteed revenue overnight
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            You have an unproven offer with zero market validation
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            You cannot allocate budget to paid acquisition
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            Your sales team lacks the capacity to close inbound pipeline
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            You want viral content without a commercial business objective
-          </li>
-          <li>
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
-            You expect an agency to rescue a fundamentally broken business
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 13. PROCESS -->
-<section id="process">
-  <div class="container">
-    <div class="section-label reveal" style="justify-content:center;">The Roadmap</div>
-    <h2 class="engine-title reveal" style="text-align:center;">FROM BOTTLENECK <em>TO PIPELINE</em></h2>
-
-    <div class="process-steps">
-      <div class="process-step reveal">
-        <div class="step-num">01</div>
-        <div class="step-title">AUDIT</div>
-        <p class="step-text">We identify the biggest constraint in your current acquisition system.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">02</div>
-        <div class="step-title">BUILD</div>
-        <p class="step-text">We build the content, creative, funnel, tracking, and CRM infrastructure required.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">03</div>
-        <div class="step-title">LAUNCH</div>
-        <p class="step-text">We activate organic and paid distribution channels simultaneously.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-num">04</div>
-        <div class="step-title">OPTIMIZE</div>
-        <p class="step-text">We test, measure, learn, and continuously scale pipeline efficiency.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 14. AUDIT CTA BOX -->
-<section id="audit-cta">
-  <div class="container">
-    <div class="audit-box reveal">
-      <div class="section-label" style="justify-content:center;">Strategic Session</div>
-      <h2 class="audit-title">LET'S FIND YOUR<br><em>ACQUISITION BOTTLENECK.</em></h2>
-      <p class="audit-desc">
-        You don't need another generic marketing strategy. You need to understand what's actually preventing your company from generating more qualified pipeline.<br><br>
-        On the call, we'll examine your current acquisition system, pinpoint the bottleneck, and determine whether there's a real opportunity for us to help.
-      </p>
-      <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer" class="btn-primary">
-        Book a Call
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="hero-micro" style="margin-top:16px;">60-minute strategy call · No obligation</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 15. FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="faq-header">
-      <div class="section-label reveal" style="justify-content:center;">Questions & Answers</div>
-      <h2 class="faq-title reveal">FREQUENTLY ASKED <em>QUESTIONS</em></h2>
-    </div>
-
-    <div class="faq-grid">
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you guarantee leads?</div>
-        <div class="faq-a">No. We manage and optimize the acquisition system, but results depend on factors including the offer, market, budget, audience, and sales execution.</div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you manage paid media?</div>
-        <div class="faq-a">Yes. Paid acquisition is a core component of the demand generation engine.</div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you create the content?</div>
-        <div class="faq-a">Yes. We transform existing founder expertise and long-form insights into short-form videos, carousels, and advertising creative.</div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you build the funnel?</div>
-        <div class="faq-a">Yes. We build the landing pages, lead magnets, qualification forms, tracking architecture, and conversion infrastructure.</div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you integrate with our CRM?</div>
-        <div class="faq-a">Yes. We connect the lead-generation system directly into your existing CRM infrastructure where technically feasible.</div>
-      </div>
-
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you guarantee revenue?</div>
-        <div class="faq-a">No. Revenue depends on your complete sales execution — including your offer economics, sales team velocity, follow-up cadence, and closing ability.</div>
-      </div>
-
-      <div class="faq-item reveal" style="grid-column: span 2;">
-        <div class="faq-q">Is advertising spend included?</div>
-        <div class="faq-a">No. Advertising media spend is paid directly to advertising platforms and is separate from the One Life Media management fee.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 16. FINAL CTA -->
-<section id="final-cta">
-  <div class="container">
-    <h2 class="final-title reveal">
-      STOP MANAGING MARKETING IN PIECES.<br>
-      <em>BUILD THE SYSTEM.</em>
+  <div class="problem-header">
+    <div class="section-label reveal">The Content Bottleneck</div>
+    <h2 class="problem-headline reveal">
+      You Don't Have A Content Problem.<br>
+      <em>You Have A Distribution Problem.</em>
     </h2>
-    <div class="final-flow-text reveal">
-      CONTENT → PAID ACQUISITION → FUNNEL → QUALIFICATION → CRM → PIPELINE
+    <div class="problem-intro reveal">
+      <p>You already have ideas. You already have expertise. You may already be recording hours of podcasts, interviews, webinars and YouTube content.</p>
+      <p>But most of that content gets published once — and disappears. The valuable ideas are still buried inside hours of footage.</p>
+      <p><strong>You don't need to create more. You need to distribute what you've already created.</strong></p>
     </div>
-    <div class="reveal">
-      <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer" class="btn-primary">
-        Book a Call
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+  </div>
+
+  <div class="problem-cards">
+    <div class="p-card reveal">
+      <div class="p-card-title">ONE RECORDING</div>
+      <div class="p-card-text">Hours of expertise sitting inside one piece of long-form content.</div>
     </div>
+    <div class="p-card reveal">
+      <div class="p-card-title">HUNDREDS OF MISSED MOMENTS</div>
+      <div class="p-card-text">Strong insights, opinions and stories that never become standalone content.</div>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-card-title">NO TIME TO DISTRIBUTE</div>
+      <div class="p-card-text">Editing, captions, hooks, formatting and publishing become another job.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 3. THE SOLUTION -->
+<section id="solution">
+  <div class="sol-inner">
+    <div class="section-label reveal">The System</div>
+    <h2 class="sol-headline reveal">One Recording.<br><em>Multiple Distribution Opportunities.</em></h2>
+    <p class="sol-sub reveal">We take your existing long-form content and turn it into short-form content built for attention and distribution.</p>
+
+    <div class="flow-container reveal">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-content">
+          <h4>RECORD</h4>
+          <p>You create the original long-form content.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-content">
+          <h4>EXTRACT</h4>
+          <p>We identify the strongest ideas, insights and moments.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-content">
+          <h4>PACKAGE</h4>
+          <p>We turn those moments into short-form videos with hooks, editing, captions and CTAs.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-content">
+          <h4>DISTRIBUTE</h4>
+          <p>We publish across Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-content">
+          <h4>COMPOUND</h4>
+          <p>Your expertise keeps working long after the original recording was published.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-goal reveal">
+      The goal isn't more content. The goal is more distribution from the content you're already creating.
+    </div>
+  </div>
+</section>
+
+<!-- 4. WHAT WE ACTUALLY DO -->
+<section id="what-we-do">
+  <div class="section-label reveal">Done-For-You Content Distribution</div>
+  <h2 class="problem-headline reveal">From Raw Recording To Published Content.</h2>
+
+  <div class="wwd-grid reveal">
+    <div class="wwd-card">
+      <h3>CONTENT SELECTION</h3>
+      <p>We identify the strongest moments based on your audience, offer, topic, insight and potential for attention.</p>
+    </div>
+    <div class="wwd-card">
+      <h3>HOOKS</h3>
+      <p>We package each clip around a clear opening designed to make people stop and watch.</p>
+    </div>
+    <div class="wwd-card">
+      <h3>EDITING</h3>
+      <p>Strategic cuts, captions, visual emphasis, branding and platform-appropriate formatting.</p>
+    </div>
+    <div class="wwd-card">
+      <h3>CTA INTEGRATION</h3>
+      <p>When relevant, we connect content to the next step in your funnel.</p>
+    </div>
+    <div class="wwd-card">
+      <h3>MULTI-PLATFORM DISTRIBUTION</h3>
+      <p>One core idea can be distributed across Instagram Reels · TikTok · YouTube Shorts · Facebook · LinkedIn.</p>
+    </div>
+    <div class="wwd-card">
+      <h3>CONSISTENT OUTPUT</h3>
+      <p>Your selected number of clips is produced and distributed every month.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 5. THE DIFFERENCE -->
+<section id="difference">
+  <div class="diff-inner">
+    <div class="section-label reveal" style="justify-content:center;">Not Another Video Editor</div>
+    <h2 class="sol-headline reveal">We Don't Just Cut Videos.<br><em>We Package Ideas.</em></h2>
+    <p class="sol-sub reveal">Randomly cutting 30 seconds from a podcast isn't a content strategy. We look at the idea behind the clip and turn it into something built for short-form consumption: Strong opening, clear message, strategic editing, captions, visual emphasis, branding, CTA.</p>
+
+    <div class="diff-box reveal">
+      <div class="diff-item bad">
+        <div class="diff-label">Random clip</div>
+        <div>Content</div>
+      </div>
+      <div class="diff-item good">
+        <div class="diff-label">Packaged idea</div>
+        <div>Distribution asset</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CONTENT -> BUSINESS -->
+<section id="funnel">
+  <div class="section-label reveal">Content With A Purpose</div>
+  <h2 class="problem-headline reveal">Your Content Should Lead Somewhere.</h2>
+  <p class="problem-intro reveal">Views aren't the final objective. Your content should help move the right people closer to your business.</p>
+
+  <div class="funnel-steps reveal">
+    <div class="f-step">
+      <h4>ATTRACT</h4>
+      <p>Reach people who have never heard of you.</p>
+    </div>
+    <div class="f-step">
+      <h4>EDUCATE</h4>
+      <p>Demonstrate expertise and solve relevant problems.</p>
+    </div>
+    <div class="f-step">
+      <h4>BUILD AUTHORITY</h4>
+      <p>Make your perspective recognizable.</p>
+    </div>
+    <div class="f-step">
+      <h4>CREATE DEMAND</h4>
+      <p>Help prospects understand problems they need to solve.</p>
+    </div>
+    <div class="f-step">
+      <h4>GENERATE ACTION</h4>
+      <p>Move interested prospects toward your existing funnel.</p>
+    </div>
+  </div>
+
+  <div class="funnel-visual-bar reveal">
+    CONTENT → ATTENTION → TRUST → DEMAND → LEADS → PIPELINE
+  </div>
+</section>
+
+<!-- 7. DISTRIBUTION -->
+<section id="distribution">
+  <div class="dist-inner">
+    <h2 class="sol-headline reveal">Stop Publishing Once.</h2>
+    <p class="sol-sub reveal">A podcast shouldn't produce one post. A webinar shouldn't disappear after one upload. A YouTube video shouldn't live on YouTube forever.</p>
+
+    <div class="dist-flow-text reveal">
+      1 LONG-FORM RECORDING<br>↓<br>MULTIPLE SHORT-FORM ASSETS<br>↓<br>5 SOCIAL PLATFORMS<br>↓<br>CONTINUOUS DISTRIBUTION
+    </div>
+
+    <p class="sol-sub reveal">Your existing content becomes an asset you can keep extracting value from.</p>
+  </div>
+</section>
+
+<!-- 8. PROOF -->
+<section id="proof">
+  <div class="section-label reveal" style="justify-content:center;">Previous Campaign</div>
+  <h2 class="problem-headline reveal" style="text-align:center;">+600 Clips. $200K+ In Revenue.</h2>
+
+  <div class="proof-stats reveal">
+    <div class="p-stat">
+      <div class="num">600+</div>
+      <div class="lbl">Clips</div>
+    </div>
+    <div class="p-stat">
+      <div class="num">3,000+</div>
+      <div class="lbl">Leads</div>
+    </div>
+    <div class="p-stat">
+      <div class="num">400</div>
+      <div class="lbl">MQLs</div>
+    </div>
+    <div class="p-stat">
+      <div class="num">120</div>
+      <div class="lbl">Days</div>
+    </div>
+  </div>
+
+  <p class="disclaimer reveal">
+    This methodology was previously used in a B2B campaign that generated more than 600 short-form clips, 3,000+ leads, 400 MQLs and $200K+ in attributed revenue.<br>
+    Results vary based on the offer, market, content, audience, distribution and sales process. No specific views, leads or sales are guaranteed.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- 9 & 10. YOUR PART / OUR PART -->
+<section id="responsibilities">
+  <div class="resp-grid">
+    <div class="resp-box reveal">
+      <h3>YOUR PART IS SIMPLE.</h3>
+      <ul class="resp-list">
+        <li><strong>01 — PAYMENT:</strong> Choose your monthly plan.</li>
+        <li><strong>02 — ACCOUNT ACCESS:</strong> Give us the necessary access to your publishing accounts.</li>
+        <li><strong>03 — LONG-FORM CONTENT:</strong> Send your YouTube videos, podcasts, interviews, webinars, recordings or other approved source material.</li>
+      </ul>
+      <p style="margin-top:24px; font-family:'Barlow Condensed',sans-serif; color:var(--accent); font-size:16px; letter-spacing:1px; text-transform:uppercase;">THAT'S IT. You create the expertise. We turn it into distribution.</p>
+    </div>
+
+    <div class="resp-box reveal">
+      <h3>EVERYTHING AFTER THE UPLOAD IS ON US.</h3>
+      <p style="font-size:14px; color:var(--text-muted); margin-bottom:16px;">We handle:</p>
+      <ul class="resp-list">
+        <li>Content review & moment selection</li>
+        <li>Clip production, hooks, editing & captions</li>
+        <li>CTAs, platform formatting & publishing</li>
+        <li>Monthly content volume management</li>
+      </ul>
+      <p style="margin-top:24px; font-size:14px; color:var(--text-body);">Your first content begins being published in less than 7 days after we receive the required content and account access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. PRICING -->
+<section id="pricing">
+  <div class="pricing-header">
+    <div class="section-label reveal" style="justify-content:center;">PRICING</div>
+    <h2 class="sol-headline reveal">Choose Your Distribution Volume.</h2>
+    <p class="sol-sub reveal">More content. More opportunities to distribute your expertise.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- STARTER -->
+    <div class="price-card reveal">
+      <div>
+        <div class="price-name">STARTER</div>
+        <div class="price-volume">30 CLIPS / MONTH</div>
+        <div class="price-val">$997 <span style="font-size:14px; color:var(--text-muted);">/ mo</span></div>
+        <div class="price-desc">For founders who want consistent short-form distribution without a heavy content operation.</div>
+      </div>
+      <div class="price-includes">
+        <ul>
+          <li>✔ 30 short-form videos</li>
+          <li>✔ Hook optimization</li>
+          <li>✔ Editing &amp; Captions</li>
+          <li>✔ CTA integration</li>
+          <li>✔ 5-platform distribution</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5517996348928?text=Hi%20One%20Life%20Media%2C%20I%27m%20interested%20in%20the%20Starter%20plan%20%E2%80%94%2030%20clips%2Fmonth%20%E2%80%94%20%24997%2Fmonth.%20I%27d%20like%20to%20get%20started." target="_blank" class="btn-plan">GET STARTER →</a>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="price-card featured reveal">
+      <div class="badge">RECOMMENDED</div>
+      <div>
+        <div class="price-name">GROWTH</div>
+        <div class="price-volume">60 CLIPS / MONTH</div>
+        <div class="price-val">$1,497 <span style="font-size:14px; color:var(--text-muted);">/ mo</span></div>
+        <div class="price-desc">For founders ready to turn content into a serious distribution channel.</div>
+      </div>
+      <div class="price-includes">
+        <ul>
+          <li>✔ 60 short-form videos</li>
+          <li>✔ Hook optimization</li>
+          <li>✔ Editing &amp; Captions</li>
+          <li>✔ CTA integration</li>
+          <li>✔ 5-platform distribution</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5517996348928?text=Hi%20One%20Life%20Media%2C%20I%27m%20interested%20in%20the%20Growth%20plan%20%E2%80%94%2060%20clips%2Fmonth%20%E2%80%94%20%241%2C497%2Fmonth.%20I%27d%20like%20to%20get%20started." target="_blank" class="btn-plan">GET GROWTH →</a>
+    </div>
+
+    <!-- AUTHORITY -->
+    <div class="price-card reveal">
+      <div>
+        <div class="price-name">AUTHORITY</div>
+        <div class="price-volume">90 CLIPS / MONTH</div>
+        <div class="price-val">$1,997 <span style="font-size:14px; color:var(--text-muted);">/ mo</span></div>
+        <div class="price-desc">For founders who want enough volume to build a dominant presence across multiple platforms.</div>
+      </div>
+      <div class="price-includes">
+        <ul>
+          <li>✔ 90 short-form videos</li>
+          <li>✔ Hook optimization</li>
+          <li>✔ Editing &amp; Captions</li>
+          <li>✔ CTA integration</li>
+          <li>✔ 5-platform distribution</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5517996348928?text=Hi%20One%20Life%20Media%2C%20I%27m%20interested%20in%20the%20Authority%20plan%20%E2%80%94%2090%20clips%2Fmonth%20%E2%80%94%20%241%2C997%2Fmonth.%20I%27d%20like%20to%20get%20started." target="_blank" class="btn-plan">GET AUTHORITY →</a>
+    </div>
+
+    <!-- SCALE -->
+    <div class="price-card reveal">
+      <div>
+        <div class="price-name">SCALE</div>
+        <div class="price-volume">120 CLIPS / MONTH</div>
+        <div class="price-val">$2,497 <span style="font-size:14px; color:var(--text-muted);">/ mo</span></div>
+        <div class="price-desc">For businesses ready to operate content as a high-volume distribution channel.</div>
+      </div>
+      <div class="price-includes">
+        <ul>
+          <li>✔ 120 short-form videos</li>
+          <li>✔ Hook optimization</li>
+          <li>✔ Editing &amp; Captions</li>
+          <li>✔ CTA integration</li>
+          <li>✔ 5-platform distribution</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5517996348928?text=Hi%20One%20Life%20Media%2C%20I%27m%20interested%20in%20the%20Scale%20plan%20%E2%80%94%20120%20clips%2Fmonth%20%E2%80%94%20%242%2C497%2Fmonth.%20I%27d%20like%20to%20get%20started." target="_blank" class="btn-plan">GET SCALE →</a>
+    </div>
+
+    <!-- DOMINANCE -->
+    <div class="price-card reveal">
+      <div>
+        <div class="price-name">DOMINANCE</div>
+        <div class="price-volume">150 CLIPS / MONTH</div>
+        <div class="price-val">$2,997 <span style="font-size:14px; color:var(--text-muted);">/ mo</span></div>
+        <div class="price-desc">For companies that want maximum content volume and continuous distribution.</div>
+      </div>
+      <div class="price-includes">
+        <ul>
+          <li>✔ 150 short-form videos</li>
+          <li>✔ Hook optimization</li>
+          <li>✔ Editing &amp; Captions</li>
+          <li>✔ CTA integration</li>
+          <li>✔ 5-platform distribution</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5517996348928?text=Hi%20One%20Life%20Media%2C%20I%27m%20interested%20in%20the%20Dominance%20plan%20%E2%80%94%20150%20clips%2Fmonth%20%E2%80%94%20%242%2C997%2Fmonth.%20I%27d%20like%20to%20get%20started." target="_blank" class="btn-plan">GET DOMINANCE →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 12. HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-label reveal" style="justify-content:center;">From Recording To Distribution</div>
+  <h2 class="sol-headline reveal" style="text-align:center;">How It Works</h2>
+
+  <div class="hiw-steps reveal">
+    <div class="hiw-card">
+      <div class="hiw-num">01</div>
+      <div class="hiw-title">CHOOSE YOUR PLAN</div>
+      <div class="hiw-text">Select the monthly content volume you want.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">02</div>
+      <div class="hiw-title">TALK TO US</div>
+      <div class="hiw-text">You'll be taken directly to WhatsApp with your selected plan.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">03</div>
+      <div class="hiw-title">ONBOARD</div>
+      <div class="hiw-text">Payment, account access and source content.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">04</div>
+      <div class="hiw-title">WE PRODUCE</div>
+      <div class="hiw-text">We find the best moments and turn them into short-form assets.</div>
+    </div>
+    <div class="hiw-card">
+      <div class="hiw-num">05</div>
+      <div class="hiw-title">WE DISTRIBUTE</div>
+      <div class="hiw-text">Your content starts going out in less than 7 days.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. FAQ -->
+<section id="faq">
+  <div class="section-label reveal">FAQ</div>
+  <h2 class="problem-headline reveal">Frequently Asked Questions</h2>
+
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <h4>Do I need to record new content?</h4>
+      <p>No. We primarily work with long-form content you already create.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What content can I send?</h4>
+      <p>YouTube videos, podcasts, interviews, webinars, Zoom recordings, presentations and other approved long-form content.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Where do you publish?</h4>
+      <p>Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you guarantee views or leads?</h4>
+      <p>No. Results depend on the offer, market, audience, content and distribution.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How much work do I have to do?</h4>
+      <p>Your primary responsibilities are providing payment, account access and long-form source content.</p>
+    </div>
+    <div class="faq-item">
+      <h4>When does publishing start?</h4>
+      <p>Your first content begins being published in less than 7 days after receiving the required content and account access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 14. FINAL CTA -->
+<section id="final-cta">
+  <h2 class="final-title reveal">You Already Have The Content.<br><em style="color:var(--accent); font-style:normal;">Now Distribute It.</em></h2>
+  <p class="final-sub reveal">Turn your existing long-form content into a consistent short-form distribution system.<br>30–150 clips/month · 5 platforms · Fully managed</p>
+  <div class="reveal">
+    <a href="#pricing" class="btn-primary">CHOOSE YOUR PLAN →</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
-  <div class="footer-copy">ONE LIFE MEDIA · B2B Demand Generation · © 2025 All Rights Reserved</div>
-  <div class="footer-links">
-    <a href="https://www.instagram.com/1lmedia/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services." target="_blank" rel="noopener noreferrer">Book a Call</a>
+  <div class="footer-copy">© 2026 One Life Media — All rights reserved</div>
+  <div>
+    <a href="https://www.instagram.com/1lmedia/" target="_blank" style="color:var(--text-muted); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase;">Instagram</a>
   </div>
 </footer>
 
 <script>
-  // Cursor setup
+  // Cursor
   if (window.matchMedia('(hover: hover)').matches) {
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursorRing');
@@ -918,36 +868,19 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(loop);
     })();
-    document.querySelectorAll('a, button, .framework-card, .manage-card, .fit-card, .faq-item, .problem-badge').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.borderColor = 'rgba(200,169,110,0.8)'; });
-      el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(200,169,110,0.45)'; });
-    });
   }
 
-  // Nav Background on scroll
+  // Nav dynamic state
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Mobile CTA visibility toggle
-  const mobileCta = document.getElementById('mobileCta');
-  if (mobileCta) {
-    const auditSec = document.getElementById('audit-cta');
-    const obs2 = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        mobileCta.style.opacity = e.isIntersecting ? '0' : '1';
-        mobileCta.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
-      });
-    }, { threshold: 0.1 });
-    if (auditSec) obs2.observe(auditSec);
-  }
-
-  // Scroll Reveal Animations
+  // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        setTimeout(() => e.target.classList.add('visible'), i * 50);
         obs.unobserve(e.target);
       }
     });
