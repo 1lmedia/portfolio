@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +46,9 @@
   /* ─── HEADER (static, not fixed) ─── */
   header.top-logo {
     display:flex; justify-content:center; align-items:center;
-    padding:56px 20px 32px;
+    padding:56px 20px 16px;
   }
-  header.top-logo img { height:84px; opacity:0.97; }
+  header.top-logo img { width:50%; max-width:560px; height:auto; opacity:0.97; }
 
   /* ─── REVEAL ANIMATION ─── */
   .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
@@ -57,6 +56,7 @@
 
   /* ─── SHARED SECTION SCAFFOLDING ─── */
   section { padding:90px 48px; }
+  #hero { padding-top:45px; }
   .sec-inner { max-width:1100px; margin:0 auto; }
   .eyebrow {
     font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:5px; text-transform:uppercase;
@@ -94,8 +94,13 @@
   /* ─── GOLD FRAME (images) ─── */
   .gold-frame { position:relative; max-width:620px; margin:44px auto; padding:16px; }
   .gold-frame img { display:block; width:100%; border:1px solid rgba(0,0,0,0.5); }
+  @keyframes frameGlow {
+    0%, 100% { box-shadow:inset 0 0 50px rgba(227,167,49,0.08); }
+    50% { box-shadow:inset 0 0 62px rgba(227,167,49,0.2); }
+  }
   .gold-frame::before {
-    content:''; position:absolute; inset:9px; box-shadow:inset 0 0 50px rgba(227,167,49,0.08); pointer-events:none;
+    content:''; position:absolute; inset:9px; pointer-events:none;
+    animation:frameGlow 4.5s ease-in-out infinite;
   }
   .gf-corner { position:absolute; width:26px; height:26px; }
   .gf-corner.tl { top:0; left:0; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
@@ -155,7 +160,7 @@
     clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
   }
   .problem-card:hover { border-color:rgba(214,58,42,0.45); transform:translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,0.3); }
-  .problem-icon { font-size:20px; margin-bottom:14px; }
+  .problem-icon { margin-bottom:14px; color:var(--red); }
   .problem-title { font-family:'Bebas Neue',sans-serif; font-size:23px; letter-spacing:0.5px; margin-bottom:10px; }
   .problem-text { font-size:15px; line-height:1.75; color:var(--text-body); }
 
@@ -164,6 +169,11 @@
   .stat-item { flex:1 1 0; min-width:150px; text-align:center; padding:0 16px; border-right:1px solid var(--border); }
   .stat-item:last-child { border-right:none; }
   .stat-item .v { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4vw,44px); color:var(--accent); line-height:1; }
+  @keyframes glowPulse {
+    0%, 100% { text-shadow:0 0 0 rgba(227,167,49,0); }
+    50% { text-shadow:0 0 18px rgba(227,167,49,0.55); }
+  }
+  .glow-num { animation:glowPulse 3.4s ease-in-out infinite; }
   .stat-item .l { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.5; }
   .disclaimer { font-size:12.5px; color:var(--text-dim); text-align:center; max-width:600px; margin:24px auto 0; font-style:italic; line-height:1.7; }
 
@@ -176,6 +186,7 @@
   }
   .step-card:hover { border-color:rgba(227,167,49,0.45); transform:translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,0.3); }
   .step-card .num { font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--accent); margin-bottom:10px; line-height:1; }
+  .step-card .num.glow-num { animation-delay: calc(var(--i, 0) * 0.15s); }
   .step-card .title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.5px; margin-bottom:10px; }
   .step-card .text { font-size:14.5px; line-height:1.7; color:var(--text-body); }
 
@@ -243,8 +254,8 @@
   .check-col h4 { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.5px; margin-bottom:18px; }
   .check-col ul { list-style:none; }
   .check-col li { position:relative; padding-left:30px; margin-bottom:14px; font-size:15px; line-height:1.65; color:var(--text-body); }
-  .check-yes li::before { content:'✅'; position:absolute; left:0; top:1px; font-size:13px; }
-  .check-no li::before { content:'❌'; position:absolute; left:0; top:1px; font-size:13px; }
+  .check-yes li::before { content:'✓'; position:absolute; left:0; top:-1px; font-size:16px; font-weight:700; color:var(--accent); }
+  .check-no li::before { content:'✕'; position:absolute; left:0; top:-1px; font-size:15px; font-weight:700; color:var(--red); }
 
   /* ─── WARNING BOX ─── */
   .warn-box {
@@ -289,12 +300,11 @@
 
   /* ─── FOOTER ─── */
   footer {
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
-    padding:40px 48px; border-top:1px solid var(--border);
+    display:flex; flex-direction:column; align-items:center; gap:24px;
+    padding:56px 48px 48px; border-top:1px solid var(--border); text-align:center;
   }
-  footer img { height:44px; opacity:0.9; }
   .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
-  .footer-links { display:flex; gap:26px; flex-wrap:wrap; }
+  .footer-links { display:flex; gap:26px; flex-wrap:wrap; justify-content:center; }
   .footer-links a {
     font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
     color:var(--text-muted); text-decoration:none; transition:color 0.2s;
@@ -304,21 +314,21 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width:1024px) {
     section { padding:76px 32px; }
+    #hero { padding-top:38px; }
     .problem-grid { grid-template-columns:1fr; }
     .step-grid { grid-template-columns:repeat(2,1fr); }
     .dual-check { grid-template-columns:1fr; }
   }
   @media (max-width:768px) {
     section { padding:60px 20px; }
-    header.top-logo { padding:40px 20px 20px; }
-    header.top-logo img { height:60px; }
+    #hero { padding-top:30px; }
+    header.top-logo img { width:50%; }
     .article p { font-size:16.5px; }
     .stat-row { flex-direction:column; }
     .stat-item { border-right:none; border-bottom:1px solid var(--border); padding:18px 0; }
     .stat-item:last-child { border-bottom:none; }
     .step-grid { grid-template-columns:1fr; }
     .funnel-stage { flex:1 1 30%; }
-    footer { flex-direction:column; align-items:flex-start; }
   }
 </style>
 </head>
@@ -335,7 +345,10 @@
 <!-- ══════ HERO ══════ -->
 <section id="hero">
   <div class="sec-inner">
-    <div class="eyebrow reveal">Everything You Need To Know Is Right Here ✅</div>
+    <div class="eyebrow reveal" style="display:flex;align-items:center;justify-content:center;gap:8px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      Everything You Need To Know Is Right Here
+    </div>
     <h1 class="sec-title reveal">
       WE TURN 12 HOURS OF A FOUNDER'S TIME<br>
       INTO <em>3,000 PIECES OF CONTENT</em><br>
@@ -377,10 +390,12 @@
     </div>
 
     <div class="stat-row reveal">
-      <div class="stat-item"><div class="v">+$200K</div><div class="l">New Revenue Generated<br>Through Founder-Led Growth</div></div>
-      <div class="stat-item"><div class="v">200x+</div><div class="l">ROAS<br>On Ad Spend</div></div>
-      <div class="stat-item"><div class="v">600+</div><div class="l">Pieces Of Content<br>Published In ~4 Months</div></div>
-      <div class="stat-item"><div class="v">&lt;$1K</div><div class="l">Invested In Paid<br>Distribution</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="+$" data-target="200" data-suffix="K">+$0K</div><div class="l">New Revenue Generated<br>Through Founder-Led Growth</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="" data-target="200" data-suffix="x+">0x+</div><div class="l">ROAS<br>On Ad Spend</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="" data-target="3000" data-suffix="+">0+</div><div class="l">Leads<br>Generated</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="" data-target="400" data-suffix="">0</div><div class="l">Marketing<br>Qualified Leads (MQLs)</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="" data-target="600" data-suffix="+">0+</div><div class="l">Pieces Of Content<br>Published In ~4 Months</div></div>
+      <div class="stat-item"><div class="v glow-num cnt" data-prefix="&lt;$" data-target="1" data-suffix="K">&lt;$0K</div><div class="l">Invested In Paid<br>Distribution</div></div>
     </div>
 
     <div class="article reveal">
@@ -399,7 +414,10 @@
 <!-- ══════ AUTHOR STORY ══════ -->
 <section id="author">
   <div class="sec-inner">
-    <div class="eyebrow reveal">📈 Before We Go Any Further, Let Me Introduce Myself</div>
+    <div class="eyebrow reveal" style="display:flex;align-items:center;justify-content:center;gap:8px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+      Before We Go Any Further, Let Me Introduce Myself
+    </div>
     <h2 class="sec-title reveal">I'M VITOR TIMÓTEO,<br><em>FOUNDER OF ONE LIFE MEDIA</em></h2>
 
     <div class="gold-frame narrow reveal">
@@ -475,22 +493,22 @@
 
     <div class="problem-grid reveal">
       <div class="problem-card">
-        <div class="problem-icon">❌</div>
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 5m0-5l-5 5"/></svg></div>
         <div class="problem-title">Becoming A Content Creator</div>
         <p class="problem-text">You try. You post for a few days. Stop. Try again. Stop again. Because you can't shut down the operation every week to brainstorm topics, record and edit content. You're a business owner, not an influencer. That constant tension between what you should be posting and what you actually need to do inside the business brings everything to a halt.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">❌</div>
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 5m0-5l-5 5"/></svg></div>
         <div class="problem-title">Hiring A Social Media Manager</div>
         <p class="problem-text">They post. They generate views. But they don't generate customers. Because generic content without your thesis, your market perspective, and your voice is just noise. And noise doesn't close high-ticket deals.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">❌</div>
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 5m0-5l-5 5"/></svg></div>
         <div class="problem-title">Depending On Outbound</div>
         <p class="problem-text">It works until it doesn't. And when it stops working, you realize you haven't built anything beyond a cold list of people who don't know you, don't trust you, and resist whatever price you put in front of them.</p>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">❌</div>
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 5m0-5l-5 5"/></svg></div>
         <div class="problem-title">Depending On Your Network</div>
         <p class="problem-text">Referrals are great. But you don't control when they come. And while you wait, the competitor who built a qualified audience is getting warm leads every day, closing with less friction, and charging more.</p>
       </div>
@@ -539,32 +557,32 @@
 
     <div class="step-grid reveal">
       <div class="step-card">
-        <div class="num">01</div>
+        <div class="num glow-num" style="--i:0">01</div>
         <div class="title">Diagnosis</div>
         <p class="text">We map your entire business: positioning, offer, funnel, CAC, average deal size, LTV, competitors, and messaging — identifying the biggest growth opportunities before publishing a single piece of content.</p>
       </div>
       <div class="step-card">
-        <div class="num">02</div>
+        <div class="num glow-num" style="--i:1">02</div>
         <div class="title">Conversion Architecture</div>
         <p class="text">We determine which funnel best connects audience and conversion, building the path from audience to offer — so the content generates business, not just views.</p>
       </div>
       <div class="step-card">
-        <div class="num">03</div>
+        <div class="num glow-num" style="--i:2">03</div>
         <div class="title">Thesis Development</div>
         <p class="text">We turn your market perspective into a narrative. Across 10–12 hours of long-form content — podcasts, lessons, monologues or conversations — you develop your perspective, values, stories and opinions. Nothing artificially scripted.</p>
       </div>
       <div class="step-card">
-        <div class="num">04</div>
+        <div class="num glow-num" style="--i:3">04</div>
         <div class="title">Mass Distribution</div>
         <p class="text">We take over the entire operation — clipping, editing, optimizing for retention, and publishing daily across Instagram, TikTok, X, LinkedIn, Facebook and YouTube Shorts. About 10 pieces per platform, per day — roughly 3,000 in 90 days — plus strategic paid amplification.</p>
       </div>
       <div class="step-card">
-        <div class="num">05</div>
+        <div class="num glow-num" style="--i:4">05</div>
         <div class="title">Continuous Optimization</div>
         <p class="text">We constantly analyze what performs best, what generates the most leads, and what attracts the right type of customer — then refine both distribution and messaging.</p>
       </div>
       <div class="step-card">
-        <div class="num">06</div>
+        <div class="num glow-num" style="--i:5">06</div>
         <div class="title">Review &amp; Next-Level Scaling</div>
         <p class="text">At the end of the cycle, we map what worked, what didn't, and structure the next stage of growth for your personal brand.</p>
       </div>
@@ -611,7 +629,7 @@
         <div class="funnel-stage"><div class="fv" id="fMql">360</div><div class="fl">MQLs</div><span class="fa">→</span></div>
         <div class="funnel-stage"><div class="fv" id="fCalls">180</div><div class="fl">Calls</div><span class="fa">→</span></div>
         <div class="funnel-stage"><div class="fv" id="fSales">36</div><div class="fl">Sales</div><span class="fa">→</span></div>
-        <div class="funnel-stage final"><div class="fv" id="fRevenue">$360K</div><div class="fl">Revenue</div></div>
+        <div class="funnel-stage final"><div class="fv glow-num" id="fRevenue">$360K</div><div class="fl">Revenue</div></div>
       </div>
 
       <div class="slider-grid">
@@ -703,7 +721,10 @@
 <!-- ══════ WARNING ══════ -->
 <section id="warning" style="padding-top:60px; padding-bottom:60px;">
   <div class="warn-box reveal">
-    <h4>⚠️ Attention — Do Not Click If:</h4>
+    <h4 style="display:flex;align-items:center;gap:10px;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg>
+      Attention — Do Not Click If:
+    </h4>
     <ul>
       <li>You don't have a validated offer or any results worth communicating.</li>
       <li>You want a magic formula and aren't willing to record the content required.</li>
@@ -795,7 +816,6 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
   <div class="footer-copy">© 2025 One Life Media — All Rights Reserved</div>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/vitortimoteoreal/" target="_blank" rel="noopener">LinkedIn</a>
@@ -832,6 +852,33 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(el => io.observe(el));
+
+  // Count-up animation for key stats
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target) || 0;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const current = Math.round(target * eased);
+      el.textContent = prefix + current.toLocaleString('en-US') + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const countEls = document.querySelectorAll('.cnt');
+  const countIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        countIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  countEls.forEach(el => countIo.observe(el));
 
   // Funnel Simulator
   function formatNumber(n) {
