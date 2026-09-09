@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +47,9 @@
   /* ─── HEADER (static, not fixed) ─── */
   header.top-logo {
     display:flex; justify-content:center; align-items:center;
-    padding:40px 20px 20px;
+    padding:56px 20px 32px;
   }
-  header.top-logo img { height:38px; opacity:0.95; }
+  header.top-logo img { height:84px; opacity:0.97; }
 
   /* ─── REVEAL ANIMATION ─── */
   .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
@@ -189,27 +190,53 @@
   .proj-table tr:nth-child(even) td { background:rgba(255,255,255,0.025); }
   .proj-table td:first-child { color:var(--accent); font-weight:700; }
 
-  /* ─── CALCULATOR ─── */
+  /* ─── CALCULATOR (drag-funnel simulator) ─── */
   .calc-card {
-    max-width:820px; margin:44px auto 0; background:var(--mid); border:1px solid rgba(227,167,49,0.28);
-    padding:42px 40px; position:relative;
+    max-width:920px; margin:44px auto 0; background:var(--mid); border:1px solid rgba(227,167,49,0.28);
+    padding:44px 40px; position:relative;
     clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
   }
   .calc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent, var(--accent), transparent); }
-  .calc-heading { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.5px; text-align:center; margin-bottom:8px; }
-  .calc-sub { font-size:13.5px; color:var(--text-muted); text-align:center; margin-bottom:32px; }
-  .calc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px 24px; margin-bottom:36px; }
-  .calc-field label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
-  .calc-field input {
-    width:100%; background:var(--black); border:1px solid var(--border); color:var(--white);
-    padding:13px 14px; font-family:'Barlow',sans-serif; font-size:15px;
+  .calc-heading { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:0.5px; text-align:center; margin-bottom:8px; }
+  .calc-sub { font-size:13.5px; color:var(--text-muted); text-align:center; margin-bottom:40px; }
+
+  /* funnel visual */
+  .funnel-row { display:flex; align-items:stretch; justify-content:center; flex-wrap:wrap; gap:0; margin-bottom:48px; }
+  .funnel-stage { flex:1 1 0; min-width:112px; text-align:center; padding:0 6px; position:relative; }
+  .funnel-stage .fv { font-family:'Bebas Neue',sans-serif; font-size:clamp(19px,2.4vw,27px); color:var(--accent); line-height:1; transition:color 0.2s; }
+  .funnel-stage .fl { font-family:'Barlow Condensed',sans-serif; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
+  .funnel-stage .fa { color:var(--text-dim); font-size:15px; position:absolute; right:-4px; top:2px; }
+  .funnel-stage:last-child .fa { display:none; }
+  .funnel-stage.final .fv { color:var(--accent-2); font-size:clamp(22px,2.8vw,30px); }
+
+  /* sliders */
+  .slider-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px 32px; }
+  .slider-field { }
+  .slider-field .sf-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+  .slider-field label { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); }
+  .slider-field .sf-val { font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--accent-2); }
+  input[type="range"] {
+    -webkit-appearance:none; appearance:none; width:100%; height:4px;
+    background:linear-gradient(to right, var(--accent) 0%, var(--accent) var(--fill,50%), var(--border) var(--fill,50%), var(--border) 100%);
+    border-radius:2px; outline:none; cursor:pointer;
   }
-  .calc-field input:focus { outline:none; border-color:var(--accent); }
-  .calc-results { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--border); padding-top:28px; }
-  .calc-result { text-align:center; border-right:1px solid var(--border); padding:0 8px; }
-  .calc-result:last-child { border-right:none; }
-  .calc-result .v { font-family:'Bebas Neue',sans-serif; font-size:clamp(22px,3vw,32px); color:var(--accent); line-height:1; }
-  .calc-result .l { font-family:'Barlow Condensed',sans-serif; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%;
+    background:linear-gradient(135deg, var(--accent-2), var(--accent)); border:2px solid var(--black);
+    box-shadow:0 2px 10px rgba(227,167,49,0.5); cursor:pointer; margin-top:-1px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width:18px; height:18px; border-radius:50%; border:2px solid var(--black);
+    background:linear-gradient(135deg, var(--accent-2), var(--accent)); box-shadow:0 2px 10px rgba(227,167,49,0.5); cursor:pointer;
+  }
+  input[type="range"]::-moz-range-track { height:4px; background:var(--border); border-radius:2px; }
+
+  @media (max-width:640px) {
+    .funnel-row { gap:16px 0; }
+    .funnel-stage { flex:1 1 30%; min-width:88px; margin-bottom:16px; }
+    .funnel-stage .fa { display:none; }
+    .slider-grid { grid-template-columns:1fr; }
+  }
 
   /* ─── CHECKLISTS ─── */
   .dual-check { display:grid; grid-template-columns:1fr 1fr; gap:20px 44px; max-width:940px; margin:48px auto 0; }
@@ -265,7 +292,7 @@
     display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
     padding:40px 48px; border-top:1px solid var(--border);
   }
-  footer img { height:24px; opacity:0.8; }
+  footer img { height:44px; opacity:0.9; }
   .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
   .footer-links { display:flex; gap:26px; flex-wrap:wrap; }
   .footer-links a {
@@ -283,16 +310,14 @@
   }
   @media (max-width:768px) {
     section { padding:60px 20px; }
-    header.top-logo { padding:32px 20px 12px; }
+    header.top-logo { padding:40px 20px 20px; }
+    header.top-logo img { height:60px; }
     .article p { font-size:16.5px; }
     .stat-row { flex-direction:column; }
     .stat-item { border-right:none; border-bottom:1px solid var(--border); padding:18px 0; }
     .stat-item:last-child { border-bottom:none; }
     .step-grid { grid-template-columns:1fr; }
-    .calc-grid { grid-template-columns:1fr; }
-    .calc-results { grid-template-columns:repeat(2,1fr); gap:20px 0; }
-    .calc-result { border-right:none; border-bottom:1px solid var(--border); padding-bottom:16px; }
-    .calc-result:nth-child(2n) { border-right:none; }
+    .funnel-stage { flex:1 1 30%; }
     footer { flex-direction:column; align-items:flex-start; }
   }
 </style>
@@ -576,35 +601,48 @@
     <p class="disclaimer reveal">*Illustrative projections based on a $1,000 average deal size. These figures are not a guarantee of results. Actual results depend on the offer, niche, execution, and market.</p>
 
     <div class="calc-card reveal">
-      <div class="calc-heading">Run Your Own Numbers</div>
-      <p class="calc-sub">Plug in your funnel. See what massive distribution could mean for your business.</p>
-      <div class="calc-grid">
-        <div class="calc-field">
-          <label for="calcContent">Pieces Of Content</label>
-          <input type="number" id="calcContent" value="3000" min="0" step="1">
-        </div>
-        <div class="calc-field">
-          <label for="calcViews">Avg. Views Per Piece</label>
-          <input type="number" id="calcViews" value="1000" min="0" step="1">
-        </div>
-        <div class="calc-field">
-          <label for="calcLeadConv">Views → Lead Conversion (%)</label>
-          <input type="number" id="calcLeadConv" value="0.03" min="0" step="0.01">
-        </div>
-        <div class="calc-field">
-          <label for="calcCloseRate">Lead → Sale Conversion (%)</label>
-          <input type="number" id="calcCloseRate" value="10" min="0" step="0.5">
-        </div>
-        <div class="calc-field" style="grid-column:1 / -1;">
-          <label for="calcTicket">Average Deal Size ($)</label>
-          <input type="number" id="calcTicket" value="1000" min="0" step="50">
-        </div>
+      <div class="calc-heading">Simulate Your Funnel</div>
+      <p class="calc-sub">Drag the sliders. Watch the funnel move — from content to revenue.</p>
+
+      <div class="funnel-row">
+        <div class="funnel-stage"><div class="fv" id="fContent">3,000</div><div class="fl">Content</div><span class="fa">→</span></div>
+        <div class="funnel-stage"><div class="fv" id="fReach">3.0M</div><div class="fl">Avg Views</div><span class="fa">→</span></div>
+        <div class="funnel-stage"><div class="fv" id="fLeads">900</div><div class="fl">Leads</div><span class="fa">→</span></div>
+        <div class="funnel-stage"><div class="fv" id="fMql">360</div><div class="fl">MQLs</div><span class="fa">→</span></div>
+        <div class="funnel-stage"><div class="fv" id="fCalls">180</div><div class="fl">Calls</div><span class="fa">→</span></div>
+        <div class="funnel-stage"><div class="fv" id="fSales">36</div><div class="fl">Sales</div><span class="fa">→</span></div>
+        <div class="funnel-stage final"><div class="fv" id="fRevenue">$360K</div><div class="fl">Revenue</div></div>
       </div>
-      <div class="calc-results">
-        <div class="calc-result"><div class="v" id="outReach">0</div><div class="l">Total Reach</div></div>
-        <div class="calc-result"><div class="v" id="outLeads">0</div><div class="l">Leads Generated</div></div>
-        <div class="calc-result"><div class="v" id="outDeals">0</div><div class="l">Closed Deals</div></div>
-        <div class="calc-result"><div class="v" id="outRevenue">$0</div><div class="l">Estimated Revenue</div></div>
+
+      <div class="slider-grid">
+        <div class="slider-field">
+          <div class="sf-top"><label>Pieces Of Content</label><span class="sf-val" id="vContent">3,000</span></div>
+          <input type="range" id="calcContent" min="500" max="5000" step="50" value="3000">
+        </div>
+        <div class="slider-field">
+          <div class="sf-top"><label>Avg. Views Per Piece</label><span class="sf-val" id="vViews">1,000</span></div>
+          <input type="range" id="calcViews" min="200" max="20000" step="100" value="1000">
+        </div>
+        <div class="slider-field">
+          <div class="sf-top"><label>Views → Lead Conversion</label><span class="sf-val" id="vLeadConv">0.03%</span></div>
+          <input type="range" id="calcLeadConv" min="0.01" max="1" step="0.01" value="0.03">
+        </div>
+        <div class="slider-field">
+          <div class="sf-top"><label>Lead → MQL Conversion</label><span class="sf-val" id="vMqlConv">40%</span></div>
+          <input type="range" id="calcMqlConv" min="10" max="80" step="1" value="40">
+        </div>
+        <div class="slider-field">
+          <div class="sf-top"><label>MQL → Call Conversion</label><span class="sf-val" id="vCallConv">50%</span></div>
+          <input type="range" id="calcCallConv" min="10" max="80" step="1" value="50">
+        </div>
+        <div class="slider-field">
+          <div class="sf-top"><label>Call → Sale Conversion</label><span class="sf-val" id="vCloseConv">20%</span></div>
+          <input type="range" id="calcCloseConv" min="5" max="60" step="1" value="20">
+        </div>
+        <div class="slider-field" style="grid-column:1 / -1;">
+          <div class="sf-top"><label>Average Deal Size</label><span class="sf-val" id="vTicket">$10,000</span></div>
+          <input type="range" id="calcTicket" min="1000" max="100000" step="500" value="10000">
+        </div>
       </div>
     </div>
 
@@ -795,31 +833,66 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(el => io.observe(el));
 
-  // ROI Calculator
+  // Funnel Simulator
   function formatNumber(n) {
     return Math.round(n).toLocaleString('en-US');
   }
+  function formatCompact(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return Math.round(n).toLocaleString('en-US');
+  }
   function formatCurrency(n) {
+    if (n >= 1000000) return '$' + (n / 1000000).toFixed(2).replace(/\.00$/, '') + 'M';
+    if (n >= 1000) return '$' + (n / 1000).toFixed(0) + 'K';
     return '$' + Math.round(n).toLocaleString('en-US');
   }
-  function runCalc() {
-    const content = parseFloat(document.getElementById('calcContent').value) || 0;
-    const views = parseFloat(document.getElementById('calcViews').value) || 0;
-    const leadConv = parseFloat(document.getElementById('calcLeadConv').value) || 0;
-    const closeRate = parseFloat(document.getElementById('calcCloseRate').value) || 0;
-    const ticket = parseFloat(document.getElementById('calcTicket').value) || 0;
-
-    const reach = content * views;
-    const leads = reach * (leadConv / 100);
-    const deals = leads * (closeRate / 100);
-    const revenue = deals * ticket;
-
-    document.getElementById('outReach').textContent = formatNumber(reach);
-    document.getElementById('outLeads').textContent = formatNumber(leads);
-    document.getElementById('outDeals').textContent = formatNumber(deals);
-    document.getElementById('outRevenue').textContent = formatCurrency(revenue);
+  function updateSliderFill(el) {
+    const min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
+    const pct = ((val - min) / (max - min)) * 100;
+    el.style.setProperty('--fill', pct + '%');
   }
-  ['calcContent','calcViews','calcLeadConv','calcCloseRate','calcTicket'].forEach(id => {
+
+  const sliderIds = ['calcContent','calcViews','calcLeadConv','calcMqlConv','calcCallConv','calcCloseConv','calcTicket'];
+
+  function runCalc() {
+    const content   = parseFloat(document.getElementById('calcContent').value) || 0;
+    const views     = parseFloat(document.getElementById('calcViews').value) || 0;
+    const leadConv  = parseFloat(document.getElementById('calcLeadConv').value) || 0;
+    const mqlConv   = parseFloat(document.getElementById('calcMqlConv').value) || 0;
+    const callConv  = parseFloat(document.getElementById('calcCallConv').value) || 0;
+    const closeConv = parseFloat(document.getElementById('calcCloseConv').value) || 0;
+    const ticket    = parseFloat(document.getElementById('calcTicket').value) || 0;
+
+    const reach   = content * views;
+    const leads   = reach * (leadConv / 100);
+    const mqls    = leads * (mqlConv / 100);
+    const calls   = mqls * (callConv / 100);
+    const sales   = calls * (closeConv / 100);
+    const revenue = sales * ticket;
+
+    // live labels next to each slider
+    document.getElementById('vContent').textContent  = formatNumber(content);
+    document.getElementById('vViews').textContent     = formatNumber(views);
+    document.getElementById('vLeadConv').textContent  = leadConv.toFixed(2) + '%';
+    document.getElementById('vMqlConv').textContent   = Math.round(mqlConv) + '%';
+    document.getElementById('vCallConv').textContent  = Math.round(callConv) + '%';
+    document.getElementById('vCloseConv').textContent = Math.round(closeConv) + '%';
+    document.getElementById('vTicket').textContent    = '$' + formatNumber(ticket);
+
+    // funnel visual
+    document.getElementById('fContent').textContent = formatNumber(content);
+    document.getElementById('fReach').textContent    = formatCompact(reach);
+    document.getElementById('fLeads').textContent    = formatNumber(leads);
+    document.getElementById('fMql').textContent      = formatNumber(mqls);
+    document.getElementById('fCalls').textContent    = formatNumber(calls);
+    document.getElementById('fSales').textContent    = formatNumber(sales);
+    document.getElementById('fRevenue').textContent  = formatCurrency(revenue);
+
+    sliderIds.forEach(id => updateSliderFill(document.getElementById(id)));
+  }
+
+  sliderIds.forEach(id => {
     document.getElementById(id).addEventListener('input', runCalc);
   });
   runCalc();
