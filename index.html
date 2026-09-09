@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Life Media — Turn Your Long-Form Content Into Distribution</title>
+<title>One Life Media — Founder-Led Growth for B2B Companies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:   #080808;
-    --white:   #f0ede8;
-    --accent:  #d4b57a;
-    --accent-2: #f0d9a8;
-    --red:     #b5291c;
-    --mid:     #141414;
-    --mid2:    #0e0e0e;
-    --border:  rgba(240,237,232,0.14);
-    --text-body:  rgba(240,237,232,0.92);
-    --text-muted: rgba(240,237,232,0.74);
-    --text-dim:   rgba(240,237,232,0.56);
+    --black:      #070707;
+    --white:      #f4f1ec;
+    --accent:     #e3a731;
+    --accent-2:   #ffd873;
+    --accent-deep:#8a6415;
+    --red:        #d63a2a;
+    --mid:        #141311;
+    --mid2:       #0e0d0b;
+    --border:     rgba(244,241,236,0.14);
+    --text-body:  rgba(244,241,236,0.92);
+    --text-muted: rgba(244,241,236,0.74);
+    --text-dim:   rgba(244,241,236,0.56);
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
-  section, #faq { scroll-margin-top: 96px; }
+  section, #calc, #faq { scroll-margin-top: 40px; }
 
   body {
     background: var(--black);
@@ -39,608 +40,260 @@
 
   /* ─── CURSOR ─── */
   .cursor { position:fixed; width:8px; height:8px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
-  .cursor-ring { position:fixed; width:36px; height:36px; border:1px solid rgba(200,169,110,0.45); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.15s ease; }
+  .cursor-ring { position:fixed; width:36px; height:36px; border:1px solid rgba(227,167,49,0.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.15s ease; }
   @media (hover:none) { body { cursor:auto; } .cursor,.cursor-ring { display:none; } }
 
-  /* ─── NAV ─── */
-  nav {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:22px 48px;
-    background:linear-gradient(to bottom, rgba(8,8,8,0.97) 0%, transparent 100%);
-    transition:background 0.3s, border-color 0.3s;
+  /* ─── HEADER (static, not fixed) ─── */
+  header.top-logo {
+    display:flex; justify-content:center; align-items:center;
+    padding:40px 20px 20px;
   }
-  nav.scrolled { background:rgba(8,8,8,0.98); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
-  nav .logo-wrap img { height:32px; opacity:0.95; }
-  nav .nav-tag { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--accent); opacity:0.85; }
-  nav .nav-links { display:flex; align-items:center; gap:28px; }
-  nav .nav-links a {
-    font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
-    color:var(--text-muted); text-decoration:none; white-space:nowrap; position:relative; transition:color 0.2s;
-    padding-bottom:3px;
-  }
-  nav .nav-links a::after {
-    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--accent); transition:width 0.25s ease;
-  }
-  nav .nav-links a:hover { color:var(--white); }
-  nav .nav-links a:hover::after { width:100%; }
-  nav .nav-actions { display:flex; gap:10px; align-items:center; }
-  .nav-ghost {
-    display:inline-flex; align-items:center; gap:7px;
-    padding:11px 20px;
-    border:1px solid rgba(212,181,122,0.55);
-    color:var(--accent);
-    font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
-  }
-  .nav-ghost:hover { background:rgba(212,181,122,0.12); border-color:var(--accent); }
-  .nav-cta {
-    display:inline-flex; align-items:center; gap:7px;
-    padding:12px 22px;
-    background:linear-gradient(135deg, var(--accent-2), var(--accent));
-    color:var(--black);
-    box-shadow:0 2px 18px rgba(212,181,122,0.35);
-    font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
-  }
-  .nav-cta:hover { background:var(--white); box-shadow:0 4px 26px rgba(212,181,122,0.5); }
+  header.top-logo img { height:38px; opacity:0.95; }
 
-  /* ─── MOBILE CTA FLUTUANTE ─── */
-  .mobile-cta {
-    display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-    z-index:99; padding:16px 40px;
-    background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black);
-    box-shadow:0 6px 30px rgba(212,181,122,0.4);
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; white-space:nowrap;
-    box-shadow:0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,169,110,0.3);
-    transition:opacity 0.3s ease;
-  }
+  /* ─── REVEAL ANIMATION ─── */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
 
-  /* ─── HERO ─── */
-  #hero {
-    position:relative; min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:140px 24px 100px;
-    overflow:hidden;
+  /* ─── SHARED SECTION SCAFFOLDING ─── */
+  section { padding:90px 48px; }
+  .sec-inner { max-width:1100px; margin:0 auto; }
+  .eyebrow {
+    font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:5px; text-transform:uppercase;
+    color:var(--accent); text-align:center; margin-bottom:18px;
   }
-  .hero-bg {
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 90% 70% at 50% 100%, rgba(181,41,28,0.09) 0%, transparent 65%),
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,169,110,0.05) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 80% 30%, rgba(200,169,110,0.03) 0%, transparent 60%);
+  .sec-title {
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,72px); line-height:0.98; letter-spacing:1px;
+    text-align:center; margin:0 auto 28px; max-width:900px;
   }
-  /* grade fina de linhas — toque estratégico */
-  .hero-lines {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(240,237,232,0.022) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(240,237,232,0.022) 1px, transparent 1px);
-    background-size:72px 72px;
-    mask-image:radial-gradient(ellipse at center, black 25%, transparent 75%);
-    -webkit-mask-image:radial-gradient(ellipse at center, black 25%, transparent 75%);
-  }
-  /* linha divisória diagonal decorativa */
-  .hero-rule {
-    position:absolute; top:0; right:20%; width:1px; height:100%;
-    background:linear-gradient(to bottom, transparent 0%, rgba(200,169,110,0.12) 40%, transparent 100%);
-    pointer-events:none;
-  }
+  .sec-title em { font-style:normal; color:var(--accent); }
+  .divider { height:1px; max-width:1100px; margin:0 auto; background:linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent); }
 
-  .hero-kicker {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:10px; letter-spacing:7px; text-transform:uppercase;
-    color:var(--accent); margin-bottom:32px;
-    opacity:0; animation:fadeUp 0.8s 0.15s forwards;
-    position:relative; z-index:2;
-    display:flex; align-items:center; gap:16px; justify-content:center;
+  /* ─── ARTICLE / LETTER TYPOGRAPHY ─── */
+  .article { max-width:700px; margin:0 auto; }
+  .article p {
+    font-family:'Lora',serif; font-weight:400; font-size:18px; line-height:1.9;
+    color:var(--text-body); margin-bottom:24px;
   }
-  .hero-kicker::before, .hero-kicker::after { content:''; width:28px; height:1px; background:var(--accent); opacity:0.6; }
+  .article p:last-child { margin-bottom:0; }
+  .article strong { color:var(--white); font-weight:600; }
+  .article em { color:var(--accent); font-style:italic; }
 
-  .hero-logo {
-    width:min(640px,85vw); margin-bottom:36px;
-    opacity:0; animation:fadeUp 1s 0.35s forwards;
-    filter:
-      drop-shadow(0 0 60px rgba(200,169,110,0.28))
-      drop-shadow(0 0 24px rgba(200,169,110,0.14))
-      drop-shadow(0 4px 20px rgba(0,0,0,1));
-    position:relative; z-index:2;
+  .pull-line {
+    font-family:'Lora',serif; font-style:italic; font-size:clamp(20px,2.6vw,26px); line-height:1.6;
+    color:var(--white); text-align:center; margin:44px auto; max-width:640px;
   }
+  .pull-line strong { color:var(--accent); font-weight:600; font-style:normal; }
 
-  .hero-headline {
-    font-family:'Bebas Neue',sans-serif;
-    font-size:clamp(13px,1.8vw,17px);
-    letter-spacing:7px; text-transform:uppercase;
-    color:rgba(240,237,232,0.45);
-    margin-bottom:52px;
-    opacity:0; animation:fadeUp 0.8s 0.55s forwards;
-    position:relative; z-index:2;
+  .punch {
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4.2vw,50px); line-height:1.15;
+    text-align:center; max-width:820px; margin:44px auto 0; letter-spacing:0.5px;
   }
+  .punch em { font-style:normal; color:var(--accent); }
 
-  .hero-manifesto {
-    max-width:720px;
-    font-size:clamp(16px,2.1vw,21px);
-    line-height:1.8; font-weight:300;
-    color:var(--text-body);
-    margin-bottom:16px;
-    opacity:0; animation:fadeUp 0.8s 0.7s forwards;
-    position:relative; z-index:2;
+  /* ─── GOLD FRAME (images) ─── */
+  .gold-frame { position:relative; max-width:620px; margin:44px auto; padding:16px; }
+  .gold-frame img { display:block; width:100%; border:1px solid rgba(0,0,0,0.5); }
+  .gold-frame::before {
+    content:''; position:absolute; inset:9px; box-shadow:inset 0 0 50px rgba(227,167,49,0.08); pointer-events:none;
   }
-  .hero-manifesto strong { color:var(--white); font-weight:500; }
+  .gf-corner { position:absolute; width:26px; height:26px; }
+  .gf-corner.tl { top:0; left:0; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .gf-corner.tr { top:0; right:0; border-top:2px solid var(--accent); border-right:2px solid var(--accent); }
+  .gf-corner.bl { bottom:0; left:0; border-bottom:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .gf-corner.br { bottom:0; right:0; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+  .gf-caption {
+    text-align:center; margin-top:14px; font-family:'Barlow Condensed',sans-serif; font-size:11px;
+    letter-spacing:2px; text-transform:uppercase; color:var(--text-muted);
+  }
+  .gold-frame.narrow { max-width:340px; }
 
-  .hero-sub {
-    max-width:640px;
-    font-size:clamp(14px,1.6vw,17px);
-    line-height:1.85; font-weight:300;
-    color:var(--text-muted);
-    margin-bottom:56px;
-    opacity:0; animation:fadeUp 0.8s 0.8s forwards;
-    position:relative; z-index:2;
+  /* ─── STORY LIST (↳) ─── */
+  .story-list { list-style:none; margin:32px auto; max-width:700px; }
+  .story-list li {
+    position:relative; padding-left:38px; margin-bottom:20px;
+    font-family:'Lora',serif; font-size:17px; line-height:1.75; color:var(--text-body);
   }
+  .story-list li::before {
+    content:'↳'; position:absolute; left:0; top:-2px; color:var(--accent); font-size:22px; font-weight:600;
+  }
+  .story-list li strong { color:var(--white); }
 
-  .hero-ctas {
-    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
-    opacity:0; animation:fadeUp 0.8s 0.92s forwards;
-    position:relative; z-index:2;
+  /* ─── PLAIN DASH LIST (hero) ─── */
+  .plain-list { list-style:none; max-width:560px; margin:36px auto 0; text-align:left; }
+  .plain-list li {
+    position:relative; padding-left:26px; margin-bottom:14px;
+    font-family:'Barlow Condensed',sans-serif; font-size:16.5px; letter-spacing:0.3px; color:var(--text-muted);
   }
+  .plain-list li::before { content:'—'; position:absolute; left:0; color:var(--accent); }
+
+  /* ─── BUTTONS ─── */
   .btn-primary {
-    display:inline-flex; align-items:center; gap:10px;
-    padding:18px 40px; background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black);
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:12px;
+    padding:20px 44px; background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black);
+    font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
     text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-    box-shadow:0 4px 26px rgba(212,181,122,0.3);
+    clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    box-shadow:0 6px 30px rgba(227,167,49,0.35);
     position:relative; overflow:hidden;
   }
   .btn-primary::after {
     content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
-    background:linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
+    background:linear-gradient(115deg, transparent, rgba(255,255,255,0.6), transparent);
     transform:skewX(-20deg); transition:left 0.7s ease;
   }
   .btn-primary:hover::after { left:130%; }
-  .btn-primary:hover { background:linear-gradient(135deg, var(--white), var(--accent-2)); transform:translateY(-2px); box-shadow:0 14px 44px rgba(212,181,122,0.45); }
-  .btn-ghost {
-    display:inline-flex; align-items:center; gap:10px;
-    padding:17px 38px; border:1px solid rgba(240,237,232,0.4); color:var(--white);
-    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); box-shadow:0 8px 30px rgba(212,181,122,0.18); }
+  .btn-primary:hover { background:linear-gradient(135deg, var(--white), var(--accent-2)); transform:translateY(-2px); box-shadow:0 16px 46px rgba(227,167,49,0.5); }
+  .cta-wrap { text-align:center; padding:56px 20px; }
+  .cta-note { font-family:'Barlow Condensed',sans-serif; font-size:12.5px; letter-spacing:1.5px; color:var(--text-dim); margin-top:18px; }
 
-  /* stats hero */
-  .hero-stats {
-    display:flex; gap:0; flex-wrap:wrap; justify-content:center;
-    width:100%; max-width:800px;
-    margin-top:72px; padding-top:48px; border-top:1px solid var(--border);
-    opacity:0; animation:fadeUp 0.8s 1.05s forwards;
-    position:relative; z-index:2;
-  }
-  .hero-stat { flex:1 1 0; text-align:center; padding:0 28px; border-right:1px solid var(--border); }
-  .hero-stat:last-child { border-right:none; }
-  .hero-stat .val { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,52px); color:var(--accent); line-height:1; }
-  .hero-stat .lbl { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-top:6px; line-height:1.5; }
-
-  .scroll-hint {
-    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    opacity:0; animation:fadeUp 0.8s 1.3s forwards; z-index:2;
-  }
-  .scroll-hint span { font-family:'Barlow Condensed',sans-serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dim); }
-  .scroll-line { width:1px; height:44px; background:linear-gradient(to bottom, var(--accent), transparent); animation:scrollPulse 2s infinite; }
-
-  /* ─── SECTION BASE ─── */
-  section { position:relative; z-index:2; }
-  .section-label {
-    font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase;
-    color:var(--accent); margin-bottom:20px;
-    display:flex; align-items:center; gap:14px;
-  }
-  .section-label::before { content:''; width:28px; height:1px; background:var(--accent); flex-shrink:0; }
-
-  .divider { width:100%; height:1px; background:linear-gradient(to right, transparent, var(--accent), transparent); opacity:0.3; margin:0 auto; max-width:1100px; position:relative; z-index:2; }
-
-  /* ─── REVEAL ─── */
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity:1; transform:none; }
-
-  /* ─── TICKER ─── */
-  .ticker-wrap { overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:14px 0; background:var(--mid2); position:relative; z-index:2; }
-  .ticker-track { display:flex; animation:ticker 36s linear infinite; white-space:nowrap; will-change:transform; }
-  .ticker-item { display:inline-flex; align-items:center; gap:20px; padding:0 44px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:3.5px; text-transform:uppercase; color:var(--text-muted); flex-shrink:0; }
-  .ticker-item span { color:var(--accent); font-size:7px; }
-
-  /* ─── PROBLEMA ─── */
-  #problema { padding:120px 48px; max-width:1100px; margin:0 auto; }
-  .problema-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; margin-bottom:80px; }
-  .problema-headline {
-    font-family:'Bebas Neue',sans-serif;
-    font-size:clamp(46px,6vw,88px); line-height:0.9; letter-spacing:1px;
-  }
-  .problema-headline em { font-style:normal; color:var(--accent); }
-  .problema-headline .out { -webkit-text-stroke:1px rgba(240,237,232,0.3); color:transparent; }
-  .problema-body { font-size:18px; line-height:1.85; color:var(--text-body); padding-top:8px; }
-  .problema-body strong { color:var(--white); font-weight:500; }
-  .problema-body p + p { margin-top:20px; }
-
-  /* sintomas grid */
-  .sintomas-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
-  .sintoma-card {
-    background:var(--mid); padding:36px 28px;
-    position:relative; overflow:hidden; transition:background 0.3s;
-    border-left:2px solid transparent;
-  }
-  .sintoma-card:hover { background:#1a1a1a; border-left-color:var(--red); }
-  .sintoma-icon { width:40px; height:40px; border:1px solid rgba(181,41,28,0.7); display:flex; align-items:center; justify-content:center; margin-bottom:18px; color:#d63525; }
-  .sintoma-title { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:10px; color:var(--white); }
-  .sintoma-text { font-size:15.5px; line-height:1.75; color:var(--text-body); }
-
-  /* ─── MANIFESTO ─── */
-  #manifesto {
-    padding:120px 48px;
-    background:var(--mid2);
-    position:relative; overflow:hidden;
-  }
-  #manifesto::before {
-    content:''; position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 60% 80% at 0% 50%, rgba(200,169,110,0.04) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 60% at 100% 50%, rgba(181,41,28,0.04) 0%, transparent 60%);
-    pointer-events:none;
-  }
-  .manifesto-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
-  .manifesto-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-
-  .manifesto-left {}
-  .manifesto-tag { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; display:flex; align-items:center; gap:14px; }
-  .manifesto-tag::before { content:''; width:28px; height:1px; background:var(--accent); }
-  .manifesto-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,6vw,80px); line-height:0.9; letter-spacing:1px; margin-bottom:32px; }
-  .manifesto-title em { font-style:normal; color:var(--accent); }
-  .manifesto-title .out { -webkit-text-stroke:1px rgba(240,237,232,0.28); color:transparent; }
-  .manifesto-text { font-size:18px; line-height:1.85; color:var(--text-body); margin-bottom:20px; }
-  .manifesto-text strong { color:var(--white); font-weight:500; }
-
-  /* card missão */
-  .missao-card {
-    background:#111214;
-    border:1px solid rgba(200,169,110,0.2);
-    padding:52px 44px;
-    position:relative; overflow:hidden;
-    clip-path:polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
-  }
-  .missao-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--accent), rgba(200,169,110,0.3) 60%, transparent); }
-  .missao-card::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.05) 0%, transparent 65%); pointer-events:none; }
-  .missao-kicker { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--accent); margin-bottom:20px; position:relative; z-index:1; }
-  .missao-text {
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:clamp(18px,2.2vw,24px); font-weight:300; letter-spacing:0.5px; line-height:1.55;
-    color:var(--text-body);
-    margin-bottom:28px; position:relative; z-index:1;
-  }
-  .missao-text strong { color:var(--white); font-weight:600; }
-  .missao-dividers { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); position:relative; z-index:1; }
-  .missao-line { display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid var(--border); font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--text-body); }
-  .missao-line svg { color:var(--accent); flex-shrink:0; }
-
-  /* ─── PILARES ─── */
-  #pilares { padding:120px 48px; max-width:1100px; margin:0 auto; }
-  .pilares-header { text-align:center; margin-bottom:80px; }
-  .pilares-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,7vw,96px); line-height:0.9; letter-spacing:2px; margin-bottom:20px; }
-  .pilares-title em { font-style:normal; color:var(--accent); }
-  .pilares-sub { font-size:17px; color:var(--text-body); max-width:600px; margin:0 auto; line-height:1.75; }
-
-  .pilares-list { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); }
-  .pilar-row {
-    display:grid; grid-template-columns:80px 1fr 1fr;
-    gap:0; padding:40px 0;
-    border-bottom:1px solid var(--border);
-    transition:all 0.3s;
-    position:relative;
-  }
-  .pilar-row::before { content:''; position:absolute; left:0; top:0; bottom:0; width:0; background:rgba(200,169,110,0.04); transition:width 0.4s; }
-  .pilar-row:hover::before { width:100%; }
-  .pilar-row:hover .pilar-num-big { color:rgba(200,169,110,0.25); }
-  .pilar-num-big { font-family:'Bebas Neue',sans-serif; font-size:48px; color:rgba(200,169,110,0.14); line-height:1; transition:color 0.3s; padding-top:4px; }
-  .pilar-meta { padding-right:40px; padding-left:24px; }
-  .pilar-tag { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
-  .pilar-name { font-family:'Bebas Neue',sans-serif; font-size:clamp(22px,2.5vw,34px); letter-spacing:1px; line-height:1; }
-  .pilar-body { font-size:16.5px; line-height:1.75; color:var(--text-body); padding-left:24px; border-left:1px solid var(--border); }
-  .pilar-body strong { color:var(--white); font-weight:500; }
-
-  /* ─── METODOLOGIA ─── */
-  #metodologia {
-    padding:120px 48px;
-    background:var(--mid2); position:relative; overflow:hidden;
-  }
-  #metodologia::before {
-    content:''; position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 60% 60% at 10% 50%, rgba(200,169,110,0.03) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 90% 50%, rgba(181,41,28,0.03) 0%, transparent 60%);
-    pointer-events:none;
-  }
-  .met-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
-  .met-header { text-align:center; margin-bottom:80px; }
-  .met-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,80px); letter-spacing:2px; line-height:1; margin-bottom:16px; }
-  .met-title em { font-style:normal; color:var(--accent); }
-  .met-sub { font-size:17px; color:var(--text-body); max-width:520px; margin:0 auto; line-height:1.75; }
-
-  .met-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
-  .met-connector { position:absolute; top:31px; left:calc(12.5% + 8px); right:calc(12.5% + 8px); height:1px; background:linear-gradient(to right, transparent, rgba(200,169,110,0.3) 20%, rgba(200,169,110,0.3) 80%, transparent); pointer-events:none; z-index:0; }
-  .met-step { padding:0 20px 40px; text-align:center; position:relative; z-index:1; }
-  .met-step-num {
-    width:64px; height:64px; margin:0 auto 28px;
-    border:1px solid rgba(200,169,110,0.45);
-    background:var(--black);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--accent);
-    clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    transition:all 0.3s;
-  }
-  .met-step:hover .met-step-num { background:rgba(200,169,110,0.08); border-color:var(--accent); }
-  .met-step-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; margin-bottom:12px; }
-  .met-step-text { font-size:15px; line-height:1.75; color:var(--text-body); }
-
-  /* ─── PROOF / RESULTS ─── */
-  #proof { padding:100px 48px; text-align:center; position:relative; overflow:hidden; }
-  #proof::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,169,110,0.05) 0%, transparent 65%); pointer-events:none; }
-  .proof-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
-  .proof-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; }
-  .proof-headline { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,7vw,86px); line-height:0.95; letter-spacing:1px; margin-bottom:56px; }
-  .proof-headline em { font-style:normal; color:var(--accent); }
-  .proof-stats { display:flex; flex-wrap:wrap; justify-content:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:40px 0; margin-bottom:32px; }
-  .proof-stat { flex:1 1 0; min-width:140px; padding:0 20px; border-right:1px solid var(--border); }
-  .proof-stat:last-child { border-right:none; }
-  .proof-stat .val { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4.5vw,56px); color:var(--accent); line-height:1; }
-  .proof-stat .lbl { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.5; }
-  .proof-note { font-size:15.5px; color:var(--text-body); max-width:640px; margin:0 auto 8px; line-height:1.75; }
-  .proof-disclaimer { font-size:13px; color:var(--text-dim); max-width:640px; margin:16px auto 0; line-height:1.7; font-style:italic; }
-  .case-study-link {
-    display:inline-flex; align-items:center; gap:8px; margin-top:28px;
-    padding:12px 26px; border:1px solid rgba(212,181,122,0.4); color:var(--accent);
-    font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s;
-  }
-  .case-study-link:hover { border-color:var(--accent); background:rgba(212,181,122,0.08); box-shadow:0 6px 22px rgba(212,181,122,0.18); transform:translateY(-2px); }
-  @media (max-width:768px) {
-    #proof { padding:64px 20px; }
-    .proof-stats { flex-direction:column; gap:0; }
-    .proof-stat { border-right:none; border-bottom:1px solid var(--border); padding:20px 0; }
-    .proof-stat:last-child { border-bottom:none; }
-  }
-
-  /* ─── DIFERENCIAIS ─── */
-  #diferenciais { padding:120px 48px; max-width:1100px; margin:0 auto; }
-  .dif-header { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-bottom:64px; }
-  .dif-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,6vw,80px); line-height:0.9; letter-spacing:1px; }
-  .dif-title em { font-style:normal; color:var(--accent); }
-  .dif-intro { font-size:17px; line-height:1.8; color:var(--text-body); }
-  .dif-intro strong { color:var(--white); font-weight:500; }
-
-  .dif-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
-  .dif-card {
-    background:var(--mid); padding:44px 36px;
-    position:relative; overflow:hidden; transition:background 0.3s;
-  }
-  .dif-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width 0.4s; }
-  .dif-card:hover { background:#1a1a1a; box-shadow:0 12px 34px rgba(0,0,0,0.3); }
-  .dif-card:hover::after { width:100%; }
-  .dif-icon { width:44px; height:44px; border:1px solid rgba(200,169,110,0.45); display:flex; align-items:center; justify-content:center; margin-bottom:22px; color:var(--accent); }
-  .dif-card-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1px; margin-bottom:12px; }
-  .dif-card-text { font-size:15.5px; line-height:1.75; color:var(--text-body); }
-
-  /* ─── QUOTE ─── */
-  #quote-section, #finalcta { padding:100px 48px; text-align:center; position:relative; overflow:hidden; }
-  #quote-section::before, #finalcta::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent, rgba(200,169,110,0.025), transparent); pointer-events:none; }
-  .qmark { font-family:'Bebas Neue',sans-serif; font-size:180px; line-height:0.7; color:rgba(200,169,110,0.04); display:block; margin-bottom:-36px; user-select:none; }
-  .qtext { font-family:'Barlow Condensed',sans-serif; font-size:clamp(22px,3.5vw,44px); font-weight:300; line-height:1.4; max-width:900px; margin:0 auto 24px; letter-spacing:1px; color:rgba(240,237,232,0.9); position:relative; z-index:1; }
-  .qtext strong { color:var(--accent); font-weight:600; }
-  .qsource { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--text-muted); position:relative; z-index:1; }
-
-  /* ─── AUDITORIA / OFERTA ─── */
-  #auditoria {
-    padding:120px 48px;
-    background:linear-gradient(to bottom, var(--black), var(--mid2) 50%, var(--black));
-    position:relative; overflow:hidden;
-  }
-  #auditoria::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,169,110,0.04) 0%, transparent 70%); pointer-events:none; }
-  .aud-inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
-
-  .aud-top { text-align:center; margin-bottom:80px; }
-  .aud-kicker { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; display:block; }
-  .aud-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,8vw,110px); line-height:0.88; letter-spacing:2px; margin-bottom:20px; }
-  .aud-title em { font-style:normal; color:var(--accent); }
-  .aud-title .out { -webkit-text-stroke:1px rgba(240,237,232,0.28); color:transparent; }
-  .aud-desc { max-width:660px; margin:0 auto; font-size:18px; line-height:1.8; color:var(--text-body); }
-  .aud-desc strong { color:var(--white); font-weight:500; }
-
-  .aud-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
-
-  /* o que a auditoria entrega */
-  .aud-entrega-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--accent); margin-bottom:28px; }
-  .aud-item { display:flex; align-items:flex-start; gap:18px; padding:18px 0; border-bottom:1px solid var(--border); transition:padding-left 0.25s; }
-  .aud-item:first-of-type { border-top:1px solid var(--border); }
-  .aud-item:hover { padding-left:10px; }
-  .aud-item-icon { width:36px; height:36px; flex-shrink:0; border:1px solid rgba(200,169,110,0.45); display:flex; align-items:center; justify-content:center; color:var(--accent); transition:background 0.25s; }
-  .aud-item:hover .aud-item-icon { background:rgba(200,169,110,0.08); }
-  .aud-item-text { font-family:'Barlow Condensed',sans-serif; font-size:16px; color:var(--text-body); line-height:1.45; padding-top:4px; }
-  .aud-item-text strong { color:var(--white); }
-
-  .aud-aviso { margin-top:32px; padding:24px 28px; border:1px solid var(--border); background:rgba(240,237,232,0.03); }
-  .aud-aviso-text { font-family:'Barlow',sans-serif; font-size:14px; color:var(--text-muted); line-height:1.75; font-weight:300; font-style:italic; }
-  .aud-aviso-text strong { color:var(--text-body); font-style:normal; font-weight:400; }
-
-  /* ─── PRICING PLANS ─── */
-  .plans-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:90px; }
-  .plan-card {
-    background:var(--mid); border:1px solid var(--border);
-    padding:36px 26px; display:flex; flex-direction:column;
-    position:relative; overflow:hidden; transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  /* ─── PROBLEM CARDS ─── */
+  .problem-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:920px; margin:48px auto 0; }
+  .problem-card {
+    background:var(--mid); border:1px solid var(--border); padding:32px 30px; position:relative; overflow:hidden;
+    transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
   }
-  .plan-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent, var(--accent), transparent); opacity:0; transition:opacity 0.3s; }
-  .plan-card:hover::before { opacity:0.7; }
-  .plan-card:hover { transform:translateY(-4px); border-color:rgba(212,181,122,0.5); box-shadow:0 16px 40px rgba(0,0,0,0.35); }
-  .plan-card.featured { background:#181509; border:1px solid var(--accent); box-shadow:0 20px 60px rgba(212,181,122,0.18); animation:planGlow 3.5s ease-in-out infinite; }
-  .plan-card.featured::before { opacity:0.9; }
-  @keyframes planGlow {
-    0%, 100% { box-shadow:0 20px 60px rgba(212,181,122,0.14); }
-    50% { box-shadow:0 20px 68px rgba(212,181,122,0.32); }
+  .problem-card:hover { border-color:rgba(214,58,42,0.45); transform:translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,0.3); }
+  .problem-icon { font-size:20px; margin-bottom:14px; }
+  .problem-title { font-family:'Bebas Neue',sans-serif; font-size:23px; letter-spacing:0.5px; margin-bottom:10px; }
+  .problem-text { font-size:15px; line-height:1.75; color:var(--text-body); }
+
+  /* ─── STAT ROW (case study) ─── */
+  .stat-row { display:flex; flex-wrap:wrap; justify-content:center; max-width:920px; margin:44px auto 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:36px 0; }
+  .stat-item { flex:1 1 0; min-width:150px; text-align:center; padding:0 16px; border-right:1px solid var(--border); }
+  .stat-item:last-child { border-right:none; }
+  .stat-item .v { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4vw,44px); color:var(--accent); line-height:1; }
+  .stat-item .l { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.5; }
+  .disclaimer { font-size:12.5px; color:var(--text-dim); text-align:center; max-width:600px; margin:24px auto 0; font-style:italic; line-height:1.7; }
+
+  /* ─── STEP CARDS (framework) ─── */
+  .step-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1000px; margin:48px auto 0; }
+  .step-card {
+    background:var(--mid); border:1px solid var(--border); padding:30px 26px; position:relative;
+    clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   }
-  .plan-badge {
-    position:absolute; top:0; right:0;
+  .step-card:hover { border-color:rgba(227,167,49,0.45); transform:translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,0.3); }
+  .step-card .num { font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--accent); margin-bottom:10px; line-height:1; }
+  .step-card .title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.5px; margin-bottom:10px; }
+  .step-card .text { font-size:14.5px; line-height:1.7; color:var(--text-body); }
+
+  /* ─── PROJECTIONS TABLE ─── */
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:40px auto 0; max-width:900px; }
+  .proj-table { width:100%; min-width:560px; border-collapse:collapse; font-family:'Barlow Condensed',sans-serif; }
+  .proj-table th {
     background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black);
-    font-family:'Barlow Condensed',sans-serif; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
-    padding:7px 14px 6px 18px;
-    clip-path:polygon(14px 0, 100% 0, 100% 100%, 0 100%);
+    font-size:12px; letter-spacing:1.2px; text-transform:uppercase; padding:14px 10px; text-align:center; font-weight:700;
   }
-  .plan-badge.secondary { background:transparent; color:var(--accent); border:1px solid var(--accent); clip-path:none; top:14px; right:14px; padding:5px 12px; }
-  .plan-name { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
-  .plan-volume { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:1px; line-height:1; margin-bottom:14px; }
-  .plan-price { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:1px; line-height:1; margin-bottom:4px; }
-  .plan-price span { font-family:'Barlow Condensed',sans-serif; font-size:13px; color:var(--text-muted); letter-spacing:0; text-transform:none; }
-  .plan-desc { font-size:14.5px; color:var(--text-body); line-height:1.6; margin-bottom:22px; min-height:64px; }
-  .plan-features { list-style:none; margin-bottom:26px; flex-grow:1; }
-  .plan-features li { display:flex; align-items:flex-start; gap:9px; font-family:'Barlow Condensed',sans-serif; font-size:14.5px; color:var(--text-body); padding:7px 0; letter-spacing:0.3px; }
-  .plan-features li svg { color:var(--accent); flex-shrink:0; margin-top:2px; }
-  .plan-cta {
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    padding:15px 18px; border:1px solid rgba(212,181,122,0.7);
-    background:linear-gradient(135deg, rgba(212,181,122,0.22), rgba(212,181,122,0.08));
-    color:var(--accent-2);
-    font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; margin-bottom:10px;
-    position:relative; overflow:hidden;
+  .proj-table td { padding:16px 10px; text-align:center; border-bottom:1px solid var(--border); font-size:15px; color:var(--text-body); }
+  .proj-table tr:nth-child(even) td { background:rgba(255,255,255,0.025); }
+  .proj-table td:first-child { color:var(--accent); font-weight:700; }
+
+  /* ─── CALCULATOR ─── */
+  .calc-card {
+    max-width:820px; margin:44px auto 0; background:var(--mid); border:1px solid rgba(227,167,49,0.28);
+    padding:42px 40px; position:relative;
+    clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
   }
-  .plan-cta:hover { background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black); box-shadow:0 6px 22px rgba(212,181,122,0.35); }
-  .plan-card.featured .plan-cta { background:linear-gradient(135deg, var(--accent-2), var(--accent)); color:var(--black); border-color:var(--accent); box-shadow:0 4px 20px rgba(212,181,122,0.3); }
-  .plan-card.featured .plan-cta:hover { background:var(--white); box-shadow:0 8px 26px rgba(212,181,122,0.45); }
-  .plan-anchor { font-family:'Barlow Condensed',sans-serif; font-size:11px; color:var(--text-dim); text-align:center; letter-spacing:0.5px; }
+  .calc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent, var(--accent), transparent); }
+  .calc-heading { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.5px; text-align:center; margin-bottom:8px; }
+  .calc-sub { font-size:13.5px; color:var(--text-muted); text-align:center; margin-bottom:32px; }
+  .calc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px 24px; margin-bottom:36px; }
+  .calc-field label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+  .calc-field input {
+    width:100%; background:var(--black); border:1px solid var(--border); color:var(--white);
+    padding:13px 14px; font-family:'Barlow',sans-serif; font-size:15px;
+  }
+  .calc-field input:focus { outline:none; border-color:var(--accent); }
+  .calc-results { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--border); padding-top:28px; }
+  .calc-result { text-align:center; border-right:1px solid var(--border); padding:0 8px; }
+  .calc-result:last-child { border-right:none; }
+  .calc-result .v { font-family:'Bebas Neue',sans-serif; font-size:clamp(22px,3vw,32px); color:var(--accent); line-height:1; }
+  .calc-result .l { font-family:'Barlow Condensed',sans-serif; font-size:9.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px; line-height:1.4; }
 
-  /* provide steps */
-  .provide-inner { max-width:1100px; margin:0 auto 90px; }
-  .provide-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,4vw,44px); letter-spacing:1px; text-align:center; margin-bottom:12px; }
-  .provide-title em { font-style:normal; color:var(--accent); }
-  .provide-sub { text-align:center; font-size:15px; color:var(--text-muted); margin-bottom:48px; }
-  .provide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:36px; }
-  .provide-card { background:var(--mid); border:1px solid var(--border); padding:32px 28px; transition:border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
-  .provide-card:hover { border-color:rgba(212,181,122,0.4); box-shadow:0 10px 30px rgba(0,0,0,0.3); transform:translateY(-3px); }
-  .provide-num { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:3px; color:var(--accent); margin-bottom:10px; }
-  .provide-name { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.5px; margin-bottom:10px; }
-  .provide-text { font-size:15.5px; line-height:1.7; color:var(--text-body); }
-  .provide-final { text-align:center; font-family:'Bebas Neue',sans-serif; font-size:clamp(26px,3.5vw,38px); letter-spacing:1px; color:var(--white); }
+  /* ─── CHECKLISTS ─── */
+  .dual-check { display:grid; grid-template-columns:1fr 1fr; gap:20px 44px; max-width:940px; margin:48px auto 0; }
+  .check-col h4 { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.5px; margin-bottom:18px; }
+  .check-col ul { list-style:none; }
+  .check-col li { position:relative; padding-left:30px; margin-bottom:14px; font-size:15px; line-height:1.65; color:var(--text-body); }
+  .check-yes li::before { content:'✅'; position:absolute; left:0; top:1px; font-size:13px; }
+  .check-no li::before { content:'❌'; position:absolute; left:0; top:1px; font-size:13px; }
 
-  /* FAQ */
-  .faq-inner { max-width:820px; margin:0 auto; }
-  .faq-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,4vw,44px); letter-spacing:1px; text-align:center; margin-bottom:48px; }
-  .faq-item { border-bottom:1px solid var(--border); padding:22px 0; }
+  /* ─── WARNING BOX ─── */
+  .warn-box {
+    max-width:640px; margin:60px auto 0; border:1px solid rgba(214,58,42,0.4); background:rgba(214,58,42,0.06);
+    padding:34px 36px;
+  }
+  .warn-box h4 { font-family:'Bebas Neue',sans-serif; font-size:23px; color:#e2685a; margin-bottom:18px; letter-spacing:0.5px; }
+  .warn-box ul { list-style:none; margin-bottom:18px; }
+  .warn-box li { position:relative; padding-left:22px; margin-bottom:10px; font-size:15px; line-height:1.65; color:var(--text-body); }
+  .warn-box li::before { content:'—'; position:absolute; left:0; color:#e2685a; }
+  .warn-box .respect { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.5px; color:var(--white); }
+
+  /* ─── FAQ (native accordion) ─── */
+  .faq-inner { max-width:800px; margin:48px auto 0; }
+  .faq-item { border-bottom:1px solid var(--border); padding:20px 0; }
   .faq-item:first-child { border-top:1px solid var(--border); }
-  .faq-q { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:600; letter-spacing:0.3px; color:var(--white); margin-bottom:8px; }
-  .faq-a { font-size:15.5px; line-height:1.75; color:var(--text-body); }
+  .faq-item summary {
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:600; color:var(--white);
+  }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:'+'; color:var(--accent); font-size:22px; flex-shrink:0; transition:transform 0.25s; }
+  .faq-item[open] summary::after { content:'–'; }
+  .faq-item .faq-a { font-family:'Lora',serif; font-size:15.5px; line-height:1.85; color:var(--text-body); padding-top:16px; }
 
-  @media (max-width:1024px) {
-    .plans-grid { grid-template-columns:repeat(2,1fr); }
-    .provide-grid { grid-template-columns:1fr; }
+  /* ─── CLOSING / POSITIONING ─── */
+  #closing { text-align:center; padding:110px 48px; }
+  #closing img.close-logo { height:34px; opacity:0.9; margin-bottom:28px; }
+  .closing-tagline { font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,4.5vw,52px); letter-spacing:1px; margin-bottom:20px; }
+  .closing-sub { font-size:16px; color:var(--text-body); max-width:580px; margin:0 auto 44px; line-height:1.85; }
+  .flow-line {
+    display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;
+    font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+    color:var(--accent); margin-bottom:52px;
   }
-  @media (max-width:640px) {
-    .plans-grid { grid-template-columns:1fr; }
-    .plan-desc { min-height:0; }
+  .flow-line .arrow { color:var(--text-dim); font-size:15px; }
+  blockquote.closing-quote {
+    font-family:'Lora',serif; font-style:italic; font-size:clamp(18px,2.2vw,23px); line-height:1.75;
+    max-width:740px; margin:0 auto 20px; color:var(--white);
   }
+  .closing-quote-source { font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
 
   /* ─── FOOTER ─── */
-  footer { padding:56px 48px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; position:relative; z-index:2; }
-  footer img { height:26px; opacity:0.55; }
-  .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
-  .footer-links { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
-  .footer-links a { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--accent); }
-  .footer-playbook {
-    display:inline-flex; align-items:center; gap:8px;
-    padding:12px 22px; border:1px solid rgba(200,169,110,0.5); color:var(--accent);
-    font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
-    text-decoration:none; transition:all 0.25s; white-space:nowrap;
-    clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  footer {
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    padding:40px 48px; border-top:1px solid var(--border);
   }
-  .footer-playbook:hover { background:rgba(200,169,110,0.1); border-color:var(--accent); }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes scrollPulse { 0%,100% { opacity:0.5; } 50% { opacity:1; } }
-  @keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  footer img { height:24px; opacity:0.8; }
+  .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
+  .footer-links { display:flex; gap:26px; flex-wrap:wrap; }
+  .footer-links a {
+    font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--text-muted); text-decoration:none; transition:color 0.2s;
+  }
+  .footer-links a:hover { color:var(--accent); }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width:1024px) {
-    nav { padding:20px 32px; }
-    nav .nav-links { display:none; }
-    #problema, #pilares, #diferenciais, #auditoria { padding-left:32px; padding-right:32px; }
-    #manifesto, #metodologia { padding-left:32px; padding-right:32px; }
-    #quote-section, #finalcta { padding:80px 32px; }
-    .problema-grid, .manifesto-grid, .dif-header { gap:48px; }
-    .aud-grid { gap:40px; }
-    .pilar-row { grid-template-columns:60px 1fr; }
-    .pilar-body { grid-column:2; border-left:none; border-top:1px solid var(--border); padding-left:0; padding-top:16px; margin-top:12px; }
-    footer { padding:40px 32px; }
+    section { padding:76px 32px; }
+    .problem-grid { grid-template-columns:1fr; }
+    .step-grid { grid-template-columns:repeat(2,1fr); }
+    .dual-check { grid-template-columns:1fr; }
   }
-
   @media (max-width:768px) {
-    nav { padding:18px 20px; }
-    nav .nav-actions .nav-ghost { display:none; }
-    nav .nav-cta { display:none; }
-    .mobile-cta { display:block; }
-
-    #hero { padding:110px 20px 80px; }
-    .scroll-hint { display:none; }
-    .hero-headline { letter-spacing:4px; font-size:12px; }
-    .hero-manifesto { font-size:17px; }
-    .hero-sub { font-size:15px; }
-    .hero-ctas { flex-direction:column; align-items:stretch; }
-    .btn-primary, .btn-ghost { justify-content:center; clip-path:none; }
-    .hero-stats { flex-wrap:wrap; }
-    .hero-stat { flex:0 0 50%; padding:16px 12px; border-right:none; }
-    .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-bottom:1px solid var(--border); }
-    .hero-stat:nth-child(1), .hero-stat:nth-child(3) { border-right:1px solid var(--border); }
-
-    #problema { padding:64px 20px 80px; }
-    .problema-grid { grid-template-columns:1fr; gap:40px; }
-    .sintomas-grid { grid-template-columns:1fr; }
-
-    #manifesto { padding:64px 20px; }
-    .manifesto-grid { grid-template-columns:1fr; gap:48px; }
-    .missao-card { clip-path:none; }
-
-    #pilares { padding:64px 20px; }
-    .pilar-row { grid-template-columns:50px 1fr; gap:0 16px; padding:32px 0; }
-    .pilar-body { grid-column:2; border-left:none; border-top:1px solid var(--border); padding:14px 0 0; margin-top:12px; }
-    .pilar-num-big { font-size:36px; }
-
-    #metodologia { padding:64px 20px; }
-    .met-steps { grid-template-columns:1fr 1fr; gap:32px 16px; }
-    .met-connector { display:none; }
-    .met-step { padding:0 4px 28px; }
-
-    #diferenciais { padding:64px 20px; }
-    .dif-header { grid-template-columns:1fr; gap:28px; }
-    .dif-grid { grid-template-columns:1fr; }
-
-    #quote-section, #finalcta { padding:72px 20px; }
-    .qmark { font-size:120px; }
-
-    #auditoria { padding:64px 20px; }
-    .aud-grid { grid-template-columns:1fr; gap:48px; }
-
-    footer { padding:36px 20px; flex-direction:column; align-items:flex-start; gap:20px; }
-    .footer-links { flex-wrap:wrap; gap:14px; }
-    .footer-playbook { clip-path:none; }
-  }
-
-  @media (max-width:480px) {
-    .hero-logo { width:92vw; }
-    .met-steps { grid-template-columns:1fr; }
-    .hero-stat { flex:0 0 50%; }
-    footer { padding-bottom:80px; }
+    section { padding:60px 20px; }
+    header.top-logo { padding:32px 20px 12px; }
+    .article p { font-size:16.5px; }
+    .stat-row { flex-direction:column; }
+    .stat-item { border-right:none; border-bottom:1px solid var(--border); padding:18px 0; }
+    .stat-item:last-child { border-bottom:none; }
+    .step-grid { grid-template-columns:1fr; }
+    .calc-grid { grid-template-columns:1fr; }
+    .calc-results { grid-template-columns:repeat(2,1fr); gap:20px 0; }
+    .calc-result { border-right:none; border-bottom:1px solid var(--border); padding-bottom:16px; }
+    .calc-result:nth-child(2n) { border-right:none; }
+    footer { flex-direction:column; align-items:flex-start; }
   }
 </style>
 </head>
@@ -649,608 +302,457 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- MOBILE CTA -->
-<a href="#auditoria" class="mobile-cta" id="mobileCta">Choose Your Plan →</a>
-
-<!-- NAV -->
-<nav id="mainNav">
-  <div class="logo-wrap">
-    <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
-  </div>
-  <div class="nav-links">
-    <a href="#problema">Problem</a>
-    <a href="#manifesto">Method</a>
-    <a href="#pilares">Included</a>
-    <a href="#proof">Results</a>
-    <a href="#auditoria">Plans</a>
-    <a href="#faq">FAQ</a>
-  </div>
-  <div class="nav-actions">
-    <a href="#auditoria" class="nav-cta">Choose Your Plan</a>
-  </div>
-</nav>
+<!-- LOGO (static, not fixed) -->
+<header class="top-logo">
+  <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
+</header>
 
 <!-- ══════ HERO ══════ -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-rule"></div>
-
-  <div class="hero-kicker">Turn Long-Form Content Into Distribution</div>
-
-  <img class="hero-logo"
-       src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png"
-       alt="One Life Media">
-
-  <div class="hero-headline">Short-Form Content Repurposing &amp; Distribution</div>
-
-  <p class="hero-manifesto">
-    You record. <strong>We turn it into content that gets distributed every day.</strong>
-  </p>
-  <p class="hero-sub">
-    Turn your podcasts, interviews, webinars, YouTube videos and recordings into high-quality short-form content — edited, packaged and distributed across Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn.
-  </p>
-
-  <div class="hero-ctas">
-    <a href="#auditoria" class="btn-primary">
-      Choose Your Plan
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-    <a href="#pilares" class="btn-ghost">
-      See What's Included
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    </a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="val">30–150</div>
-      <div class="lbl">Clips Produced<br>Per Month</div>
-    </div>
-    <div class="hero-stat">
-      <div class="val">5</div>
-      <div class="lbl">Platforms In<br>Every Plan</div>
-    </div>
-    <div class="hero-stat">
-      <div class="val">&lt;7</div>
-      <div class="lbl">Days To Your<br>First Published Clip</div>
-    </div>
-    <div class="hero-stat">
-      <div class="val">600+</div>
-      <div class="lbl">Clips In Our Last<br>B2B Campaign</div>
-    </div>
-  </div>
-
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll down</span>
+  <div class="sec-inner">
+    <div class="eyebrow reveal">Everything You Need To Know Is Right Here ✅</div>
+    <h1 class="sec-title reveal">
+      WE TURN 12 HOURS OF A FOUNDER'S TIME<br>
+      INTO <em>3,000 PIECES OF CONTENT</em><br>
+      PUBLISHED OVER 90 DAYS
+    </h1>
+    <p class="pull-line reveal">
+      Generating leads, authority, and community — <strong>on autopilot, with a guarantee.</strong>
+    </p>
+    <ul class="plain-list reveal">
+      <li>Without the founder becoming a slave to Instagram.</li>
+      <li>Without relying on trends or going viral.</li>
+      <li>Without stopping the business every week to record content.</li>
+      <li>Without having to build an in-house media team.</li>
+    </ul>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track" aria-hidden="true">
-    <div class="ticker-item"><span>●</span> Content Distribution System</div>
-    <div class="ticker-item"><span>●</span> Short-Form Repurposing</div>
-    <div class="ticker-item"><span>●</span> Hook Engineering</div>
-    <div class="ticker-item"><span>●</span> Done-For-You Editing</div>
-    <div class="ticker-item"><span>●</span> Multi-Platform Publishing</div>
-    <div class="ticker-item"><span>●</span> Consistent Monthly Output</div>
-    <div class="ticker-item"><span>●</span> Content Into Pipeline</div>
-    <div class="ticker-item"><span>●</span> Choose Your Plan</div>
-    <div class="ticker-item"><span>●</span> Content Distribution System</div>
-    <div class="ticker-item"><span>●</span> Short-Form Repurposing</div>
-    <div class="ticker-item"><span>●</span> Hook Engineering</div>
-    <div class="ticker-item"><span>●</span> Done-For-You Editing</div>
-    <div class="ticker-item"><span>●</span> Multi-Platform Publishing</div>
-    <div class="ticker-item"><span>●</span> Consistent Monthly Output</div>
-    <div class="ticker-item"><span>●</span> Content Into Pipeline</div>
-    <div class="ticker-item"><span>●</span> Choose Your Plan</div>
+<div class="divider"></div>
+
+<!-- ══════ CASE STUDY ══════ -->
+<section id="case-study">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">Case Study — B2B Sales Consulting</div>
+    <h2 class="sec-title reveal">A REAL CAMPAIGN,<br><em>NOT A THEORY</em></h2>
+
+    <div class="article reveal">
+      <p>A B2B sales consulting CEO wanted to build an authority-driven acquisition channel — without relying solely on outbound and without becoming a slave to Instagram.</p>
+      <p>The strategy was simple in theory, brutal in execution: <strong>Founder-Led Growth.</strong> Turn the founder's knowledge and market perspective into massive content distribution — and let the content work 24/7 on his behalf.</p>
+    </div>
+
+    <div class="gold-frame reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://media.licdn.com/dms/image/v2/D4D22AQGw09snyIPyZA/feedshare-shrink_1280/B4DaCDiXAbKQAM-/0/1788913218041?e=1790812800&amp;v=beta&amp;t=5pg-WH3jjQ0DWlmc9cOhsFkHiAOF-Qw5B4jWUMClrZ4" alt="Lead pipeline generated during the campaign">
+      <div class="gf-caption">Lead Pipeline — Screenshot From The Campaign</div>
+    </div>
+
+    <div class="article reveal">
+      <p>600 pieces of content published in approximately 4 months. Strategic distribution, high-volume publishing, and amplification with less than $1,000 in ad spend — resulting in more than $200,000 in new revenue, with a 200x+ ROAS.</p>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-item"><div class="v">+$200K</div><div class="l">New Revenue Generated<br>Through Founder-Led Growth</div></div>
+      <div class="stat-item"><div class="v">200x+</div><div class="l">ROAS<br>On Ad Spend</div></div>
+      <div class="stat-item"><div class="v">600+</div><div class="l">Pieces Of Content<br>Published In ~4 Months</div></div>
+      <div class="stat-item"><div class="v">&lt;$1K</div><div class="l">Invested In Paid<br>Distribution</div></div>
+    </div>
+
+    <div class="article reveal">
+      <p>The mechanism wasn't virality. It was consistent volume — getting the founder's content in front of the right prospects every week, until trust became inevitable.</p>
+    </div>
+    <p class="disclaimer reveal">Case study presented anonymously at the client's request. Results vary depending on the offer, market, and execution.</p>
+
+    <p class="pull-line reveal">
+      If you're a founder, CEO, or operating partner of a B2B business — you have the expertise, you have a validated offer, but you can't communicate everything you know and still depend on outbound to generate sales — <strong>keep reading. This is for you.</strong>
+    </p>
   </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ AUTHOR STORY ══════ -->
+<section id="author">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">📈 Before We Go Any Further, Let Me Introduce Myself</div>
+    <h2 class="sec-title reveal">I'M VITOR TIMÓTEO,<br><em>FOUNDER OF ONE LIFE MEDIA</em></h2>
+
+    <div class="gold-frame narrow reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/6970dc3f4a646433391763b9.jpeg" alt="Vitor Timóteo, founder of One Life Media">
+    </div>
+
+    <div class="article reveal">
+      <p>But to understand what I do — and why I pursue it with an intensity most people don't understand — you need to know where I came from.</p>
+      <p>I grew up without an involved father. Without approval, protection, or respect. I experienced humiliation as a child that created an overwhelming desire in me to become great — so great that nothing could ever hurt me again. That became the fuel behind everything I built. <strong>The Hatred.</strong></p>
+    </div>
+
+    <ul class="story-list reveal">
+      <li>Started my career on the streets — nearly <strong>3 years</strong> on the front lines of premium, face-to-face sales, interrupting distracted customers and repositioning them toward a high-ticket decision within minutes. That's where I learned what no course can teach: real human behavior, under real pressure, with real consequences.</li>
+      <li><strong>2015</strong> — Joined the Brazilian Army's mandatory service program. Out of dozens of recruits, I was one of the few promoted to the highest rank available, with an honorable mention. I learned that adversity doesn't stop me — it shapes me.</li>
+      <li><strong>2019</strong> — Led sales teams across cities in Northeast Brazil during periods of extreme instability, keeping operations running with focus and discipline in the middle of chaos.</li>
+      <li>Built a lead generation team from scratch in less than <strong>20 days</strong> — recruiting, training and deploying people with no previous experience. On their very first day of operations, they were already generating qualified leads.</li>
+    </ul>
+
+    <div class="article reveal">
+      <p>A few years later, frustrated with the direct-response market, I entered one of the darkest periods of my life. Debt was piling up. Offers weren't performing. I even wrote a goodbye letter to a friend. I decided to quit. I went to sleep.</p>
+      <p>I woke up in the middle of the night and remembered Olavo de Carvalho: in sober moments, retreat into study. I picked up <em>Primal Branding</em>, by Patrick Hanlon. That's when it became clear what I wanted to do for the rest of my life: turn companies into religions.</p>
+    </div>
+
+    <ul class="story-list reveal">
+      <li>Documented my own journey on video — in <strong>60 days</strong>, I published more than 1,000 pieces of content, generating hundreds of thousands of likes and tens of thousands of followers. More importantly, I proved that massive content distribution converts. That became the model I systematized and brought to my first client.</li>
+    </ul>
+
+    <div class="gold-frame narrow reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/6a16a039d2af304d1214474a.png" alt="TikTok content distribution results">
+      <div class="gf-caption">The Model That Started It All</div>
+    </div>
+
+    <ul class="story-list reveal">
+      <li>Founded <strong>One Life Media</strong> as a tribute to the Gary Vee video I've followed since 2015 — <em>"One Life, One Chance."</em></li>
+      <li>Started creating content on LinkedIn from scratch and reached <strong>100,000 impressions in less than 90 days</strong>, starting from zero, reaching founders and business owners across the U.S., Europe, Australia and Asia.</li>
+    </ul>
+
+    <div class="gold-frame narrow reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://media.licdn.com/dms/image/v2/D4D22AQEAPO7bOMG8Kg/feedshare-shrink_800/B4DaCCQkidJsAc-/0/1788891777438?e=1790208000&amp;v=beta&amp;t=P8RNfzAyicx3Wa35sVWjMnQmK8afu-UJKydlGhZODI4" alt="LinkedIn growth results">
+      <div class="gf-caption">From Zero To 100K+ Impressions</div>
+    </div>
+
+    <div class="article reveal">
+      <p>I decided to bring my expertise — and the Brazilian DNA of creativity, hard work, and relentless drive — to the global market.</p>
+      <p>I executed the methodology with a Brazilian B2B sales consulting client: 600 pieces of content published in approximately 4 months, less than $1,000 in ad spend, and more than $200,000 in new revenue. ROAS above 200x. Founder-Led Growth working in the real world.</p>
+    </div>
+
+    <p class="pull-line reveal">Now I'm looking for the next case study. <strong>And I want it to be even bigger.</strong></p>
+
+    <div class="gold-frame reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://media.licdn.com/dms/image/v2/D4D22AQFwvJhrOI0DZA/feedshare-image-high-res/B4DaCDeCTCIoAU-/0/1788912084409?e=1790812800&amp;v=beta&amp;t=5k-Q_QJQ2oIczks12ppxOKcIS8mRnqAWXrUrKRE9WNo" alt="One Life Media team at the office">
+      <div class="gf-caption">One Life Media Headquarters</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ THE PROBLEM ══════ -->
+<section id="problem">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">The Problem</div>
+    <h2 class="sec-title reveal">THE PROBLEM MOST FOUNDERS<br><em>ARE STUCK WITH</em></h2>
+
+    <div class="article reveal">
+      <p>You know a lot. You have expertise, opinions, experience, and results. But almost no one outside your immediate circle knows it.</p>
+      <p>And it's not because you don't want to communicate. It's because the model you've been sold doesn't work when you actually have a company to run.</p>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-icon">❌</div>
+        <div class="problem-title">Becoming A Content Creator</div>
+        <p class="problem-text">You try. You post for a few days. Stop. Try again. Stop again. Because you can't shut down the operation every week to brainstorm topics, record and edit content. You're a business owner, not an influencer. That constant tension between what you should be posting and what you actually need to do inside the business brings everything to a halt.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">❌</div>
+        <div class="problem-title">Hiring A Social Media Manager</div>
+        <p class="problem-text">They post. They generate views. But they don't generate customers. Because generic content without your thesis, your market perspective, and your voice is just noise. And noise doesn't close high-ticket deals.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">❌</div>
+        <div class="problem-title">Depending On Outbound</div>
+        <p class="problem-text">It works until it doesn't. And when it stops working, you realize you haven't built anything beyond a cold list of people who don't know you, don't trust you, and resist whatever price you put in front of them.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">❌</div>
+        <div class="problem-title">Depending On Your Network</div>
+        <p class="problem-text">Referrals are great. But you don't control when they come. And while you wait, the competitor who built a qualified audience is getting warm leads every day, closing with less friction, and charging more.</p>
+      </div>
+    </div>
+
+    <p class="punch reveal">
+      The problem isn't your expertise.<br>
+      <em>The problem is that you don't have distribution.</em>
+    </p>
+    <div class="article reveal" style="margin-top:24px;">
+      <p style="text-align:center;">And without distribution, what you know stays trapped — in your head, with your existing clients, and inside your immediate network.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ THE SOLUTION ══════ -->
+<section id="solution">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">The Solution</div>
+    <h2 class="sec-title reveal">THE SOLUTION ISN'T<br><em>BECOMING A CONTENT CREATOR</em></h2>
+
+    <div class="article reveal">
+      <p>It's turning what you already think into massive distribution — without consuming your day-to-day routine. That's what One Life Media does.</p>
+      <p>We take <strong>10–12 hours</strong> of your time to record rich, deep, authentic long-form content — and turn it into approximately <strong>3,000 pieces of content</strong> published over 90 days, on autopilot.</p>
+      <p>While you stay focused on product, sales, operations, and clients — we handle editing, clipping, distribution, publishing, optimization, and scaling of your personal brand.</p>
+    </div>
+    <p class="pull-line reveal">The result is a content operation running every day <strong>without consuming your time.</strong></p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ HOW THE PROCESS WORKS ══════ -->
+<section id="process">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">The Framework</div>
+    <h2 class="sec-title reveal">HOW THE<br><em>PROCESS WORKS</em></h2>
+
+    <div class="gold-frame reveal">
+      <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
+      <img src="https://media.licdn.com/dms/image/v2/D4D22AQFIoktxe3iTyw/feedshare-image-high-res/B4DZ_cIY5EK4AU-/0/1786104614920?e=1790812800&amp;v=beta&amp;t=uLP1xGU6MM9YIka2z4Dx9fQm7iCCWhtdT-ta5D7wyUQ" alt="Founder-Led Growth framework">
+      <div class="gf-caption">The One Life Media Framework</div>
+    </div>
+
+    <div class="step-grid reveal">
+      <div class="step-card">
+        <div class="num">01</div>
+        <div class="title">Diagnosis</div>
+        <p class="text">We map your entire business: positioning, offer, funnel, CAC, average deal size, LTV, competitors, and messaging — identifying the biggest growth opportunities before publishing a single piece of content.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">02</div>
+        <div class="title">Conversion Architecture</div>
+        <p class="text">We determine which funnel best connects audience and conversion, building the path from audience to offer — so the content generates business, not just views.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">03</div>
+        <div class="title">Thesis Development</div>
+        <p class="text">We turn your market perspective into a narrative. Across 10–12 hours of long-form content — podcasts, lessons, monologues or conversations — you develop your perspective, values, stories and opinions. Nothing artificially scripted.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">04</div>
+        <div class="title">Mass Distribution</div>
+        <p class="text">We take over the entire operation — clipping, editing, optimizing for retention, and publishing daily across Instagram, TikTok, X, LinkedIn, Facebook and YouTube Shorts. About 10 pieces per platform, per day — roughly 3,000 in 90 days — plus strategic paid amplification.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">05</div>
+        <div class="title">Continuous Optimization</div>
+        <p class="text">We constantly analyze what performs best, what generates the most leads, and what attracts the right type of customer — then refine both distribution and messaging.</p>
+      </div>
+      <div class="step-card">
+        <div class="num">06</div>
+        <div class="title">Review &amp; Next-Level Scaling</div>
+        <p class="text">At the end of the cycle, we map what worked, what didn't, and structure the next stage of growth for your personal brand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ PROJECTIONS + CALCULATOR ══════ -->
+<section id="calc">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">What Happens Next</div>
+    <h2 class="sec-title reveal">WHAT HAPPENS AFTER<br><em>3,000 VIDEOS ARE LIVE?</em></h2>
+
+    <div class="article reveal">
+      <p>Let's be direct: 90 days is the beginning, not the end. But you'll already get a taste of what's coming.</p>
+      <p>3,000 published videos is an audience machine running 24/7. Every video is a salesperson that never sleeps, never asks for a raise, and never wakes up on the wrong side of the bed.</p>
+      <p>Let's use a conservative average number of views per video. Here's what your market starts seeing from you:</p>
+    </div>
+
+    <div class="table-scroll reveal">
+      <table class="proj-table">
+        <thead>
+          <tr><th>Scenario</th><th>Total Reach</th><th>Leads (0.03%)</th><th>Closed Deals (10%)</th><th>Est. Revenue*</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1,000 views / video</td><td>3,000,000</td><td>900</td><td>90</td><td>$90,000</td></tr>
+          <tr><td>5,000 views / video</td><td>15,000,000</td><td>4,500</td><td>450</td><td>$450,000</td></tr>
+          <tr><td>10,000 views / video</td><td>30,000,000</td><td>9,000</td><td>900</td><td>$900,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer reveal">*Illustrative projections based on a $1,000 average deal size. These figures are not a guarantee of results. Actual results depend on the offer, niche, execution, and market.</p>
+
+    <div class="calc-card reveal">
+      <div class="calc-heading">Run Your Own Numbers</div>
+      <p class="calc-sub">Plug in your funnel. See what massive distribution could mean for your business.</p>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="calcContent">Pieces Of Content</label>
+          <input type="number" id="calcContent" value="3000" min="0" step="1">
+        </div>
+        <div class="calc-field">
+          <label for="calcViews">Avg. Views Per Piece</label>
+          <input type="number" id="calcViews" value="1000" min="0" step="1">
+        </div>
+        <div class="calc-field">
+          <label for="calcLeadConv">Views → Lead Conversion (%)</label>
+          <input type="number" id="calcLeadConv" value="0.03" min="0" step="0.01">
+        </div>
+        <div class="calc-field">
+          <label for="calcCloseRate">Lead → Sale Conversion (%)</label>
+          <input type="number" id="calcCloseRate" value="10" min="0" step="0.5">
+        </div>
+        <div class="calc-field" style="grid-column:1 / -1;">
+          <label for="calcTicket">Average Deal Size ($)</label>
+          <input type="number" id="calcTicket" value="1000" min="0" step="50">
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result"><div class="v" id="outReach">0</div><div class="l">Total Reach</div></div>
+        <div class="calc-result"><div class="v" id="outLeads">0</div><div class="l">Leads Generated</div></div>
+        <div class="calc-result"><div class="v" id="outDeals">0</div><div class="l">Closed Deals</div></div>
+        <div class="calc-result"><div class="v" id="outRevenue">$0</div><div class="l">Estimated Revenue</div></div>
+      </div>
+    </div>
+
+    <div class="article reveal" style="margin-top:56px;">
+      <p>And that's just the numbers. What doesn't show up in the spreadsheet is how the market starts perceiving you.</p>
+      <p>The founder who publishes 3,000 videos in 90 days is not the same founder who entered the process. <strong>They become a recognized authority in their niche.</strong> People show up already convinced. The sales cycle gets shorter. Friction disappears.</p>
+      <p>The price you charge becomes justified not by your sales pitch — but by everything the prospect has already seen from you before they ever speak to you.</p>
+      <p>Networking opportunities start coming through DMs. Partnerships come knocking. Other founders in your market start mentioning you. <strong>You stop chasing customers and start attracting them.</strong></p>
+    </div>
+    <p class="pull-line reveal">That's what 90 days of massive distribution plants.<br><strong>The next 90 days are when you harvest.</strong></p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════ WHO THIS IS FOR / NOT FOR ══════ -->
+<section id="fit">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">Fit Check</div>
+    <h2 class="sec-title reveal">IS THIS FOR YOU?</h2>
+
+    <div class="dual-check reveal">
+      <div class="check-col check-yes">
+        <h4>Who This Is For</h4>
+        <ul>
+          <li>Founders, CEOs, and operating partners of B2B businesses with consultative or high-ticket sales.</li>
+          <li>Businesses that depend on outbound and want to build a predictable acquisition channel through authority.</li>
+          <li>Founders with expertise and strong opinions who can't maintain content consistency without disrupting the business.</li>
+          <li>Businesses with a validated offer, existing customers, and at least one case study — looking to amplify what already works.</li>
+          <li>Businesses where the founder's personal brand can reduce sales friction and CAC.</li>
+        </ul>
+      </div>
+      <div class="check-col check-no">
+        <h4>Who This Is NOT For</h4>
+        <ul>
+          <li>You don't have a validated offer and are still figuring out what to sell.</li>
+          <li>You only want to grow your follower count without connecting it to commercial results.</li>
+          <li>You're not willing to record 10–12 hours of long-form content.</li>
+          <li>You still need to be convinced that personal branding has strategic value.</li>
+          <li>You sell low-ticket offers without enough margin to support a growth operation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA 1 ══════ -->
+<div class="cta-wrap reveal">
+  <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services%20and%20how%20I%20can%20hire%20you%20guys." target="_blank" rel="noopener">
+    Click Here And Talk To Us
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="cta-note">Opens a WhatsApp conversation, message pre-filled</div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══════ PROBLEMA ══════ -->
-<section id="problema">
-  <div class="problema-grid">
-    <div>
-      <div class="section-label reveal">The Problem</div>
-      <h2 class="problema-headline reveal">
-        YOUR PROBLEM<br>
-        ISN'T CONTENT.<br>
-        <em>IT'S</em><br>
-        <span class="out">DISTRIBUTION.</span>
-      </h2>
-    </div>
-    <div class="problema-body reveal">
-      <p>
-        You already have expertise. You probably already record podcasts, interviews, webinars, sales calls, YouTube videos or other long-form content.
-      </p>
-      <p>
-        The problem? Most of it gets published once <strong>and disappears.</strong> A single recording can contain dozens of valuable ideas, insights and moments.
-      </p>
-      <p>
-        But nobody has the time to watch hours of footage, find the best moments, write hooks, edit every clip, add captions or manage five different platforms. <strong>So your best ideas stay buried inside your long-form content.</strong>
-      </p>
-    </div>
-  </div>
-
-  <div class="sintomas-grid">
-    <div class="sintoma-card reveal">
-      <div class="sintoma-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-      </div>
-      <div class="sintoma-title">Ideas Stay Buried</div>
-      <p class="sintoma-text">Hours of raw footage hide dozens of moments worth publishing — and nobody on your team has time to find them.</p>
-    </div>
-    <div class="sintoma-card reveal">
-      <div class="sintoma-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
-      </div>
-      <div class="sintoma-title">One Post, Then Gone</div>
-      <p class="sintoma-text">Content gets published once and disappears — instead of compounding into daily distribution across every channel.</p>
-    </div>
-    <div class="sintoma-card reveal">
-      <div class="sintoma-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-      </div>
-      <div class="sintoma-title">Five Platforms, No Bandwidth</div>
-      <p class="sintoma-text">Editing, captioning, formatting and publishing across five channels every day is a full-time job on its own.</p>
-    </div>
+<!-- ══════ WARNING ══════ -->
+<section id="warning" style="padding-top:60px; padding-bottom:60px;">
+  <div class="warn-box reveal">
+    <h4>⚠️ Attention — Do Not Click If:</h4>
+    <ul>
+      <li>You don't have a validated offer or any results worth communicating.</li>
+      <li>You want a magic formula and aren't willing to record the content required.</li>
+      <li>You're just curious.</li>
+    </ul>
+    <div class="respect">Respect my time.</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══════ MANIFESTO / OLM ══════ -->
-<section id="manifesto">
-  <div class="manifesto-inner">
-    <div class="manifesto-grid">
-      <div class="manifesto-left">
-        <div class="manifesto-tag reveal">The One Life Media Method</div>
-        <h2 class="manifesto-title reveal">
-          WE DON'T<br>
-          JUST CLIP<br>
-          <em>YOUR VIDEOS.</em><br>
-          <span class="out">WE PACKAGE IDEAS.</span>
-        </h2>
-        <p class="manifesto-text reveal">
-          Randomly cutting 30 seconds from a podcast isn't a content strategy. We look at <strong>the idea behind the clip</strong> and structure it for short-form consumption.
-        </p>
-        <p class="manifesto-text reveal">
-          Every clip is built around a strong opening, clear messaging, strategic cuts, captions, visual emphasis, branding and a CTA opportunity — not just a shorter version of the original.
-        </p>
-        <p class="manifesto-text reveal">
-          The goal isn't to produce more random videos. <strong>The goal is to extract more business value from the content you're already creating.</strong>
-        </p>
-      </div>
+<!-- ══════ FAQ ══════ -->
+<section id="faq">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">Questions</div>
+    <h2 class="sec-title reveal">FREQUENTLY ASKED<br><em>QUESTIONS</em></h2>
 
-      <div class="reveal">
-        <div class="missao-card">
-          <div class="missao-kicker">How It Works</div>
-          <p class="missao-text">
-            We take your existing long-form content and turn it into short-form assets designed for attention, clarity and action. <strong>Your content becomes a distribution engine.</strong>
-          </p>
-          <div class="missao-dividers">
-            <div class="missao-line">
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-              Record: you provide podcasts, interviews, webinars or recordings
-            </div>
-            <div class="missao-line">
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-              Extract & package: we turn the strongest moments into short-form videos
-            </div>
-            <div class="missao-line">
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-              Distribute: published across Instagram, TikTok, Shorts, Facebook, LinkedIn
-            </div>
-            <div class="missao-line">
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
-              Convert: interested viewers move toward your existing funnel
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="faq-inner reveal">
+      <details class="faq-item">
+        <summary>I can build this operation internally. Wouldn't that be cheaper than hiring you?</summary>
+        <div class="faq-a">Cheap and expensive depend on what you consider cheap and expensive. If this type of strategy were already part of your DNA, you would have implemented it already. You haven't — because this isn't what you live and breathe. It looks simple from the outside. In practice, it's complex. You see influencers with massive reach who generate no revenue, and business owners who know how to sell but can't identify the bottlenecks in their distribution. I've had companies pay me, receive the exact playbook for how we operate — and still fail to execute it. Not because they didn't work hard. Because this needs to be part of the operator's DNA. We live and breathe this 24/7.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I know these results weren't a one-off?</summary>
+        <div class="faq-a">I'm not going to pretend everyone will get the same numbers. Every operation has its own variables. What we do is isolate the factors that work and amplify what can be replicated. What I can tell you is this: I didn't invent this. What I apply is what Gary Vaynerchuk has been doing for more than 20 years. What's rare is someone executing it with a focus on commercial results, not vanity metrics.</div>
+      </details>
+      <details class="faq-item">
+        <summary>My niche is different. Will this work in my market?</summary>
+        <div class="faq-a">If your market depends on trust to close deals — yes. That's exactly where massive personal brand distribution reduces friction, shortens the sales cycle, and lowers CAC. The only scenario where this may not be ideal is if you sell low-ticket products or operate entirely in B2C. My specialty is scaling personal brands for B2B.</div>
+      </details>
+      <details class="faq-item">
+        <summary>I've tried creating content before and it didn't work. Why would this be different?</summary>
+        <div class="faq-a">Because now you have someone who has executed this, identified the bottlenecks, and built the frameworks to guide you. The difference is that you won't be navigating in the dark, trying to figure out what to fix. You execute. We lead.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Won't 3,000 videos in 90 days look like low-quality mass-produced content?</summary>
+        <div class="faq-a">The only bad thing about 3,000 videos in 90 days is that they're not 30,000. Quality is subjective. What isn't subjective is reach and retention — and that's what we optimize for. Bad content, to us, is content that doesn't generate retention or reach. Everything else is an opinion.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What if I record the content and the operation doesn't generate the expected results?</summary>
+        <div class="faq-a">What I guarantee unconditionally is the delivery: 3,000 pieces of content distributed over 90 days. If we go beyond 90 days, we keep publishing until we hit the number. Simple as that. Our business depends on your results — that's why we treat every operation as if it were our own company.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to be on camera a lot? I'm not comfortable in front of the camera.</summary>
+        <div class="faq-a">You need to record the 10–12 hours of long-form content. We'll help you make that process as natural as possible. Once that's done, the operation runs without requiring you to show up every day. But if the idea of being on camera bothers you so much that you absolutely refuse to do it — then this isn't for you. And while you're deciding, your competitor is building authority in the market that could be yours. It's a choice.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How is this different from hiring a regular social media agency?</summary>
+        <div class="faq-a">A traditional agency delivers a content calendar and social presence. Our focus is commercial results — more reach among your ideal customers, designed to build trust, shorten the sales cycle, and attract new customers without relying entirely on outbound. These are completely different propositions.</div>
+      </details>
+      <details class="faq-item">
+        <summary>I already have an internal marketing team. How does this fit in?</summary>
+        <div class="faq-a">Even better. Your team continues handling the other parts of your marketing operation while we take ownership of personal brand distribution. In practice, we become an additional arm of your team, focused specifically on this channel.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Why now? My business already sells well through outbound and referrals.</summary>
+        <div class="faq-a">That's exactly why. When the business is already healthy, you have the margin to deploy this strategy without the pressure of needing an immediate return. Content is exponential — but it takes time to gain momentum. Those who start when they're doing well harvest when they're doing even better. The best time to plant was yesterday. The second-best time is now.</div>
+      </details>
     </div>
   </div>
 </section>
+
+<!-- ══════ CTA 2 ══════ -->
+<div class="cta-wrap reveal">
+  <a class="btn-primary" href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services%20and%20how%20I%20can%20hire%20you%20guys." target="_blank" rel="noopener">
+    Click Here And Talk To Us
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="cta-note">Opens a WhatsApp conversation, message pre-filled</div>
+</div>
 
 <div class="divider"></div>
 
-<!-- ══════ 5 PILARES ══════ -->
-<section id="pilares">
-  <div class="pilares-header">
-    <div class="section-label reveal" style="justify-content:center;">What's Included</div>
-    <h2 class="pilares-title reveal">EVERYTHING<br><em>WE HANDLE</em></h2>
-    <p class="pilares-sub reveal">You don't need another editor. You need a system that turns your raw expertise into consistent distribution.</p>
+<!-- ══════ CLOSING / POSITIONING ══════ -->
+<section id="closing">
+  <img class="close-logo" src="https://assets.cdn.filesafe.space/MnLspXVOeuTfObC8RtvG/media/69bdcdea7fae1da38eb3b13c.png" alt="One Life Media">
+  <div class="closing-tagline reveal">FOUNDER-LED GROWTH<br><em>FOR B2B COMPANIES</em></div>
+  <p class="closing-sub reveal">We transform founder expertise into growth through deep content, authentic communication, and massive distribution.</p>
+
+  <div class="flow-line reveal">
+    <span>Expertise</span><span class="arrow">→</span><span>Content</span><span class="arrow">→</span><span>Distribution</span><span class="arrow">→</span><span>Growth</span>
   </div>
 
-  <div class="pilares-list">
-    <div class="pilar-row reveal">
-      <div class="pilar-num-big">01</div>
-      <div class="pilar-meta">
-        <div class="pilar-tag">Included 01</div>
-        <div class="pilar-name">CONTENT SELECTION<br>& HOOKS</div>
-      </div>
-      <div class="pilar-body">
-        We identify the highest-value moments from your long-form content based on your audience, offer, topic and positioning. <strong>Each idea is then packaged with an opening built to make the viewer stop and pay attention</strong> — instead of scrolling past.
-      </div>
-    </div>
-
-    <div class="pilar-row reveal">
-      <div class="pilar-num-big">02</div>
-      <div class="pilar-meta">
-        <div class="pilar-tag">Included 02</div>
-        <div class="pilar-name">SHORT-FORM<br>EDITING</div>
-      </div>
-      <div class="pilar-body">
-        Strategic cuts, captions, visual emphasis, context and platform-appropriate formatting for every clip we produce. <strong>This is the mechanism, not the product</strong> — the point is a clip that actually holds attention, not just a shorter file.
-      </div>
-    </div>
-
-    <div class="pilar-row reveal">
-      <div class="pilar-num-big">03</div>
-      <div class="pilar-meta">
-        <div class="pilar-tag">Included 03</div>
-        <div class="pilar-name">CTA<br>INTEGRATION</div>
-      </div>
-      <div class="pilar-body">
-        When appropriate, clips are connected to the next step in your funnel. <strong>Views alone don't build a pipeline</strong> — the clips that earn attention also need somewhere to send it.
-      </div>
-    </div>
-
-    <div class="pilar-row reveal">
-      <div class="pilar-num-big">04</div>
-      <div class="pilar-meta">
-        <div class="pilar-tag">Included 04</div>
-        <div class="pilar-name">MULTI-PLATFORM<br>DISTRIBUTION</div>
-      </div>
-      <div class="pilar-body">
-        Every clip is published across <strong>Instagram Reels, TikTok, YouTube Shorts, Facebook and LinkedIn.</strong> Instead of one recording becoming one post, it becomes distribution across five channels at once.
-      </div>
-    </div>
-
-    <div class="pilar-row reveal">
-      <div class="pilar-num-big">05</div>
-      <div class="pilar-meta">
-        <div class="pilar-tag">Included 05</div>
-        <div class="pilar-name">CONSISTENT<br>MONTHLY OUTPUT</div>
-      </div>
-      <div class="pilar-body">
-        Your selected number of clips is produced and distributed <strong>every single month, on a system</strong> — not in bursts whenever there's time. Consistency is what turns content into a real distribution channel.
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════ METODOLOGIA ══════ -->
-<section id="metodologia">
-  <div class="met-inner">
-    <div class="met-header">
-      <div class="section-label reveal" style="justify-content:center;">How We Work</div>
-      <h2 class="met-title reveal">ONE RECORDING.<br><em>MULTIPLE OPPORTUNITIES.</em></h2>
-      <p class="met-sub reveal">We take your existing long-form content and turn it into short-form assets designed for attention, clarity and action.</p>
-    </div>
-
-    <div class="met-steps">
-      <div class="met-connector"></div>
-      <div class="met-step reveal">
-        <div class="met-step-num">01</div>
-        <div class="met-step-title">RECORD</div>
-        <p class="met-step-text">You record your podcast, interview, webinar, YouTube video or other long-form content.</p>
-      </div>
-      <div class="met-step reveal">
-        <div class="met-step-num">02</div>
-        <div class="met-step-title">EXTRACT & PACKAGE</div>
-        <p class="met-step-text">We identify the strongest ideas and turn them into short-form videos with hooks, editing, captions and CTAs.</p>
-      </div>
-      <div class="met-step reveal">
-        <div class="met-step-num">03</div>
-        <div class="met-step-title">DISTRIBUTE</div>
-        <p class="met-step-text">We publish across Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn — every day.</p>
-      </div>
-      <div class="met-step reveal">
-        <div class="met-step-num">04</div>
-        <div class="met-step-title">CONVERT</div>
-        <p class="met-step-text">Interested viewers move toward your existing funnel. Your content becomes a distribution engine.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════ QUOTE ══════ -->
-<section id="quote-section">
-  <span class="qmark" aria-hidden="true">"</span>
-  <p class="qtext reveal">
-    Your content doesn't exist for vanity metrics.<br>
-    <strong>It exists to create business opportunities.</strong>
-  </p>
-  <div class="qsource reveal">— One Life Media · Content Distribution System</div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════ PROOF / RESULTS ══════ -->
-<section id="proof">
-  <div class="proof-inner">
-    <div class="proof-eyebrow reveal">Previous Campaign</div>
-    <h2 class="proof-headline reveal">600+ Clips.<br><em>$200K+ In Revenue.</em></h2>
-    <div class="proof-stats">
-      <div class="proof-stat reveal">
-        <div class="val">$200K+</div>
-        <div class="lbl">Revenue Attributed<br>To The Campaign</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="val">3,000+</div>
-        <div class="lbl">Leads<br>Generated</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="val">400</div>
-        <div class="lbl">Marketing<br>Qualified Leads</div>
-      </div>
-      <div class="proof-stat reveal">
-        <div class="val">120</div>
-        <div class="lbl">Days Of Campaign<br>Execution</div>
-      </div>
-    </div>
-    <p class="proof-note reveal">Our methodology was previously used in a B2B campaign in the Brazilian market, generating more than 600 short-form clips as part of a broader acquisition system.</p>
-    <p class="proof-disclaimer reveal">Results vary based on the offer, market, content quality, audience, distribution and sales process. We do not guarantee a specific number of views, leads, meetings or sales.</p>
-    <a class="case-study-link reveal" href="https://www.linkedin.com/pulse/271x-roas-217000-new-contracts-800-ad-spend-120-days-vitor-tim%C3%B3teo-zvnqf/" target="_blank" rel="noopener">
-      Read The Full Case Study
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-    </a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════ DIFERENCIAIS ONE LIFE MEDIA ══════ -->
-<section id="diferenciais">
-  <div class="dif-header">
-    <div>
-      <div class="section-label reveal">Content → Funnel</div>
-      <h2 class="dif-title reveal">
-        YOUR CONTENT<br>
-        <em>SHOULD</em><br>
-        LEAD SOMEWHERE
-      </h2>
-    </div>
-    <div class="dif-intro reveal">
-      <p>Views are nice. But content becomes far more valuable when it connects to your business. <strong>Depending on your strategy, your clips can attract, educate, build authority, create demand and generate action.</strong></p>
-    </div>
-  </div>
-
-  <div class="dif-grid">
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-      </div>
-      <div class="dif-card-title">Attract</div>
-      <p class="dif-card-text">Reach people who have never heard of you — turning your long-form content into first-touch distribution.</p>
-    </div>
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      </div>
-      <div class="dif-card-title">Educate</div>
-      <p class="dif-card-text">Demonstrate expertise and solve relevant problems in the exact moments your audience is already paying attention.</p>
-    </div>
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      </div>
-      <div class="dif-card-title">Build Authority</div>
-      <p class="dif-card-text">Show your perspective, experience and knowledge, clip after clip, platform after platform.</p>
-    </div>
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
-      <div class="dif-card-title">Create Demand</div>
-      <p class="dif-card-text">Help potential buyers recognize problems they need to solve — before they ever talk to your team.</p>
-    </div>
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="dif-card-title">Generate Action</div>
-      <p class="dif-card-text">Move interested prospects toward your funnel with CTAs built into the clips that already earned their attention.</p>
-    </div>
-    <div class="dif-card reveal">
-      <div class="dif-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </div>
-      <div class="dif-card-title">Convert To Pipeline</div>
-      <p class="dif-card-text">Content → attention → trust → demand → leads → pipeline. Your content doesn't exist for vanity metrics — it exists to create business opportunities.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════ PLANS ══════ -->
-<section id="auditoria">
-  <div class="aud-inner">
-    <div class="aud-top">
-      <span class="aud-kicker reveal">Choose Your Plan</span>
-      <h2 class="aud-title reveal">
-        CHOOSE YOUR<br>
-        <em>DISTRIBUTION</em><br>
-        <span class="out">VOLUME.</span>
-      </h2>
-      <p class="aud-desc reveal">
-        The more content you create, the more aggressively we can distribute your expertise. <strong>Every plan includes 5-platform distribution — Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn.</strong>
-      </p>
-    </div>
-
-    <div class="plans-grid">
-
-      <!-- STARTER -->
-      <div class="plan-card reveal">
-        <div class="plan-name">Starter</div>
-        <div class="plan-volume">30 Clips / Month</div>
-        <div class="plan-price">$997<span>/mo</span></div>
-        <p class="plan-desc">For founders who want to establish a consistent presence across their social channels.</p>
-        <ul class="plan-features">
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>30 short-form videos</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Hook optimization</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Editing & captions</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>CTA integration</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>5-platform distribution</li>
-        </ul>
-        <a class="plan-cta" href="https://wa.me/5517996348928?text=Hi%21%20I%27m%20interested%20in%20the%20Starter%20plan%20%2830%20clips/month%2C%20%24997/mo%29.%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">Choose Starter →</a>
-        <div class="plan-anchor">$6.64 per published clip · 5 channels</div>
-      </div>
-
-      <!-- GROWTH (RECOMMENDED) -->
-      <div class="plan-card reveal">
-        <div class="plan-name">Growth</div>
-        <div class="plan-volume">60 Clips / Month</div>
-        <div class="plan-price">$1,497<span>/mo</span></div>
-        <p class="plan-desc">For founders who want to turn content into a serious distribution channel.</p>
-        <ul class="plan-features">
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>60 short-form videos</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Hook optimization</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Editing & captions</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>CTA integration</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>5-platform distribution</li>
-        </ul>
-        <a class="plan-cta" href="https://wa.me/5517996348928?text=Hi%21%20I%27m%20interested%20in%20the%20Growth%20plan%20%2860%20clips/month%2C%20%241%2C497/mo%29.%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">Choose Growth →</a>
-        <div class="plan-anchor">$4.99 per published clip · 5 channels</div>
-      </div>
-
-      <!-- AUTHORITY (RECOMMENDED) -->
-      <div class="plan-card featured reveal">
-        <div class="plan-badge">Recommended</div>
-        <div class="plan-name">Authority</div>
-        <div class="plan-volume">90 Clips / Month</div>
-        <div class="plan-price">$1,997<span>/mo</span></div>
-        <p class="plan-desc">For founders who want significantly higher content volume and consistent market presence.</p>
-        <ul class="plan-features">
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>90 short-form videos</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Hook optimization</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Editing & captions</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>CTA integration</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>5-platform distribution</li>
-        </ul>
-        <a class="plan-cta" href="https://wa.me/5517996348928?text=Hi%21%20I%27m%20interested%20in%20the%20Authority%20plan%20%2890%20clips/month%2C%20%241%2C997/mo%29.%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">Choose Authority →</a>
-        <div class="plan-anchor">$4.43 per published clip · 5 channels</div>
-      </div>
-
-      <!-- SCALE -->
-      <div class="plan-card reveal">
-        <div class="plan-name">Scale</div>
-        <div class="plan-volume">120 Clips / Month</div>
-        <div class="plan-price">$2,497<span>/mo</span></div>
-        <p class="plan-desc">For founders who want to operate content as a high-volume acquisition channel.</p>
-        <ul class="plan-features">
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>120 short-form videos</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Hook optimization</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Editing & captions</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>CTA integration</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>5-platform distribution</li>
-        </ul>
-        <a class="plan-cta" href="https://wa.me/5517996348928?text=Hi%21%20I%27m%20interested%20in%20the%20Scale%20plan%20%28120%20clips/month%2C%20%242%2C497/mo%29.%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">Choose Scale →</a>
-        <div class="plan-anchor">$4.16 per published clip · 5 channels</div>
-      </div>
-
-      <!-- DOMINANCE -->
-      <div class="plan-card reveal">
-        <div class="plan-name">Dominance</div>
-        <div class="plan-volume">150 Clips / Month</div>
-        <div class="plan-price">$2,997<span>/mo</span></div>
-        <p class="plan-desc">For companies that want maximum content volume and continuous distribution.</p>
-        <ul class="plan-features">
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>150 short-form videos</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Hook optimization</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>Editing & captions</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>CTA integration</li>
-          <li><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>5-platform distribution</li>
-        </ul>
-        <a class="plan-cta" href="https://wa.me/5517996348928?text=Hi%21%20I%27m%20interested%20in%20the%20Dominance%20plan%20%28150%20clips/month%2C%20%242%2C997/mo%29.%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener">Choose Dominance →</a>
-        <div class="plan-anchor">$3.99 per published clip · 5 channels</div>
-      </div>
-
-    </div>
-
-    <!-- WHAT YOU PROVIDE -->
-    <div class="provide-inner">
-      <h3 class="provide-title reveal">YOUR PART IS <em>SIMPLE</em></h3>
-      <p class="provide-sub reveal">We intentionally built the system around minimal founder involvement.</p>
-      <div class="provide-grid">
-        <div class="provide-card reveal">
-          <div class="provide-num">01</div>
-          <div class="provide-name">Payment</div>
-          <div class="provide-text">Your selected monthly plan.</div>
-        </div>
-        <div class="provide-card reveal">
-          <div class="provide-num">02</div>
-          <div class="provide-name">Account Access</div>
-          <div class="provide-text">The social accounts where your content will be published.</div>
-        </div>
-        <div class="provide-card reveal">
-          <div class="provide-num">03</div>
-          <div class="provide-name">Long-Form Content</div>
-          <div class="provide-text">YouTube videos, podcasts, interviews, webinars, recordings or other approved source material.</div>
-        </div>
-      </div>
-      <p class="provide-final reveal">You Record. We Handle The Rest. First content published in under 7 days.</p>
-    </div>
-
-    <!-- FAQ -->
-    <div class="faq-inner" id="faq">
-      <h3 class="faq-title reveal">FAQ</h3>
-      <div class="faq-item reveal">
-        <div class="faq-q">Do I need to create new content?</div>
-        <div class="faq-a">No. We primarily work with long-form content you already create, including podcasts, interviews, webinars, YouTube videos and recordings.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you edit the videos?</div>
-        <div class="faq-a">Yes. Editing, captions, hooks, visual emphasis, branding and platform-appropriate formatting are included.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Which platforms do you publish on?</div>
-        <div class="faq-a">Instagram, TikTok, YouTube Shorts, Facebook and LinkedIn.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">How much do I need to do?</div>
-        <div class="faq-a">Very little. You provide payment, account access and long-form source content. We handle the repurposing and distribution process.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">How quickly do you start?</div>
-        <div class="faq-a">Your first content begins being published in less than 7 days after we receive the required content and account access.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you guarantee leads or sales?</div>
-        <div class="faq-a">No. Results depend on your offer, market, content quality, audience, distribution and sales process. Our responsibility is to build and operate the content production and distribution system.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">What happens after I select a plan?</div>
-        <div class="faq-a">You'll be taken to WhatsApp to finalize the details and start onboarding.</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FINAL CTA -->
-<section id="finalcta">
-  <p class="qtext reveal">
-    Your best ideas are already sitting inside your content.<br>
-    <strong>Stop letting valuable expertise disappear after one upload.</strong>
-  </p>
-  <div class="qsource reveal">30–150 clips/month · 5 platforms · Starting at $997/month</div>
-  <div class="hero-ctas" style="margin-top:36px; justify-content:center;">
-    <a href="#auditoria" class="btn-primary">
-      Choose Your Plan
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
+  <blockquote class="closing-quote reveal">
+    "We believe the founder is a company's most powerful growth channel. Products can be copied. Prices can be undercut. Channels can become saturated. A founder's authority is one of the few assets that compounds over time."
+  </blockquote>
+  <div class="closing-quote-source reveal">— Vitor Timóteo, Founder Of One Life Media</div>
 </section>
 
 <!-- FOOTER -->
@@ -1259,59 +761,69 @@
   <div class="footer-copy">© 2025 One Life Media — All Rights Reserved</div>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/vitortimoteoreal/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://wa.me/5517996348928?text=Hi%21%20I%27d%20like%20to%20learn%20more%20about%20One%20Life%20Media%27s%20content%20distribution%20plans." target="_blank" rel="noopener">WhatsApp Us</a>
-    <a href="#auditoria">Choose Your Plan</a>
+    <a href="https://wa.me/5517996348928?text=Hi%2C%20I%20want%20to%20know%20more%20about%20One%20Life%20Media%20services%20and%20how%20I%20can%20hire%20you%20guys." target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/1lmediaforb2b/" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
 
 <script>
   // Cursor — desktop only
-  if (window.matchMedia('(hover: hover)').matches) {
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function loop() {
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll('a, button, .sintoma-card, .dif-card, .pilar-row, .missao-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.borderColor = 'rgba(200,169,110,0.8)'; });
-      el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(200,169,110,0.45)'; });
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  if (window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursorRing.style.left = e.clientX + 'px';
+      cursorRing.style.top = e.clientY + 'px';
     });
-  }
-
-  // Nav sólida ao scrollar
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  // Mobile CTA — some quando chega no formulário
-  const mobileCta = document.getElementById('mobileCta');
-  if (mobileCta) {
-    const aud = document.getElementById('auditoria');
-    const obs2 = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        mobileCta.style.opacity = e.isIntersecting ? '0' : '1';
-        mobileCta.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
-      });
-    }, { threshold: 0.1 });
-    if (aud) obs2.observe(aud);
+    document.querySelectorAll('a, button, summary, input, .problem-card, .step-card, .gold-frame').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.style.transform = 'translate(-50%,-50%) scale(1.6)');
+      el.addEventListener('mouseleave', () => cursorRing.style.transform = 'translate(-50%,-50%) scale(1)');
+    });
   }
 
   // Reveal on scroll
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
-        obs.unobserve(e.target);
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // ROI Calculator
+  function formatNumber(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function formatCurrency(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function runCalc() {
+    const content = parseFloat(document.getElementById('calcContent').value) || 0;
+    const views = parseFloat(document.getElementById('calcViews').value) || 0;
+    const leadConv = parseFloat(document.getElementById('calcLeadConv').value) || 0;
+    const closeRate = parseFloat(document.getElementById('calcCloseRate').value) || 0;
+    const ticket = parseFloat(document.getElementById('calcTicket').value) || 0;
+
+    const reach = content * views;
+    const leads = reach * (leadConv / 100);
+    const deals = leads * (closeRate / 100);
+    const revenue = deals * ticket;
+
+    document.getElementById('outReach').textContent = formatNumber(reach);
+    document.getElementById('outLeads').textContent = formatNumber(leads);
+    document.getElementById('outDeals').textContent = formatNumber(deals);
+    document.getElementById('outRevenue').textContent = formatCurrency(revenue);
+  }
+  ['calcContent','calcViews','calcLeadConv','calcCloseRate','calcTicket'].forEach(id => {
+    document.getElementById(id).addEventListener('input', runCalc);
+  });
+  runCalc();
 </script>
+
 </body>
 </html>
