@@ -257,6 +257,19 @@
   .check-yes li::before { content:'✓'; position:absolute; left:0; top:-1px; font-size:16px; font-weight:700; color:var(--accent); }
   .check-no li::before { content:'✕'; position:absolute; left:0; top:-1px; font-size:15px; font-weight:700; color:var(--red); }
 
+  /* ─── TERM / DEFINITION BOX (Brutal Branding) ─── */
+  .term-box {
+    max-width:640px; margin:56px auto 0; padding:42px 44px; text-align:center;
+    background:var(--mid); border:1px solid rgba(227,167,49,0.35); position:relative;
+    clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .term-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right, transparent, var(--accent), transparent); }
+  .term-label { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px; }
+  .term-name { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,5.5vw,54px); letter-spacing:2px; color:var(--accent); margin-bottom:22px; }
+  .term-def { font-family:'Lora',serif; font-size:16.5px; line-height:1.8; color:var(--text-body); margin-bottom:14px; }
+  .term-def:last-child { margin-bottom:0; }
+  .term-def em { color:var(--accent-2); font-style:italic; }
+
   /* ─── WARNING BOX ─── */
   .warn-box {
     max-width:640px; margin:60px auto 0; border:1px solid rgba(214,58,42,0.4); background:rgba(214,58,42,0.06);
@@ -411,6 +424,62 @@
 
 <div class="divider"></div>
 
+<!-- ══════ PERCEPTION / BRUTAL BRANDING ══════ -->
+<section id="perception">
+  <div class="sec-inner">
+    <div class="eyebrow reveal">The Real Lever</div>
+    <h2 class="sec-title reveal">THE ONLY WAY TO LOWER CAC<br>IS TO <em>BECOME THE ONLY OPTION</em></h2>
+
+    <div class="article reveal">
+      <p>Think about the companies that can charge more, rely less on outbound, and get customers coming to them.</p>
+      <p>They all have one thing in common: <strong>their market knows them.</strong></p>
+      <p>Not just their company name.<br>They know what they believe.<br>They know what they stand for.<br>They know what problem they solve.</p>
+      <p>They've seen their content. They've heard their opinions. They've seen their results.</p>
+      <p>So when the problem comes up, there isn't much of a decision left to make. <strong>They already know who to call.</strong></p>
+    </div>
+
+    <p class="pull-line reveal">
+      That's what actually lowers CAC.<br>
+      Not another funnel hack. Not another ad campaign. Not another sales script.<br>
+      <strong>Perception.</strong>
+    </p>
+
+    <div class="article reveal">
+      <p>You need your ICP to perceive you as the obvious — ideally, the only — company worth considering in your category.</p>
+      <p>And that perception doesn't come from posting occasionally. It comes from volume. A lot of it.</p>
+      <p>Because your prospect isn't going to see one post and suddenly decide you're the best company in the market.</p>
+      <p>They see one. Then another. Then another. They hear you explain the problem from a different angle. They see a client result. They hear your opinion. They see your face again.</p>
+      <p>And eventually, something happens. <strong>You start to feel bigger than everyone else.</strong> Your competitors are still options. You're becoming <em>the</em> option.</p>
+    </div>
+
+    <p class="punch reveal">
+      MOST FOUNDERS DON'T NEED TO "CREATE MORE CONTENT."<br>
+      <em>THEY NEED TO DOMINATE DISTRIBUTION.</em>
+    </p>
+
+    <div class="article reveal" style="margin-top:44px;">
+      <p>Because the goal isn't to have a beautiful content calendar.</p>
+      <p>The goal is to put so much of your expertise in front of the right people that, when they finally need what you sell, it feels like you are the only company in the market that can solve the problem.</p>
+      <p>That's when CAC changes. Your outbound becomes warmer. Your referrals convert faster. Your paid traffic has more leverage. Your sales calls get shorter.</p>
+      <p>And prospects stop asking, "Why should I choose you?" Because you've already answered that question hundreds of times before they ever got on the call.</p>
+    </div>
+
+    <p class="pull-line reveal">
+      <strong>More content isn't the goal. Becoming the only option in your category is.</strong><br>
+      Volume is how you get there.
+    </p>
+
+    <div class="term-box reveal">
+      <div class="term-label">A Term We Coined</div>
+      <div class="term-name glow-num">BRUTAL BRANDING</div>
+      <p class="term-def">A mix of <em>Primal Branding</em> from Patrick Hanlon with the <em>Content Pyramid</em> from Gary Vee.</p>
+      <p class="term-def">It means distributing your belief system in high volume — to dominate your category.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ══════ AUTHOR STORY ══════ -->
 <section id="author">
   <div class="sec-inner">
@@ -551,7 +620,7 @@
 
     <div class="gold-frame reveal">
       <span class="gf-corner tl"></span><span class="gf-corner tr"></span><span class="gf-corner bl"></span><span class="gf-corner br"></span>
-      <img src="https://media.licdn.com/dms/image/v2/D4D22AQFIoktxe3iTyw/feedshare-image-high-res/B4DZ_cIY5EK4AU-/0/1786104614920?e=1790812800&amp;v=beta&amp;t=uLP1xGU6MM9YIka2z4Dx9fQm7iCCWhtdT-ta5D7wyUQ" alt="Founder-Led Growth framework">
+      <img src="https://raw.githubusercontent.com/1lmedia/portfolio/refs/heads/main/FRAMEWORK%20VISUAL%201LMEDIA.png" alt="Founder-Led Growth framework">
       <div class="gf-caption">The One Life Media Framework</div>
     </div>
 
